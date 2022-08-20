@@ -33,11 +33,50 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML">
+      <HintPath>C:\Program Files (x86)\PT Automation Solution\Easy Driver Server\Toolkit\ClosedXML.DLL</HintPath>
+    </Reference>
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
     </Reference>
+    <Reference Include="DocumentFormat.OpenXml">
+      <HintPath>C:\Program Files (x86)\PT Automation Solution\Easy Driver Server\Toolkit\DocumentFormat.OpenXml.DLL</HintPath>
+    </Reference>
+    <Reference Include="EasyScada.Core">
+      <HintPath>C:\Program Files (x86)\PT Automation Solution\Easy Driver Server\Toolkit\EasyScada.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EasyScada.Winforms.Controls">
+      <HintPath>C:\Program Files (x86)\PT Automation Solution\Easy Driver Server\Toolkit\EasyScada.Winforms.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat">
+      <HintPath>C:\Program Files (x86)\PT Automation Solution\Easy Driver Server\Toolkit\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Client">
+      <HintPath>C:\Program Files (x86)\PT Automation Solution\Easy Driver Server\Toolkit\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>C:\Program Files (x86)\PT Automation Solution\Easy Driver Server\Toolkit\MongoDB.Bson.DLL</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>C:\Program Files (x86)\PT Automation Solution\Easy Driver Server\Toolkit\MongoDB.Driver.DLL</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core">
+      <HintPath>C:\Program Files (x86)\PT Automation Solution\Easy Driver Server\Toolkit\MongoDB.Driver.Core.DLL</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Libmongocrypt">
+      <HintPath>C:\Program Files (x86)\PT Automation Solution\Easy Driver Server\Toolkit\MongoDB.Libmongocrypt.DLL</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot">
+      <HintPath>C:\Program Files (x86)\PT Automation Solution\Easy Driver Server\Toolkit\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.WindowsForms">
+      <HintPath>C:\Program Files (x86)\PT Automation Solution\Easy Driver Server\Toolkit\OxyPlot.WindowsForms.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpCompress">
+      <HintPath>C:\Program Files (x86)\PT Automation Solution\Easy Driver Server\Toolkit\SharpCompress.DLL</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -58,8 +97,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\PartInfoModel.cs" />
+    <Compile Include="Models\tblTipOdFreqModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaticClass\GlobalVariables.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
