@@ -25,8 +25,8 @@ namespace TipODFreq.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Database=ALD_TipOD;UID=sa;Password= 100100; Min Pool Size=0" +
-            ";Max Pool Size=1000;Pooling=true; Connect Timeout=65535;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Database=ALD_MFG;UID=sa;Password= 100100; Min Pool Size=0;M" +
+            "ax Pool Size=1000;Pooling=true; Connect Timeout=65535;")]
         public string ConString {
             get {
                 return ((string)(this["ConString"]));

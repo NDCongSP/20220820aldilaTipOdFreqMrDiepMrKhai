@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ConString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data Source=localhost;Database=ALD_TipOD;UID=sa;Password= 100100; Min Pool Size=0;Max Pool Size=1000;Pooling=true; Connect Timeout=65535;</Value>
+      <Value Profile="(Default)">Data Source=localhost;Database=ALD_MFG;UID=sa;Password= 100100; Min Pool Size=0;Max Pool Size=1000;Pooling=true; Connect Timeout=65535;</Value>
     </Setting>
   </Settings>
 </SettingsFile>
