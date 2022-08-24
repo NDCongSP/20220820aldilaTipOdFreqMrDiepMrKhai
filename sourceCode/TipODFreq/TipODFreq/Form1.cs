@@ -18,7 +18,7 @@ namespace TipODFreq
         private List<PartInfoModel> partInfo = new List<PartInfoModel>();
         private string partNum = null;
 
-        char[] partNumChar = new char[10];//chứa các ký tự convert từ HMI truyền về
+        char[] partNumChar = new char[16];//chứa các ký tự convert từ HMI truyền về
 
         bool sendData = false;//khi co barcode mới thì bật bit này lên để get data từ SQL truyền xuống cho máy chạy part mới.
 
@@ -71,40 +71,36 @@ namespace TipODFreq
                 {
                     gridPartInfo.DataSource = partInfo;
 
-                    #region Station1 HMI 1 cổng LAN
+                    #region Station1 HMI 1 485 id 1
                     easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FreqTarget", partInfo[0].Freq.ToString(), WritePiority.Default);
                     easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FormulaGId", partInfo[0].FormulaGId.ToString(), WritePiority.Default);
-                    //easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FormulaGU", partInfo[0].GU.ToString(), WritePiority.Default);
-                    //easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FormulaGV", partInfo[0].GV.ToString(), WritePiority.Default);
-                    ////số thập phân, 3 số lẻ, nên nhân 1000 để thành số nguyên để truyền xuống PLC. dưới PLC đọc chia 1000 để ra số liệu thực.
-                    //easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FormulaGX", (partInfo[0].GX * 1000).ToString(), WritePiority.Default);
-                    //easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FormulaGY", (partInfo[0].GY * 1000).ToString(), WritePiority.Default);
-                    //easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FormulaGZ", partInfo[0].GZ.ToString(), WritePiority.Default);
-                    //easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FormulaGP", (partInfo[0].GP * 1000).ToString(), WritePiority.Default);
                     #endregion
 
-                    #region Station2 PLC, truyền thông modbus RTU Id 1
+                    #region Station2 PLC, truyền thông modbus TCP
                     var index = 1;
                     foreach (var item in partInfo)
                     {
-                        easyDriverConnector1.WriteTagAsync($"Local Station/Station23/Station2Plc/DiamLL{index}", (item.DiamLL * 100).ToString(), WritePiority.Default);
-                        easyDriverConnector1.WriteTagAsync($"Local Station/Station23/Station2Plc/DiamUL{index}", (item.DiamUL * 100).ToString(), WritePiority.Default);
-                        easyDriverConnector1.WriteTagAsync($"Local Station/Station23/Station2Plc/TipOdLength{index}", item.TipOdLength.ToString(), WritePiority.Default);
+                        easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamLL{index}", (item.DiamLL * 100).ToString(), WritePiority.Default);
+                        easyDriverConnector1.WriteTagAsync($"Local Station/Station23/Device/DiamUL{index}", (item.DiamUL * 100).ToString(), WritePiority.Default);
+                        easyDriverConnector1.WriteTagAsync($"Local Station/Station23/Device/TipOdLength{index}", item.TipOdLength.ToString(), WritePiority.Default);
 
                         index += 1;
                     }
                     #endregion
 
-                    #region Station3 HMI, truyền thông modbus RTU Id 2
-                    easyDriverConnector1.WriteTagAsync("Local Station/Station23/Station3Hmi/FormulaPoId", partInfo[0].FormulaPoId.ToString(), WritePiority.Default);
-                    //easyDriverConnector1.WriteTagAsync("Local Station/Station23/Station3Hmi/FormulaPoU", partInfo[0].PoU.ToString(), WritePiority.Default);
-                    //easyDriverConnector1.WriteTagAsync("Local Station/Station23/Station3Hmi/FormulaPoV", partInfo[0].PoV.ToString(), WritePiority.Default);
-                    //easyDriverConnector1.WriteTagAsync("Local Station/Station23/Station3Hmi/FormulaPoX", (partInfo[0].PoX * 1000).ToString(), WritePiority.Default);
-                    //easyDriverConnector1.WriteTagAsync("Local Station/Station23/Station3Hmi/FormulaPoY", (partInfo[0].PoY * 1000).ToString(), WritePiority.Default);
-                    //easyDriverConnector1.WriteTagAsync("Local Station/Station23/Station3Hmi/FormulaPoZ", partInfo[0].PoZ.ToString(), WritePiority.Default);
-                    //easyDriverConnector1.WriteTagAsync("Local Station/Station23/Station3Hmi/FormulaPoP", (partInfo[0].PoP * 1000).ToString(), WritePiority.Default);
+                    #region Station3 HMI, truyền thông modbus TCP
+                    easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/FormulaPoId", partInfo[0].FormulaPoId.ToString(), WritePiority.Default);
+                    easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/FreqTarget", partInfo[0].Freq.ToString(), WritePiority.Default);
                     #endregion
+
+                    //set bit reset
+                    easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/Reset", "1", WritePiority.Default);
+                    easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/Reset", "1", WritePiority.Default);
+                    easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Reset", "1", WritePiority.Default);
                 }
+
+                //xoá ký tự cuối cùng, để khi quet barcode khác thì nó sẽ nhảy vào tagValueChange event.
+                easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/BarcodeChar8", "0", WritePiority.Default);
 
                 sendData = false;
             }
@@ -129,19 +125,36 @@ namespace TipODFreq
             BarcodeChar5_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5"),
                           new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5")
                           , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5").Value));
+            BarcodeChar6_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6").Value));
+            BarcodeChar7_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar7"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar7")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar7").Value));
+            BarcodeChar8_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar8"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar8")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar8").Value));
 
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1").ValueChanged += BarcodeChar1_ValueChanged;
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2").ValueChanged += BarcodeChar2_ValueChanged;
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3").ValueChanged += BarcodeChar3_ValueChanged;
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4").ValueChanged += BarcodeChar4_ValueChanged;
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5").ValueChanged += BarcodeChar5_ValueChanged;
+            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6").ValueChanged += BarcodeChar6_ValueChanged;
+            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar7").ValueChanged += BarcodeChar7_ValueChanged;
+            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar8").ValueChanged += BarcodeChar8_ValueChanged;
+            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish").ValueChanged += FinishStation1_ValueChanged;
+
+            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Finish").ValueChanged += FinishStation2_ValueChanged;
+            easyDriverConnector1.GetTag("Local Station/Station3Hmi/Device/Finish").ValueChanged += FinishStation3_ValueChanged;
             //Sensor
             easyDriverConnector1.GetTag("Local Station/Sensor/Device/Value").ValueChanged += Value_ValueChanged;
         }
 
+        #region TagValueChange Events
         private void Value_ValueChanged(object sender, TagValueChangedEventArgs e)
         {
-            easyDriverConnector1.WriteTagAsync("Local Station/Station23/Station2Plc/Sensor", e.NewValue, WritePiority.High);
+            easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/Sensor", e.NewValue, WritePiority.High);
         }
 
         private void BarcodeChar1_ValueChanged(object sender, TagValueChangedEventArgs e)
@@ -311,6 +324,108 @@ namespace TipODFreq
                         partNumChar[8] = (char)n;
                     }
                 }
+            }
+        }
+
+        private void BarcodeChar6_ValueChanged(object sender, TagValueChangedEventArgs e)
+        {
+            //1 tag chứa 2 ký tự. đc chuyển thành số DEC. giờ phải chyển về HEX. rồi đảo ngược lại
+            //Ex: từ HMI truyền lên chữ 'YM': --> mã ASSCII(HEX): Y(59) M(4D) -->truyền lên dảo ngược lại là MY (4D59)--> chuyển HEX sang số DEC 4D59:19801
+            //trên máy tính đọc về thì làm ngược lại. DEC-->HEX-->đảo ngược lại-->HEX về lại  ASSCII suy ra ký tự
+
+            if (e.NewValue != "0")
+            {
+                var value = int.TryParse(e.NewValue, out int res) ? res : 0;
+
+                //DEC-->HEX
+                string hexValue = value.ToString("X");
+
+                for (int a = 0; a < hexValue.Length; a = a + 2)
+
+                {
+
+                    string Char2Convert = hexValue.Substring(a, 2);
+
+                    int n = Convert.ToInt32(Char2Convert, 16);//chuyển đổi từ HEX --> DEC
+
+                    //đảo ngược ký tự trước ra sau
+                    if (a == 0)
+                    {
+                        partNumChar[11] = (char)n;//chuyen doi tu DEC 
+                    }
+                    else
+                    {
+                        partNumChar[10] = (char)n;
+                    }
+                }
+            }
+        }
+
+        private void BarcodeChar7_ValueChanged(object sender, TagValueChangedEventArgs e)
+        {
+            //1 tag chứa 2 ký tự. đc chuyển thành số DEC. giờ phải chyển về HEX. rồi đảo ngược lại
+            //Ex: từ HMI truyền lên chữ 'YM': --> mã ASSCII(HEX): Y(59) M(4D) -->truyền lên dảo ngược lại là MY (4D59)--> chuyển HEX sang số DEC 4D59:19801
+            //trên máy tính đọc về thì làm ngược lại. DEC-->HEX-->đảo ngược lại-->HEX về lại  ASSCII suy ra ký tự
+
+            if (e.NewValue != "0")
+            {
+                var value = int.TryParse(e.NewValue, out int res) ? res : 0;
+
+                //DEC-->HEX
+                string hexValue = value.ToString("X");
+
+                for (int a = 0; a < hexValue.Length; a = a + 2)
+
+                {
+
+                    string Char2Convert = hexValue.Substring(a, 2);
+
+                    int n = Convert.ToInt32(Char2Convert, 16);//chuyển đổi từ HEX --> DEC
+
+                    //đảo ngược ký tự trước ra sau
+                    if (a == 0)
+                    {
+                        partNumChar[13] = (char)n;//chuyen doi tu DEC 
+                    }
+                    else
+                    {
+                        partNumChar[12] = (char)n;
+                    }
+                }
+            }
+        }
+
+        private void BarcodeChar8_ValueChanged(object sender, TagValueChangedEventArgs e)
+        {
+            //1 tag chứa 2 ký tự. đc chuyển thành số DEC. giờ phải chyển về HEX. rồi đảo ngược lại
+            //Ex: từ HMI truyền lên chữ 'YM': --> mã ASSCII(HEX): Y(59) M(4D) -->truyền lên dảo ngược lại là MY (4D59)--> chuyển HEX sang số DEC 4D59:19801
+            //trên máy tính đọc về thì làm ngược lại. DEC-->HEX-->đảo ngược lại-->HEX về lại  ASSCII suy ra ký tự
+
+            if (e.NewValue != "0")
+            {
+                var value = int.TryParse(e.NewValue, out int res) ? res : 0;
+
+                //DEC-->HEX
+                string hexValue = value.ToString("X");
+
+                for (int a = 0; a < hexValue.Length; a = a + 2)
+
+                {
+
+                    string Char2Convert = hexValue.Substring(a, 2);
+
+                    int n = Convert.ToInt32(Char2Convert, 16);//chuyển đổi từ HEX --> DEC
+
+                    //đảo ngược ký tự trước ra sau
+                    if (a == 0)
+                    {
+                        partNumChar[15] = (char)n;//chuyen doi tu DEC 
+                    }
+                    else
+                    {
+                        partNumChar[14] = (char)n;
+                    }
+                }
 
                 //khi tag chứa giá trị cuối cùng thay đổi, nghĩa là HMI đã truyền đầy đủ ký tự lên, ghép lại thành chuối partNum
                 partNum = null;
@@ -327,5 +442,33 @@ namespace TipODFreq
                 Console.WriteLine($"Ky tu: {partNum}");
             }
         }
+
+        private void FinishStation1_ValueChanged(object sender, TagValueChangedEventArgs e)
+        {
+            if (e.NewValue == "1")
+            {
+                //truyen cac thông số qua cho PLC 3, để phục vụ cho việc log data lên DB.
+                //code ở đây
+            }
+        }
+
+        private void FinishStation3_ValueChanged(object sender, TagValueChangedEventArgs e)
+        {
+            if (e.NewValue == "1")
+            {
+                //Log DB.
+                //code ở đây
+            }
+        }
+
+        private void FinishStation2_ValueChanged(object sender, TagValueChangedEventArgs e)
+        {
+            if (e.NewValue == "1")
+            {
+                //truyen cac thông số qua cho PLC 3, để phục vụ cho việc log data lên DB.
+                //code ở đây
+            }
+        }
+        #endregion
     }
 }

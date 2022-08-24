@@ -11,7 +11,7 @@
   "IsReadOnly": true,
   "Enabled": true,
   "CreatedDate": "2022-08-20T10:34:24.8021201+07:00",
-  "ModifiedDate": "2022-08-24T12:37:10.4365773+07:00",
+  "ModifiedDate": "2022-08-24T21:59:02.5199102+07:00",
   "ParameterContainer": {
   "DisplayName": null,
   "DisplayParameters": null,
@@ -25,971 +25,13 @@
   "RefreshRate": 0,
   "Childs": [
     {
-  "Name": "Station1Hmi",
-  "Description": null,
-  "ItemType": "Channel",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-23T12:34:15.1712255+07:00",
-  "ModifiedDate": "2022-08-24T12:37:10.4365773+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "IpAddress": "127.0.0.1",
-    "Port": "502",
-    "DelayBetweenPool": "5",
-    "ScanRate": "100"
-  }
-},
-  "DriverPath": "ModbusTCP",
-  "Childs": [
-    {
-  "Name": "Device",
-  "Description": null,
-  "ItemType": "Device",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-23T12:34:19.7400379+07:00",
-  "ModifiedDate": "2022-08-24T13:06:56.4573551+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "UnitId": "1",
-    "Timeout": "1000",
-    "TryReadWriteTimes": "3",
-    "ReadMode": "Block",
-    "InputContactReadBlockSettings": "[]",
-    "OutputCoilsReadBlockSettings": "[]",
-    "InputRegisterReadBlockSettings": "[]",
-    "HoldingRegisterReadBlockSettings": "[\r\n  {\r\n    \"AddressType\": 4,\r\n    \"Enabled\": true,\r\n    \"StartAddress\": \"400001\",\r\n    \"EndAddress\": \"400019\"\r\n  }\r\n]",
-    "MaxWritesCount": "10"
-  }
-},
-  "ByteOrder": "ABCD",
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": [
-    {
-  "Name": "BarcodeStart",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-23T12:34:35.6772505+07:00",
-  "ModifiedDate": "2022-08-23T12:34:35.6772505+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400001"
-  }
-},
-  "Address": "400001",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "BarcodeChar1",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-23T12:34:53.4252118+07:00",
-  "ModifiedDate": "2022-08-23T12:34:53.4252118+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400002"
-  }
-},
-  "Address": "400002",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "BarcodeChar2",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-23T12:34:53.4252118+07:00",
-  "ModifiedDate": "2022-08-23T12:34:53.4252118+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400003"
-  }
-},
-  "Address": "400003",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "BarcodeChar3",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-23T12:34:53.4252118+07:00",
-  "ModifiedDate": "2022-08-23T12:34:53.4252118+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400004"
-  }
-},
-  "Address": "400004",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "BarcodeChar4",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-23T12:34:53.4252118+07:00",
-  "ModifiedDate": "2022-08-23T12:34:53.4252118+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400005"
-  }
-},
-  "Address": "400005",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "BarcodeChar5",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-23T12:34:53.4252118+07:00",
-  "ModifiedDate": "2022-08-23T12:34:53.4252118+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400006"
-  }
-},
-  "Address": "400006",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "BarcodeNotification",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-23T12:35:55.9133577+07:00",
-  "ModifiedDate": "2022-08-23T12:35:55.9133577+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400010"
-  }
-},
-  "Address": "400010",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "BarcodeControl",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-23T12:36:13.274203+07:00",
-  "ModifiedDate": "2022-08-23T12:36:13.274203+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400011"
-  }
-},
-  "Address": "400011",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "FreqTarget",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-23T13:53:42.2629121+07:00",
-  "ModifiedDate": "2022-08-23T13:53:42.2629121+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400012"
-  }
-},
-  "Address": "400012",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "FormulaGId",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-23T13:54:31.9602307+07:00",
-  "ModifiedDate": "2022-08-23T13:54:31.9602307+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400013"
-  }
-},
-  "Address": "400013",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "FreqPlc1",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T11:01:37.7398982+07:00",
-  "ModifiedDate": "2022-08-24T11:01:37.7398982+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400020"
-  }
-},
-  "Address": "400014",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "EndFlag",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T11:21:35.5258348+07:00",
-  "ModifiedDate": "2022-08-24T11:21:35.5258348+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {}
-},
-  "Address": "400015",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "WorkOrder1",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T13:06:54.0617606+07:00",
-  "ModifiedDate": "2022-08-24T13:06:54.0617606+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {}
-},
-  "Address": "400016",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "WorkOrder2",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T13:06:54.0617606+07:00",
-  "ModifiedDate": "2022-08-24T13:06:54.0617606+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {}
-},
-  "Address": "400017",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "WorkOrder3",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T13:06:54.0617606+07:00",
-  "ModifiedDate": "2022-08-24T13:06:54.0617606+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {}
-},
-  "Address": "400018",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "WorkOrder4",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T13:06:54.0617606+07:00",
-  "ModifiedDate": "2022-08-24T13:06:54.0617606+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {}
-},
-  "Address": "400019",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-}
-  ]
-}
-  ]
-},
-    {
-  "Name": "Station23",
-  "Description": null,
-  "ItemType": "Channel",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-23T13:59:20.163509+07:00",
-  "ModifiedDate": "2022-08-24T12:37:10.4365773+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "Port": "COM11",
-    "ScanRate": "1000",
-    "Baudrate": "9600",
-    "Parity": "None",
-    "StopBits": "One",
-    "DelayBetweenPool": "5",
-    "MaxWritesCount": "10",
-    "DataBits": "8"
-  }
-},
-  "DriverPath": "ModbusRTU",
-  "Childs": [
-    {
-  "Name": "Station3Hmi",
-  "Description": null,
-  "ItemType": "Device",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-23T13:59:25.3310235+07:00",
-  "ModifiedDate": "2022-08-24T12:37:10.4365773+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DeviceId": "2",
-    "Timeout": "1000",
-    "TryReadWriteTimes": "3",
-    "ReadMode": "Block",
-    "InputContactReadBlockSettings": "[]",
-    "OutputCoilsReadBlockSettings": "[]",
-    "InputRegisterReadBlockSettings": "[]",
-    "HoldingRegisterReadBlockSettings": "[\r\n  {\r\n    \"AddressType\": 4,\r\n    \"Enabled\": true,\r\n    \"StartAddress\": \"400001\",\r\n    \"EndAddress\": \"400007\"\r\n  }\r\n]"
-  }
-},
-  "ByteOrder": "ABCD",
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": [
-    {
-  "Name": "FormulaPoId",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-23T14:00:51.2608138+07:00",
-  "ModifiedDate": "2022-08-23T14:00:51.261811+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400001"
-  }
-},
-  "Address": "400001",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-}
-  ]
-},
-    {
-  "Name": "Station2Plc",
-  "Description": null,
-  "ItemType": "Device",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T10:47:20.3331606+07:00",
-  "ModifiedDate": "2022-08-24T12:37:10.4365773+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DeviceId": "1",
-    "Timeout": "1000",
-    "TryReadWriteTimes": "3",
-    "ReadMode": "Block",
-    "InputContactReadBlockSettings": "[]",
-    "OutputCoilsReadBlockSettings": "[]",
-    "InputRegisterReadBlockSettings": "[]",
-    "HoldingRegisterReadBlockSettings": "[\r\n  {\r\n    \"AddressType\": 4,\r\n    \"Enabled\": true,\r\n    \"StartAddress\": \"400001\",\r\n    \"EndAddress\": \"400011\"\r\n  }\r\n]"
-  }
-},
-  "ByteOrder": "ABCD",
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": [
-    {
-  "Name": "DiamLL1",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T10:47:56.3982893+07:00",
-  "ModifiedDate": "2022-08-24T10:47:56.3982893+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400001"
-  }
-},
-  "Address": "400001",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "DiamUL1",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T10:48:07.6711521+07:00",
-  "ModifiedDate": "2022-08-24T10:48:07.6711521+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400002"
-  }
-},
-  "Address": "400002",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "TipOdLength1",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T10:48:26.2145771+07:00",
-  "ModifiedDate": "2022-08-24T10:48:26.2145771+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400003"
-  }
-},
-  "Address": "400003",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "DiamLL2",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T10:49:36.3756996+07:00",
-  "ModifiedDate": "2022-08-24T10:49:36.3756996+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400004"
-  }
-},
-  "Address": "400004",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "DiamUL2",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T10:49:47.800168+07:00",
-  "ModifiedDate": "2022-08-24T10:49:47.800168+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400005"
-  }
-},
-  "Address": "400005",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "TipOdLength2",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T10:49:59.4929079+07:00",
-  "ModifiedDate": "2022-08-24T10:49:59.4929079+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400006"
-  }
-},
-  "Address": "400006",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "DiamLL3",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T10:50:10.1705138+07:00",
-  "ModifiedDate": "2022-08-24T10:50:10.1705138+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400007"
-  }
-},
-  "Address": "400007",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "DiamUL3",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T10:50:20.5178504+07:00",
-  "ModifiedDate": "2022-08-24T10:50:20.5178504+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400008"
-  }
-},
-  "Address": "400008",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "TipOdLength3",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T10:50:30.6489471+07:00",
-  "ModifiedDate": "2022-08-24T10:50:30.6489471+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400009"
-  }
-},
-  "Address": "400009",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "Sensor",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T10:59:41.7334267+07:00",
-  "ModifiedDate": "2022-08-24T10:59:41.7334267+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400010"
-  }
-},
-  "Address": "400010",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "FreqPlc1",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T11:05:18.9076136+07:00",
-  "ModifiedDate": "2022-08-24T11:05:18.9076136+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400011"
-  }
-},
-  "Address": "400011",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-}
-  ]
-}
-  ]
-},
-    {
   "Name": "Sensor",
   "Description": null,
   "ItemType": "Channel",
   "IsReadOnly": false,
   "Enabled": true,
   "CreatedDate": "2022-08-24T11:00:15.4026434+07:00",
-  "ModifiedDate": "2022-08-24T12:37:10.4365773+07:00",
+  "ModifiedDate": "2022-08-24T21:42:44.1833332+07:00",
   "ParameterContainer": {
   "DisplayName": null,
   "DisplayParameters": null,
@@ -1009,7 +51,7 @@
   "IsReadOnly": false,
   "Enabled": true,
   "CreatedDate": "2022-08-24T11:00:20.3175039+07:00",
-  "ModifiedDate": "2022-08-24T12:37:10.4365773+07:00",
+  "ModifiedDate": "2022-08-24T21:42:44.1833332+07:00",
   "ParameterContainer": {
   "DisplayName": null,
   "DisplayParameters": null,
@@ -1046,6 +88,2052 @@
   }
 },
   "Address": "400100",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+}
+  ]
+}
+  ]
+},
+    {
+  "Name": "Station1Hmi",
+  "Description": null,
+  "ItemType": "Channel",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:43:32.3520527+07:00",
+  "ModifiedDate": "2022-08-24T21:45:33.2404166+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "Port": "COM11",
+    "ScanRate": "1000",
+    "Baudrate": "9600",
+    "Parity": "None",
+    "StopBits": "One",
+    "DelayBetweenPool": "5",
+    "MaxWritesCount": "10",
+    "DataBits": "8"
+  }
+},
+  "DriverPath": "ModbusRTU",
+  "Childs": [
+    {
+  "Name": "Device",
+  "Description": null,
+  "ItemType": "Device",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:43:40.4902956+07:00",
+  "ModifiedDate": "2022-08-24T22:16:16.6711207+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DeviceId": "1",
+    "Timeout": "1000",
+    "TryReadWriteTimes": "3",
+    "ReadMode": "Block",
+    "InputContactReadBlockSettings": "[]",
+    "OutputCoilsReadBlockSettings": "[]",
+    "InputRegisterReadBlockSettings": "[]",
+    "HoldingRegisterReadBlockSettings": "[\r\n  {\r\n    \"AddressType\": 4,\r\n    \"Enabled\": true,\r\n    \"StartAddress\": \"400001\",\r\n    \"EndAddress\": \"400019\"\r\n  }\r\n]"
+  }
+},
+  "ByteOrder": "ABCD",
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": [
+    {
+  "Name": "BarcodeStart",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ModifiedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400001"
+  }
+},
+  "Address": "400001",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "BarcodeChar1",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ModifiedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400002"
+  }
+},
+  "Address": "400002",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "BarcodeChar2",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ModifiedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400003"
+  }
+},
+  "Address": "400003",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "BarcodeChar3",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ModifiedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400004"
+  }
+},
+  "Address": "400004",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "BarcodeChar4",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ModifiedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400005"
+  }
+},
+  "Address": "400005",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "BarcodeChar5",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ModifiedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400006"
+  }
+},
+  "Address": "400006",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "BarcodeChar6",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ModifiedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400007"
+  }
+},
+  "Address": "400007",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "BarcodeChar7",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ModifiedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400008"
+  }
+},
+  "Address": "400008",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "BarcodeChar8",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ModifiedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400009"
+  }
+},
+  "Address": "400009",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "BarcodeNotification",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ModifiedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400010"
+  }
+},
+  "Address": "400010",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "BarcodeControl",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ModifiedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400011"
+  }
+},
+  "Address": "400011",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "FreqTarget",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ModifiedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400012"
+  }
+},
+  "Address": "400012",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "FormulaGId",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ModifiedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400013"
+  }
+},
+  "Address": "400013",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "Freq01Reading",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ModifiedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400014"
+  }
+},
+  "Address": "400014",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "Freq02Reading",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ModifiedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400015"
+  }
+},
+  "Address": "400015",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "MotorSanding",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ModifiedDate": "2022-08-24T22:16:14.7033813+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400016"
+  }
+},
+  "Address": "400016",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "ShaftNumber",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:16:14.7043793+07:00",
+  "ModifiedDate": "2022-08-24T22:16:14.7043793+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400017"
+  }
+},
+  "Address": "400017",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "Finish",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:16:14.7043793+07:00",
+  "ModifiedDate": "2022-08-24T22:16:14.7043793+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400018"
+  }
+},
+  "Address": "400018",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "Reset",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:16:14.7043793+07:00",
+  "ModifiedDate": "2022-08-24T22:16:14.7043793+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400019"
+  }
+},
+  "Address": "400019",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+}
+  ]
+}
+  ]
+},
+    {
+  "Name": "Station2Plc",
+  "Description": null,
+  "ItemType": "Channel",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:46:16.7486241+07:00",
+  "ModifiedDate": "2022-08-24T21:46:29.7747995+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "IpAddress": "127.0.0.1",
+    "Port": "502",
+    "DelayBetweenPool": "5",
+    "ScanRate": "100"
+  }
+},
+  "DriverPath": "ModbusTCP",
+  "Childs": [
+    {
+  "Name": "Device",
+  "Description": null,
+  "ItemType": "Device",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:46:21.1658254+07:00",
+  "ModifiedDate": "2022-08-24T22:11:36.2683712+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "UnitId": "1",
+    "Timeout": "1000",
+    "TryReadWriteTimes": "3",
+    "ReadMode": "Block",
+    "InputContactReadBlockSettings": "[]",
+    "OutputCoilsReadBlockSettings": "[]",
+    "InputRegisterReadBlockSettings": "[]",
+    "HoldingRegisterReadBlockSettings": "[\r\n  {\r\n    \"AddressType\": 4,\r\n    \"Enabled\": true,\r\n    \"StartAddress\": \"400001\",\r\n    \"EndAddress\": \"400023\"\r\n  }\r\n]",
+    "MaxWritesCount": "10"
+  }
+},
+  "ByteOrder": "ABCD",
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": [
+    {
+  "Name": "DiamLL1",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:47:31.7108826+07:00",
+  "ModifiedDate": "2022-08-24T21:47:31.7108826+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400001"
+  }
+},
+  "Address": "400001",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "DiamUL1",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:47:31.7108826+07:00",
+  "ModifiedDate": "2022-08-24T21:47:31.7108826+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400002"
+  }
+},
+  "Address": "400002",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "TipOdLength1",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:47:31.7108826+07:00",
+  "ModifiedDate": "2022-08-24T21:47:31.7108826+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400003"
+  }
+},
+  "Address": "400003",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "DiamLL2",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:47:31.7108826+07:00",
+  "ModifiedDate": "2022-08-24T21:47:31.7108826+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400004"
+  }
+},
+  "Address": "400004",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "DiamUL2",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:47:31.7108826+07:00",
+  "ModifiedDate": "2022-08-24T21:47:31.7108826+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400005"
+  }
+},
+  "Address": "400005",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "TipOdLength2",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:47:31.7108826+07:00",
+  "ModifiedDate": "2022-08-24T21:47:31.7108826+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400006"
+  }
+},
+  "Address": "400006",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "DiamLL3",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:47:31.7108826+07:00",
+  "ModifiedDate": "2022-08-24T21:47:31.7108826+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400007"
+  }
+},
+  "Address": "400007",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "DiamUL3",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:47:31.7108826+07:00",
+  "ModifiedDate": "2022-08-24T21:47:31.7108826+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400008"
+  }
+},
+  "Address": "400008",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "TipOdLength3",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:47:31.7108826+07:00",
+  "ModifiedDate": "2022-08-24T21:47:31.7108826+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400009"
+  }
+},
+  "Address": "400009",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "DiamReading",
+  "Description": "Sensor value",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:47:31.7108826+07:00",
+  "ModifiedDate": "2022-08-24T21:47:31.7108826+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400010"
+  }
+},
+  "Address": "400010",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "Finish",
+  "Description": null,
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:48:03.4978999+07:00",
+  "ModifiedDate": "2022-08-24T21:48:03.4978999+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400011"
+  }
+},
+  "Address": "400011",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "Reset",
+  "Description": null,
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:48:14.8006833+07:00",
+  "ModifiedDate": "2022-08-24T21:48:14.8006833+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400012"
+  }
+},
+  "Address": "400012",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "ShaftNumber",
+  "Description": "PLC1",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:49:50.4828793+07:00",
+  "ModifiedDate": "2022-08-24T21:49:50.4828793+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400013"
+  }
+},
+  "Address": "400013",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "DiamLLRead1",
+  "Description": null,
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:51:25.5337648+07:00",
+  "ModifiedDate": "2022-08-24T21:51:25.5337648+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400014"
+  }
+},
+  "Address": "400014",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "DiamULRead1",
+  "Description": null,
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:51:47.7782943+07:00",
+  "ModifiedDate": "2022-08-24T21:51:47.7782943+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400015"
+  }
+},
+  "Address": "400015",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "PassFail1",
+  "Description": null,
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:52:05.5148753+07:00",
+  "ModifiedDate": "2022-08-24T21:52:05.5148753+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400016"
+  }
+},
+  "Address": "400016",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "DiamLLRead2",
+  "Description": null,
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:52:26.2384725+07:00",
+  "ModifiedDate": "2022-08-24T21:52:26.2384725+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400017"
+  }
+},
+  "Address": "400017",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "DiamULRead2",
+  "Description": null,
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:52:35.7300969+07:00",
+  "ModifiedDate": "2022-08-24T21:52:35.7300969+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400018"
+  }
+},
+  "Address": "400018",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "PassFail2",
+  "Description": null,
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:52:47.3310805+07:00",
+  "ModifiedDate": "2022-08-24T21:52:47.3310805+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400019"
+  }
+},
+  "Address": "400019",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "DiamLLRead3",
+  "Description": null,
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:52:57.4011592+07:00",
+  "ModifiedDate": "2022-08-24T21:52:57.4011592+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400020"
+  }
+},
+  "Address": "400020",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "DiamULRead3",
+  "Description": null,
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:53:06.2046241+07:00",
+  "ModifiedDate": "2022-08-24T21:53:06.2046241+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400021"
+  }
+},
+  "Address": "400021",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "PassFail3",
+  "Description": null,
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:53:17.1124624+07:00",
+  "ModifiedDate": "2022-08-24T21:53:17.1124624+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400022"
+  }
+},
+  "Address": "400022",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "ViTriDo",
+  "Description": "3:VT1-VT2; 5:VT1-VT3; 7:VT1-VT2-VT3",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:09:43.9027413+07:00",
+  "ModifiedDate": "2022-08-24T22:09:43.9027413+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400023"
+  }
+},
+  "Address": "400023",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+}
+  ]
+}
+  ]
+},
+    {
+  "Name": "Station3Hmi",
+  "Description": null,
+  "ItemType": "Channel",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:54:10.7414528+07:00",
+  "ModifiedDate": "2022-08-24T21:59:02.5199102+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "IpAddress": "127.0.0.1",
+    "Port": "502",
+    "DelayBetweenPool": "5",
+    "ScanRate": "100"
+  }
+},
+  "DriverPath": "ModbusTCP",
+  "Childs": [
+    {
+  "Name": "Device1",
+  "Description": null,
+  "ItemType": "Device",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:54:14.0964787+07:00",
+  "ModifiedDate": "2022-08-24T22:13:30.9836834+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "UnitId": "1",
+    "Timeout": "1000",
+    "TryReadWriteTimes": "3",
+    "ReadMode": "Block",
+    "InputContactReadBlockSettings": "[]",
+    "OutputCoilsReadBlockSettings": "[]",
+    "InputRegisterReadBlockSettings": "[]",
+    "HoldingRegisterReadBlockSettings": "[\r\n  {\r\n    \"AddressType\": 4,\r\n    \"Enabled\": true,\r\n    \"StartAddress\": \"400001\",\r\n    \"EndAddress\": \"400024\"\r\n  }\r\n]",
+    "MaxWritesCount": "10"
+  }
+},
+  "ByteOrder": "ABCD",
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": [
+    {
+  "Name": "FormulaPoId",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:54:29.8638475+07:00",
+  "ModifiedDate": "2022-08-24T21:54:29.8638475+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400001"
+  }
+},
+  "Address": "400001",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "FreqTarget",
+  "Description": "",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:54:29.8638475+07:00",
+  "ModifiedDate": "2022-08-24T21:54:29.8638475+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400002"
+  }
+},
+  "Address": "400002",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "MortorPolish",
+  "Description": null,
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:56:25.8617321+07:00",
+  "ModifiedDate": "2022-08-24T21:56:25.8617321+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400003"
+  }
+},
+  "Address": "400003",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "LogType",
+  "Description": "1: 5 pcs(production); 2-all (Pilot); 3: not save",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:58:38.9030672+07:00",
+  "ModifiedDate": "2022-08-24T21:58:38.9030672+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400005"
+  }
+},
+  "Address": "400005",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "Finish",
+  "Description": null,
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:58:50.1041037+07:00",
+  "ModifiedDate": "2022-08-24T21:58:50.1041037+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400006"
+  }
+},
+  "Address": "400006",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "Reset",
+  "Description": null,
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T21:58:59.9208594+07:00",
+  "ModifiedDate": "2022-08-24T21:58:59.9208594+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400007"
+  }
+},
+  "Address": "400007",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "ShaftNumber",
+  "Description": "PLC1",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:03:34.4550206+07:00",
+  "ModifiedDate": "2022-08-24T22:03:34.4550206+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400004"
+  }
+},
+  "Address": "400004",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "FormulaGId",
+  "Description": "PLC1",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:04:55.8861079+07:00",
+  "ModifiedDate": "2022-08-24T22:04:55.8861079+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400008"
+  }
+},
+  "Address": "400008",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "Freq01Reading",
+  "Description": "PLC1",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:04:55.8861079+07:00",
+  "ModifiedDate": "2022-08-24T22:04:55.8861079+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400009"
+  }
+},
+  "Address": "400009",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "Freq02Reading",
+  "Description": "PLC1",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:04:55.8861079+07:00",
+  "ModifiedDate": "2022-08-24T22:04:55.8861079+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400010"
+  }
+},
+  "Address": "400010",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "MotorSanding",
+  "Description": "PLC1",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:04:55.8861079+07:00",
+  "ModifiedDate": "2022-08-24T22:04:55.8861079+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400011"
+  }
+},
+  "Address": "400011",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "DiamLLRead1",
+  "Description": "PLC2",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:08:04.4945054+07:00",
+  "ModifiedDate": "2022-08-24T22:08:04.4945054+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400013"
+  }
+},
+  "Address": "400013",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "DiamULRead1",
+  "Description": "PLC2",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:08:04.4945054+07:00",
+  "ModifiedDate": "2022-08-24T22:08:04.4945054+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400014"
+  }
+},
+  "Address": "400014",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "PassFail1",
+  "Description": "PLC2",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:08:04.4945054+07:00",
+  "ModifiedDate": "2022-08-24T22:08:04.4945054+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400015"
+  }
+},
+  "Address": "400015",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "DiamLLRead2",
+  "Description": "PLC2",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:08:04.4945054+07:00",
+  "ModifiedDate": "2022-08-24T22:08:04.4945054+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400016"
+  }
+},
+  "Address": "400016",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "DiamULRead2",
+  "Description": "PLC2",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:08:04.4945054+07:00",
+  "ModifiedDate": "2022-08-24T22:08:04.4945054+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400017"
+  }
+},
+  "Address": "400017",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "PassFail2",
+  "Description": "PLC2",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:08:04.4945054+07:00",
+  "ModifiedDate": "2022-08-24T22:08:04.4945054+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400018"
+  }
+},
+  "Address": "400018",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "DiamLLRead3",
+  "Description": "PLC2",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:08:04.4945054+07:00",
+  "ModifiedDate": "2022-08-24T22:08:04.4945054+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400019"
+  }
+},
+  "Address": "400019",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "DiamULRead3",
+  "Description": "PLC2",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:08:04.4945054+07:00",
+  "ModifiedDate": "2022-08-24T22:08:04.4945054+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400020"
+  }
+},
+  "Address": "400020",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "PassFail3",
+  "Description": "PLC2",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:08:04.4945054+07:00",
+  "ModifiedDate": "2022-08-24T22:08:04.4945054+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400021"
+  }
+},
+  "Address": "400021",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "ViTriDo",
+  "Description": "PLC2",
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-08-24T22:11:31.5938675+07:00",
+  "ModifiedDate": "2022-08-24T22:11:31.5938675+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {
+    "DataType": "Word",
+    "Address": "400024"
+  }
+},
+  "Address": "400024",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
