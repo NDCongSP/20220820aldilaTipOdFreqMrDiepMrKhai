@@ -31,7 +31,13 @@ namespace TipODFreq
         {
             this.components = new System.ComponentModel.Container();
             this.easyDriverConnector1 = new EasyScada.Winforms.Controls.EasyDriverConnector(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.labPartNum = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gridPartInfo = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.easyDriverConnector1)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridPartInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // easyDriverConnector1
@@ -47,15 +53,59 @@ namespace TipODFreq
             this.easyDriverConnector1.Timeout = 30;
             this.easyDriverConnector1.UseMongoDb = false;
             // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 26);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Part Num:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labPartNum
+            // 
+            this.labPartNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labPartNum.Location = new System.Drawing.Point(99, 16);
+            this.labPartNum.Name = "labPartNum";
+            this.labPartNum.Size = new System.Drawing.Size(154, 26);
+            this.labPartNum.TabIndex = 0;
+            this.labPartNum.Text = "----";
+            this.labPartNum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.gridPartInfo);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.labPartNum);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1121, 203);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Part Info";
+            // 
+            // gridPartInfo
+            // 
+            this.gridPartInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridPartInfo.Location = new System.Drawing.Point(9, 56);
+            this.gridPartInfo.Name = "gridPartInfo";
+            this.gridPartInfo.Size = new System.Drawing.Size(1106, 139);
+            this.gridPartInfo.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(921, 558);
+            this.ClientSize = new System.Drawing.Size(1145, 650);
+            this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.easyDriverConnector1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridPartInfo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -63,6 +113,10 @@ namespace TipODFreq
         #endregion
 
         private EasyScada.Winforms.Controls.EasyDriverConnector easyDriverConnector1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labPartNum;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.DataGridView gridPartInfo;
     }
 }
 
