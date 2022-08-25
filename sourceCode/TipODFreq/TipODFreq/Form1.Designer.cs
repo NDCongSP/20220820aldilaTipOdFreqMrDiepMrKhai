@@ -35,6 +35,9 @@ namespace TipODFreq
             this.labPartNum = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gridPartInfo = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.labWorkOrder = new System.Windows.Forms.Label();
+            this.btnUpdateData = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.easyDriverConnector1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPartInfo)).BeginInit();
@@ -75,8 +78,11 @@ namespace TipODFreq
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnUpdateData);
             this.groupBox1.Controls.Add(this.gridPartInfo);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.labWorkOrder);
             this.groupBox1.Controls.Add(this.labPartNum);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -93,6 +99,38 @@ namespace TipODFreq
             this.gridPartInfo.Name = "gridPartInfo";
             this.gridPartInfo.Size = new System.Drawing.Size(1106, 139);
             this.gridPartInfo.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(347, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(87, 26);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Work Order:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labWorkOrder
+            // 
+            this.labWorkOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labWorkOrder.Location = new System.Drawing.Point(456, 16);
+            this.labWorkOrder.Name = "labWorkOrder";
+            this.labWorkOrder.Size = new System.Drawing.Size(154, 26);
+            this.labWorkOrder.TabIndex = 0;
+            this.labWorkOrder.Text = "----";
+            this.labWorkOrder.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnUpdateData
+            // 
+            this.btnUpdateData.BackColor = System.Drawing.Color.Teal;
+            this.btnUpdateData.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnUpdateData.Location = new System.Drawing.Point(836, 16);
+            this.btnUpdateData.Name = "btnUpdateData";
+            this.btnUpdateData.Size = new System.Drawing.Size(279, 34);
+            this.btnUpdateData.TabIndex = 4;
+            this.btnUpdateData.Text = "Update data sql from CSV file";
+            this.btnUpdateData.UseVisualStyleBackColor = false;
+            this.btnUpdateData.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -117,6 +155,9 @@ namespace TipODFreq
         private System.Windows.Forms.Label labPartNum;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView gridPartInfo;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labWorkOrder;
+        private System.Windows.Forms.Button btnUpdateData;
     }
 }
 

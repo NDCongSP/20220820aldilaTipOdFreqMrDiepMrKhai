@@ -17,5 +17,9 @@ namespace TipODFreq
         }
 
         public static string PathApp { get; set; }
+
+        public static string PathOd { get; set; }
+        public static string PathFormulaG { get; set; }
+        public static string PathFormulaPo { get; set; }
     }
 }

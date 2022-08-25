@@ -1,10 +1,13 @@
-﻿using Dapper;
+﻿using CsvHelper;
+using Dapper;
 using EasyScada.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,13 +19,17 @@ namespace TipODFreq
     {
         #region Properties
         private List<PartInfoModel> partInfo = new List<PartInfoModel>();
-        private string partNum = null;
+        private string partNum = null, workOrder = null;
 
-        char[] partNumChar = new char[16];//chứa các ký tự convert từ HMI truyền về
+        char[] partNumChar = new char[12];//chứa các ký tự convert từ HMI truyền về
+        char[] workOrderChar = new char[12];//chứa các ký tự convert từ HMI truyền về
 
-        bool sendData = false;//khi co barcode mới thì bật bit này lên để get data từ SQL truyền xuống cho máy chạy part mới.
+        bool sendPartNumber = false;//khi co barcode mới thì bật bit này lên để get data từ SQL truyền xuống cho máy chạy part mới.
+        bool sendWorkOrder = false;
 
         Timer t = new Timer();
+
+
         #endregion
 
         public Form1()
@@ -46,7 +53,7 @@ namespace TipODFreq
             Timer _t = (Timer)sender;
             t.Enabled = false;
 
-            if (sendData)
+            if (sendPartNumber)
             {
                 if (labPartNum.InvokeRequired)
                 {
@@ -71,8 +78,8 @@ namespace TipODFreq
                 {
                     gridPartInfo.DataSource = partInfo;
 
-                    #region Station1 HMI 1 485 id 1
-                    easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FreqTarget", partInfo[0].Freq.ToString(), WritePiority.Default);
+                    #region Station1 HMI 1, truyền thông modbus TCP
+                    easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FreqTarget", partInfo[0].FreqTarget.ToString(), WritePiority.Default);
                     easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FormulaGId", partInfo[0].FormulaGId.ToString(), WritePiority.Default);
                     #endregion
 
@@ -90,7 +97,7 @@ namespace TipODFreq
 
                     #region Station3 HMI, truyền thông modbus TCP
                     easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/FormulaPoId", partInfo[0].FormulaPoId.ToString(), WritePiority.Default);
-                    easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/FreqTarget", partInfo[0].Freq.ToString(), WritePiority.Default);
+                    easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/FreqTarget", partInfo[0].FreqTarget.ToString(), WritePiority.Default);
                     #endregion
 
                     //set bit reset
@@ -100,9 +107,26 @@ namespace TipODFreq
                 }
 
                 //xoá ký tự cuối cùng, để khi quet barcode khác thì nó sẽ nhảy vào tagValueChange event.
-                easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/BarcodeChar8", "0", WritePiority.Default);
+                easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/BarcodeChar6", "0", WritePiority.Default);
 
-                sendData = false;
+                sendPartNumber = false;
+            }
+
+            if (sendWorkOrder)
+            {
+                if (labWorkOrder.InvokeRequired)
+                {
+                    labWorkOrder.Text = workOrder;
+                }
+                else
+                {
+                    labWorkOrder.Text = workOrder;
+                }
+
+                //xoá ký tự cuối cùng, để khi quet barcode khác thì nó sẽ nhảy vào tagValueChange event.
+                easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/WorkOrder6", "0", WritePiority.Default);
+
+                sendWorkOrder = false;
             }
 
             t.Enabled = true;
@@ -110,30 +134,25 @@ namespace TipODFreq
 
         private void EasyDriverConnector1_Started(object sender, EventArgs e)
         {
-            BarcodeChar1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1").Value));
-            BarcodeChar2_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2").Value));
-            BarcodeChar3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3").Value));
-            BarcodeChar4_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4").Value));
-            BarcodeChar5_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5").Value));
-            BarcodeChar6_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6").Value));
-            BarcodeChar7_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar7"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar7")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar7").Value));
-            BarcodeChar8_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar8"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar8")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar8").Value));
+            //BarcodeChar1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1"),
+            //              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1")
+            //              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1").Value));
+            //BarcodeChar2_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2"),
+            //              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2")
+            //              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2").Value));
+            //BarcodeChar3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3"),
+            //              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3")
+            //              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3").Value));
+            //BarcodeChar4_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4"),
+            //              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4")
+            //              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4").Value));
+            //BarcodeChar5_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5"),
+            //              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5")
+            //              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5").Value));
+            //BarcodeChar6_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6"),
+            //              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6")
+            //              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6").Value));
+
 
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1").ValueChanged += BarcodeChar1_ValueChanged;
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2").ValueChanged += BarcodeChar2_ValueChanged;
@@ -141,15 +160,19 @@ namespace TipODFreq
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4").ValueChanged += BarcodeChar4_ValueChanged;
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5").ValueChanged += BarcodeChar5_ValueChanged;
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6").ValueChanged += BarcodeChar6_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar7").ValueChanged += BarcodeChar7_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar8").ValueChanged += BarcodeChar8_ValueChanged;
+            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder1").ValueChanged += WorkOrder1_ValueChanged;
+            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder2").ValueChanged += WorkOrder2_ValueChanged;
+            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder3").ValueChanged += WorkOrder3_ValueChanged;
+            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder4").ValueChanged += WorkOrder4_ValueChanged;
+            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder5").ValueChanged += WorkOrder5_ValueChanged;
+            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6").ValueChanged += WorkOrder6_ValueChanged;
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish").ValueChanged += FinishStation1_ValueChanged;
 
             easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Finish").ValueChanged += FinishStation2_ValueChanged;
             easyDriverConnector1.GetTag("Local Station/Station3Hmi/Device/Finish").ValueChanged += FinishStation3_ValueChanged;
-            //Sensor
-            easyDriverConnector1.GetTag("Local Station/Sensor/Device/Value").ValueChanged += Value_ValueChanged;
         }
+
+
 
         #region TagValueChange Events
         private void Value_ValueChanged(object sender, TagValueChangedEventArgs e)
@@ -358,74 +381,6 @@ namespace TipODFreq
                         partNumChar[10] = (char)n;
                     }
                 }
-            }
-        }
-
-        private void BarcodeChar7_ValueChanged(object sender, TagValueChangedEventArgs e)
-        {
-            //1 tag chứa 2 ký tự. đc chuyển thành số DEC. giờ phải chyển về HEX. rồi đảo ngược lại
-            //Ex: từ HMI truyền lên chữ 'YM': --> mã ASSCII(HEX): Y(59) M(4D) -->truyền lên dảo ngược lại là MY (4D59)--> chuyển HEX sang số DEC 4D59:19801
-            //trên máy tính đọc về thì làm ngược lại. DEC-->HEX-->đảo ngược lại-->HEX về lại  ASSCII suy ra ký tự
-
-            if (e.NewValue != "0")
-            {
-                var value = int.TryParse(e.NewValue, out int res) ? res : 0;
-
-                //DEC-->HEX
-                string hexValue = value.ToString("X");
-
-                for (int a = 0; a < hexValue.Length; a = a + 2)
-
-                {
-
-                    string Char2Convert = hexValue.Substring(a, 2);
-
-                    int n = Convert.ToInt32(Char2Convert, 16);//chuyển đổi từ HEX --> DEC
-
-                    //đảo ngược ký tự trước ra sau
-                    if (a == 0)
-                    {
-                        partNumChar[13] = (char)n;//chuyen doi tu DEC 
-                    }
-                    else
-                    {
-                        partNumChar[12] = (char)n;
-                    }
-                }
-            }
-        }
-
-        private void BarcodeChar8_ValueChanged(object sender, TagValueChangedEventArgs e)
-        {
-            //1 tag chứa 2 ký tự. đc chuyển thành số DEC. giờ phải chyển về HEX. rồi đảo ngược lại
-            //Ex: từ HMI truyền lên chữ 'YM': --> mã ASSCII(HEX): Y(59) M(4D) -->truyền lên dảo ngược lại là MY (4D59)--> chuyển HEX sang số DEC 4D59:19801
-            //trên máy tính đọc về thì làm ngược lại. DEC-->HEX-->đảo ngược lại-->HEX về lại  ASSCII suy ra ký tự
-
-            if (e.NewValue != "0")
-            {
-                var value = int.TryParse(e.NewValue, out int res) ? res : 0;
-
-                //DEC-->HEX
-                string hexValue = value.ToString("X");
-
-                for (int a = 0; a < hexValue.Length; a = a + 2)
-
-                {
-
-                    string Char2Convert = hexValue.Substring(a, 2);
-
-                    int n = Convert.ToInt32(Char2Convert, 16);//chuyển đổi từ HEX --> DEC
-
-                    //đảo ngược ký tự trước ra sau
-                    if (a == 0)
-                    {
-                        partNumChar[15] = (char)n;//chuyen doi tu DEC 
-                    }
-                    else
-                    {
-                        partNumChar[14] = (char)n;
-                    }
-                }
 
                 //khi tag chứa giá trị cuối cùng thay đổi, nghĩa là HMI đã truyền đầy đủ ký tự lên, ghép lại thành chuối partNum
                 partNum = null;
@@ -437,11 +392,201 @@ namespace TipODFreq
                     }
                 }
 
-                sendData = true;//bat bit nay len để get các thông số truyền xuống cho PLC
+                sendPartNumber = true;//bat bit nay len để get các thông số truyền xuống cho PLC
 
-                Console.WriteLine($"Ky tu: {partNum}");
+                Console.WriteLine($"Part number: {partNum}");
             }
         }
+
+        #region WorkOrder
+        private void WorkOrder1_ValueChanged(object sender, TagValueChangedEventArgs e)
+        {
+            if (e.NewValue != "0")
+            {
+                var value = int.TryParse(e.NewValue, out int res) ? res : 0;
+
+                //DEC-->HEX
+                string hexValue = value.ToString("X");
+
+                for (int a = 0; a < hexValue.Length; a = a + 2)
+
+                {
+
+                    string Char2Convert = hexValue.Substring(a, 2);
+
+                    int n = Convert.ToInt32(Char2Convert, 16);//chuyển đổi từ HEX --> DEC
+
+                    //đảo ngược ký tự trước ra sau
+                    if (a == 0)
+                    {
+                        workOrderChar[1] = (char)n;//chuyen doi tu DEC 
+                    }
+                    else
+                    {
+                        workOrderChar[0] = (char)n;
+                    }
+                }
+            }
+        }
+        private void WorkOrder2_ValueChanged(object sender, TagValueChangedEventArgs e)
+        {
+            if (e.NewValue != "0")
+            {
+                var value = int.TryParse(e.NewValue, out int res) ? res : 0;
+
+                //DEC-->HEX
+                string hexValue = value.ToString("X");
+
+                for (int a = 0; a < hexValue.Length; a = a + 2)
+
+                {
+
+                    string Char2Convert = hexValue.Substring(a, 2);
+
+                    int n = Convert.ToInt32(Char2Convert, 16);//chuyển đổi từ HEX --> DEC
+
+                    //đảo ngược ký tự trước ra sau
+                    if (a == 0)
+                    {
+                        workOrderChar[3] = (char)n;//chuyen doi tu DEC 
+                    }
+                    else
+                    {
+                        workOrderChar[2] = (char)n;
+                    }
+                }
+            }
+        }
+        private void WorkOrder3_ValueChanged(object sender, TagValueChangedEventArgs e)
+        {
+            if (e.NewValue != "0")
+            {
+                var value = int.TryParse(e.NewValue, out int res) ? res : 0;
+
+                //DEC-->HEX
+                string hexValue = value.ToString("X");
+
+                for (int a = 0; a < hexValue.Length; a = a + 2)
+
+                {
+
+                    string Char2Convert = hexValue.Substring(a, 2);
+
+                    int n = Convert.ToInt32(Char2Convert, 16);//chuyển đổi từ HEX --> DEC
+
+                    //đảo ngược ký tự trước ra sau
+                    if (a == 0)
+                    {
+                        workOrderChar[5] = (char)n;//chuyen doi tu DEC 
+                    }
+                    else
+                    {
+                        workOrderChar[4] = (char)n;
+                    }
+                }
+            }
+        }
+        private void WorkOrder4_ValueChanged(object sender, TagValueChangedEventArgs e)
+        {
+            if (e.NewValue != "0")
+            {
+                var value = int.TryParse(e.NewValue, out int res) ? res : 0;
+
+                //DEC-->HEX
+                string hexValue = value.ToString("X");
+
+                for (int a = 0; a < hexValue.Length; a = a + 2)
+
+                {
+
+                    string Char2Convert = hexValue.Substring(a, 2);
+
+                    int n = Convert.ToInt32(Char2Convert, 16);//chuyển đổi từ HEX --> DEC
+
+                    //đảo ngược ký tự trước ra sau
+                    if (a == 0)
+                    {
+                        workOrderChar[7] = (char)n;//chuyen doi tu DEC 
+                    }
+                    else
+                    {
+                        workOrderChar[6] = (char)n;
+                    }
+                }
+            }
+        }
+        private void WorkOrder5_ValueChanged(object sender, TagValueChangedEventArgs e)
+        {
+            if (e.NewValue != "0")
+            {
+                var value = int.TryParse(e.NewValue, out int res) ? res : 0;
+
+                //DEC-->HEX
+                string hexValue = value.ToString("X");
+
+                for (int a = 0; a < hexValue.Length; a = a + 2)
+
+                {
+
+                    string Char2Convert = hexValue.Substring(a, 2);
+
+                    int n = Convert.ToInt32(Char2Convert, 16);//chuyển đổi từ HEX --> DEC
+
+                    //đảo ngược ký tự trước ra sau
+                    if (a == 0)
+                    {
+                        workOrderChar[9] = (char)n;//chuyen doi tu DEC 
+                    }
+                    else
+                    {
+                        workOrderChar[8] = (char)n;
+                    }
+                }
+            }
+        }
+        private void WorkOrder6_ValueChanged(object sender, TagValueChangedEventArgs e)
+        {
+            if (e.NewValue != "0")
+            {
+                var value = int.TryParse(e.NewValue, out int res) ? res : 0;
+
+                //DEC-->HEX
+                string hexValue = value.ToString("X");
+
+                for (int a = 0; a < hexValue.Length; a = a + 2)
+
+                {
+
+                    string Char2Convert = hexValue.Substring(a, 2);
+
+                    int n = Convert.ToInt32(Char2Convert, 16);//chuyển đổi từ HEX --> DEC
+
+                    //đảo ngược ký tự trước ra sau
+                    if (a == 0)
+                    {
+                        workOrderChar[11] = (char)n;//chuyen doi tu DEC 
+                    }
+                    else
+                    {
+                        workOrderChar[10] = (char)n;
+                    }
+                }
+
+                //khi tag chứa giá trị cuối cùng thay đổi, nghĩa là HMI đã truyền đầy đủ ký tự lên, ghép lại thành chuối partNum
+                workOrder = null;
+                foreach (var item in workOrderChar)
+                {
+                    if (item != 32)
+                    {
+                        workOrder += item;
+                    }
+                }
+
+                sendWorkOrder = true;
+                Console.WriteLine($"Work Order: {workOrder}");
+            }
+        }
+        #endregion
 
         private void FinishStation1_ValueChanged(object sender, TagValueChangedEventArgs e)
         {
@@ -458,6 +603,147 @@ namespace TipODFreq
             {
                 //Log DB.
                 //code ở đây
+            }
+        }
+
+        //update data vao sql tu csv file
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int countExecute = 0;
+
+            #region Tip Od Freq
+            string[] lines = System.IO.File.ReadAllLines(GlobalVariables.PathOd);
+
+            if (lines.Count() > 0)
+            {
+                var dataTip = new List<tblTipOdFreqModel>();
+
+                int index = 0;
+                foreach (string line in lines)
+                {
+                    if (index != 0)
+                    {
+                        string[] columns = line.Split(',');
+                        dataTip.Add(new tblTipOdFreqModel()
+                        {
+                            ItemNumber = columns[0],
+                            FreqTarget = int.TryParse(columns[1], out int value) ? value : 0,
+                            DiamLL = double.TryParse(columns[2], out double value1) ? value1 : 0,
+                            DiamUL = double.TryParse(columns[3], out value1) ? value1 : 0,
+                            TipOdLength = columns[4],
+                            FormulaGId = int.TryParse(columns[5], out value) ? value : 0,
+                            FormulaPoId = int.TryParse(columns[6], out value) ? value : 0,
+                        });
+                    }
+                    index += 1;
+                }
+
+                using (var connection = GlobalVariables.GetDbConnection())
+                {
+                    connection.Execute("delete tblTipOdFreq");
+
+                    var count = connection.Execute(@"insert tblTipOdFreq (ItemNumber, FreqTarget, DiamLL,DiamUL,TipOdLength,FormulaGId,FormulaPoId) 
+                                                    values (@ItemNumber, @Freqtarget,@DiamLL,@DiamUL,@TipOdLength,@FormulaGId,@FormulaPoId)", dataTip);
+
+                    if (dataTip.Count() == count)
+                    {
+                        countExecute += 1;
+                    }
+                }
+            }
+            #endregion
+
+            #region Formula G
+            lines = System.IO.File.ReadAllLines(GlobalVariables.PathFormulaG);
+
+            if (lines.Count() > 0)
+            {
+                var dataFormulaG = new List<tblFormulaGModel>();
+
+               int index = 0;
+                foreach (string line in lines)
+                {
+                    if (index != 0)
+                    {
+                        string[] columns = line.Split(',');
+                        dataFormulaG.Add(new tblFormulaGModel()
+                        {
+                            Id = int.TryParse(columns[0], out int value) ? value : 0,
+                            U = int.TryParse(columns[1], out value) ? value : 0,
+                            V = int.TryParse(columns[2], out value) ? value : 0,
+                            X = double.TryParse(columns[3], out double value1) ? value1 : 0,
+                            Y = double.TryParse(columns[4], out value1) ? value1 : 0,
+                            Z = int.TryParse(columns[5], out value) ? value : 0,
+                            P = int.TryParse(columns[6], out value) ? value : 0,
+                        });
+                    }
+                    index += 1;
+                }
+
+                using (var connection = GlobalVariables.GetDbConnection())
+                {
+                    connection.Execute("delete tblFormulaG");
+
+                    var count = connection.Execute(@"insert tblFormulaG (Id, U, V,X,Y,Z,P) 
+                                                    values (@Id, @U,@V,@X,@Y,@Z,@P)", dataFormulaG);
+
+                    if (dataFormulaG.Count() == count)
+                    {
+                        countExecute += 1;
+                    }
+                }
+            }
+            #endregion
+
+            #region Formula PO
+            lines = System.IO.File.ReadAllLines(GlobalVariables.PathFormulaPo);
+
+            if (lines.Count() > 0)
+            {
+                var dataFormulaPo = new List<tblFormulaPoModel>();
+
+                int index = 0;
+                foreach (string line in lines)
+                {
+                    if (index != 0)
+                    {
+                        string[] columns = line.Split(',');
+                        dataFormulaPo.Add(new tblFormulaPoModel()
+                        {
+                            Id = int.TryParse(columns[0], out int value) ? value : 0,
+                            U = int.TryParse(columns[1], out value) ? value : 0,
+                            V = int.TryParse(columns[2], out value) ? value : 0,
+                            X = double.TryParse(columns[3], out double value1) ? value1 : 0,
+                            Y = double.TryParse(columns[4], out value1) ? value1 : 0,
+                            Z = int.TryParse(columns[5], out value) ? value : 0,
+                            P = int.TryParse(columns[6], out value) ? value : 0,
+                        });
+                    }
+                    index += 1;
+                }
+
+                using (var connection = GlobalVariables.GetDbConnection())
+                {
+                    connection.Execute("delete tblFormulaPo");
+
+                    var count = connection.Execute(@"insert tblFormulaPo (Id, U, V,X,Y,Z,P) 
+                                                    values (@Id, @U,@V,@X,@Y,@Z,@P)", dataFormulaPo);
+
+                    if (dataFormulaPo.Count() == count)
+                    {
+                        countExecute += 1;
+                    }
+                }
+            }
+            #endregion
+
+            if (countExecute == 3)
+            {
+                MessageBox.Show("Impport data successfull.");
+            }
+            else
+            {
+                MessageBox.Show("Fail.");
             }
         }
 

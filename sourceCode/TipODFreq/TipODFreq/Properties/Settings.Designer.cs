@@ -25,14 +25,54 @@ namespace TipODFreq.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Database=ALD_MFG;UID=sa;Password= 100100; Min Pool Size=0;M" +
-            "ax Pool Size=1000;Pooling=true; Connect Timeout=65535;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("4LxE/a+D1aN38ut8vvBCcghMbkTSmcyBcML3Uo+yGpjDFhvHDZ0TTQrNs5BzWTrmXuV8s2qBvGaXtRuv5" +
+            "7ncQupXJvdJ9GzPyMRqOL2jhjvjKeVvAbpe3jKbL2NvbpFd7v7h5NvIduukatQeC2mdfmc+ovHfxjti8" +
+            "0ChX5YyHIRPpqjUrtLjog==")]
         public string ConString {
             get {
                 return ((string)(this["ConString"]));
             }
             set {
                 this["ConString"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\MyCompany\\8.SourceCode\\3.Projects\\20220820aldilaTipOdFreqMrDiepMrKhai\\info\\DAT" +
+            "A\\DATABASE\\Database-Tip OD-Frequency- hieu chinh.csv")]
+        public string PathCsvDataOd {
+            get {
+                return ((string)(this["PathCsvDataOd"]));
+            }
+            set {
+                this["PathCsvDataOd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\MyCompany\\8.SourceCode\\3.Projects\\20220820aldilaTipOdFreqMrDiepMrKhai\\info\\DAT" +
+            "A\\DATABASE\\cong thuc G.csv")]
+        public string PathCsvDataFormulaG {
+            get {
+                return ((string)(this["PathCsvDataFormulaG"]));
+            }
+            set {
+                this["PathCsvDataFormulaG"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\MyCompany\\8.SourceCode\\3.Projects\\20220820aldilaTipOdFreqMrDiepMrKhai\\info\\DAT" +
+            "A\\DATABASE\\cong thuc PO.csv")]
+        public string PathCsvDataFormulaPo {
+            get {
+                return ((string)(this["PathCsvDataFormulaPo"]));
+            }
+            set {
+                this["PathCsvDataFormulaPo"] = value;
             }
         }
     }

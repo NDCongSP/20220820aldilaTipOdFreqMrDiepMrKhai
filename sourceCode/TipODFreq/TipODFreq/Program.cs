@@ -17,9 +17,12 @@ namespace TipODFreq
         static void Main()
         {
             #region Đọc các thông số cấu hình ban đầu từ settings
-            GlobalVariables.ConnectionString = Properties.Settings.Default.ConString;
+            GlobalVariables.ConnectionString = EncodeMD5.DecryptString(Properties.Settings.Default.ConString, "@Aldila@123");
 
             GlobalVariables.PathApp = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            GlobalVariables.PathOd = Properties.Settings.Default.PathCsvDataOd;
+            GlobalVariables.PathFormulaG = Properties.Settings.Default.PathCsvDataFormulaG;
+            GlobalVariables.PathFormulaPo = Properties.Settings.Default.PathCsvDataFormulaPo;
 
             //Console.WriteLine($"Path app: {Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}");
             #endregion
