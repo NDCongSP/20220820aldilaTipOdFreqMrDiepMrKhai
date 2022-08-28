@@ -1,3 +1,9 @@
-Station 1: HMI 1 port LAN - 192.168.3.18
-Station 2: PLC - 192.168.3.
-Station 3: HMI 2 ports Lan - 192.168.3.
+PC: - Company Ip: 192.168.96.201
+       - Local IP: 192.168.1.10
+
+Station 1: HMI 1 port LAN - 192.168.1.18
+Station 2: PLC - 192.168.1.19
+Station 3: HMI 2 ports Lan - 192.168.1.20
+
+Data Source=192.168.96.8;Initial Catalog=ALD_MFG;User ID=mfg; Password=Mfg@321!; Min Pool Size=0;Max Pool Size=1000;Pooling=true; Connect Timeout=65535;
+4LxE/a+D1aMErorhewfYenf983dfMJcmMR8q+3eojHxZDCFObC0UiHFIKZHmOUaWiWphUm+FB1PZs+1XKN7FSBELfMH9QfHoSR/k0nJgRMQWmqGJYEHQwY3Yx0ZqjW2dSDaYB3799yGgjy0Tyox/qzkZQ4Ym6QC86CvnVNW0X6xQMWwGdQgv6r22ZFVwlkqddbW6EobBX+383gJjeS4jaw==

@@ -29,6 +29,7 @@ namespace TipODFreq
 
         bool sendPartNumber = false;//khi co barcode mới thì bật bit này lên để get data từ SQL truyền xuống cho máy chạy part mới.
         bool sendWorkOrder = false;
+        bool initialFlag = false;
 
         Timer t = new Timer();
 
@@ -64,6 +65,7 @@ namespace TipODFreq
 
             if (sendPartNumber)
             {
+                Console.WriteLine($"Part number:{partNum}");
                 if (labPartNum.InvokeRequired)
                 {
                     labPartNum.Text = partNum;
@@ -82,47 +84,52 @@ namespace TipODFreq
                     partInfo = connection.Query<PartInfoModel>("sp_GetFullPartInfo", para, commandType: CommandType.StoredProcedure).ToList();
                 }
 
-                //ghi các giá trị cài đặt xuống các PLC
-                if (partInfo.Count > 0)
+                if (initialFlag)
                 {
-                    gridPartInfo.DataSource = partInfo;
+                    //ghi các giá trị cài đặt xuống các PLC
+                    if (partInfo.Count > 0)
+                    {
+                        gridPartInfo.DataSource = partInfo;
 
-                    #region Station1 HMI 1, truyền thông modbus TCP
-                    easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FreqTarget", partInfo[0].FreqTarget.ToString(), WritePiority.Default);
-                    easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FormulaGId", partInfo[0].FormulaGId.ToString(), WritePiority.Default);
-                    #endregion
+                        #region Station1 HMI 1, truyền thông modbus TCP
+                        easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FreqTarget", partInfo[0].FreqTarget.ToString(), WritePiority.Default);
+                        easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FormulaGId", partInfo[0].FormulaGId.ToString(), WritePiority.Default);
+                        #endregion
 
-                    #region Station2 PLC, truyền thông modbus TCP
-                    //var index = 1;
-                    //foreach (var item in partInfo)
-                    //{
-                    //    easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamLL{index}", (item.DiamLL * 100).ToString(), WritePiority.Default);
-                    //    easyDriverConnector1.WriteTagAsync($"Local Station/Station23/Device/DiamUL{index}", (item.DiamUL * 100).ToString(), WritePiority.Default);
-                    //    easyDriverConnector1.WriteTagAsync($"Local Station/Station23/Device/TipOdLength{index}", item.TipOdLength.ToString(), WritePiority.Default);
+                        #region Station2 PLC, truyền thông modbus TCP
+                        var index = 1;
+                        foreach (var item in partInfo)
+                        {
+                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamLL{index}", (item.DiamLL * 100).ToString(), WritePiority.Default);
+                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamUL{index}", (item.DiamUL * 100).ToString(), WritePiority.Default);
+                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/TipOdLength{index}", item.TipOdLength.ToString(), WritePiority.Default);
 
-                    //    index += 1;
-                    //}
-                    #endregion
+                            index += 1;
+                        }
+                        #endregion
 
-                    #region Station3 HMI, truyền thông modbus TCP
-                    //easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/FormulaPoId", partInfo[0].FormulaPoId.ToString(), WritePiority.Default);
-                    //easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/FreqTarget", partInfo[0].FreqTarget.ToString(), WritePiority.Default);
-                    #endregion
+                        #region Station3 HMI, truyền thông modbus TCP
+                        easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/FormulaPoId", partInfo[0].FormulaPoId.ToString(), WritePiority.Default);
+                        easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/FreqTarget", partInfo[0].FreqTarget.ToString(), WritePiority.Default);
+                        #endregion
 
-                    //set bit reset
-                    easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/Reset", "1", WritePiority.Default);
-                    //easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/Reset", "1", WritePiority.Default);
-                    //easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Reset", "1", WritePiority.Default);
+                        //set bit reset
+                        easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/Reset", "1", WritePiority.Default);
+                        //easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/Reset", "1", WritePiority.Default);
+                        //easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Reset", "1", WritePiority.Default);
+                    }
+
+                    easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Internal_PartNumber", partNum, WritePiority.High);
+                    easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FlagPartScan", "0", WritePiority.High);
+
                 }
-
-                //easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Internal_PartNumber", partNum, WritePiority.High);
-                easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FlagPartScan", "0", WritePiority.High);
 
                 sendPartNumber = false;
             }
 
             if (sendWorkOrder)
             {
+                Console.WriteLine($"Work order:{workOrder}");
                 if (labWorkOrder.InvokeRequired)
                 {
                     labWorkOrder.Text = workOrder;
@@ -132,8 +139,11 @@ namespace TipODFreq
                     labWorkOrder.Text = workOrder;
                 }
 
-                //easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Internal_WorkOrder", workOrder, WritePiority.High);
-                easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FlagWorkOrderScan", "0", WritePiority.High);
+                if (initialFlag)
+                {
+                    easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Internal_WorkOrder", workOrder, WritePiority.High);
+                    easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FlagWorkOrderScan", "0", WritePiority.High);
+                }
 
                 sendWorkOrder = false;
             }
@@ -143,25 +153,55 @@ namespace TipODFreq
 
         private void EasyDriverConnector1_Started(object sender, EventArgs e)
         {
-            //BarcodeChar1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1"),
-            //              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1")
-            //              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1").Value));
-            //BarcodeChar2_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2"),
-            //              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2")
-            //              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2").Value));
-            //BarcodeChar3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3"),
-            //              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3")
-            //              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3").Value));
-            //BarcodeChar4_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4"),
-            //              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4")
-            //              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4").Value));
-            //BarcodeChar5_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5"),
-            //              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5")
-            //              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5").Value));
-            //BarcodeChar6_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6"),
-            //              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6")
-            //              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6").Value));
+            #region Doc cac tag ban dau
 
+            BarcodeChar1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1").Value));
+            BarcodeChar2_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2").Value));
+            BarcodeChar3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3").Value));
+            BarcodeChar4_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4").Value));
+            BarcodeChar5_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5").Value));
+            BarcodeChar6_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6").Value));
+
+            WorkOrder1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder1"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder1")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder1").Value));
+            WorkOrder2_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder2"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder2")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder2").Value));
+            WorkOrder3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder3"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder3")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder3").Value));
+            WorkOrder4_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder4"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder4")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder4").Value));
+            WorkOrder5_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder5"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder5")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder5").Value));
+            WorkOrder6_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6").Value));
+
+            Freq02Reading_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading"),
+                       new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading")
+                       , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading").Value));
+
+            FinishStation1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish"),
+                      new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish")
+                      , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish").Value));
+
+            #endregion
 
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1").ValueChanged += BarcodeChar1_ValueChanged;
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2").ValueChanged += BarcodeChar2_ValueChanged;
@@ -169,21 +209,25 @@ namespace TipODFreq
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4").ValueChanged += BarcodeChar4_ValueChanged;
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5").ValueChanged += BarcodeChar5_ValueChanged;
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6").ValueChanged += BarcodeChar6_ValueChanged;
+
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder1").ValueChanged += WorkOrder1_ValueChanged;
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder2").ValueChanged += WorkOrder2_ValueChanged;
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder3").ValueChanged += WorkOrder3_ValueChanged;
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder4").ValueChanged += WorkOrder4_ValueChanged;
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder5").ValueChanged += WorkOrder5_ValueChanged;
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6").ValueChanged += WorkOrder6_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6").ValueChanged += WorkOrder6_ValueChanged;
 
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/FlagPartScan").ValueChanged += FlagPartScan_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/FlagWorkOrderScan").ValueChanged += FlagWorkOrderScan_ValueChanged;
+            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading").ValueChanged += Freq02Reading_ValueChanged;
+
+            //easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/FlagPartScan").ValueChanged += FlagPartScan_ValueChanged;
+            //easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/FlagWorkOrderScan").ValueChanged += FlagWorkOrderScan_ValueChanged;
 
             //các tag báo máy đã đo xong,  staion 1 và 2, khi đo xong sẽ truyền các thông số đo sang station3 để khi station3 đo xong thì nó sẽ log data vào DB
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish").ValueChanged += FinishStation1_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Finish").ValueChanged += FinishStation2_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station3Hmi/Device/Finish").ValueChanged += FinishStation3_ValueChanged;
+            //easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Finish").ValueChanged += FinishStation2_ValueChanged;
+            //easyDriverConnector1.GetTag("Local Station/Station3Hmi/Device/Finish").ValueChanged += FinishStation3_ValueChanged;
+
+            initialFlag = true;
         }
 
         #region TagValueChange Events
@@ -219,7 +263,17 @@ namespace TipODFreq
                         partNumChar[0] = (char)n;
                     }
                 }
-                Console.WriteLine($"Ky tu 1:{partNumChar[10]}|{partNumChar[11]}");
+
+                partNum = null;
+                foreach (var item in partNumChar)
+                {
+                    if (item != 32)
+                    {
+                        partNum += item;
+                    }
+                }
+
+                sendPartNumber = true;
             }
         }
         private void BarcodeChar2_ValueChanged(object sender, TagValueChangedEventArgs e)
@@ -253,7 +307,16 @@ namespace TipODFreq
                         partNumChar[2] = (char)n;
                     }
                 }
-                Console.WriteLine($"Ky tu 2:{partNumChar[10]}|{partNumChar[11]}");
+
+                partNum = null;
+                foreach (var item in partNumChar)
+                {
+                    if (item != 32)
+                    {
+                        partNum += item;
+                    }
+                }                
+                sendPartNumber = true;
             }
         }
         private void BarcodeChar3_ValueChanged(object sender, TagValueChangedEventArgs e)
@@ -287,7 +350,16 @@ namespace TipODFreq
                         partNumChar[4] = (char)n;
                     }
                 }
-                Console.WriteLine($"Ky tu 3:{partNumChar[10]}|{partNumChar[11]}");
+
+                partNum = null;
+                foreach (var item in partNumChar)
+                {
+                    if (item != 32)
+                    {
+                        partNum += item;
+                    }
+                }
+                sendPartNumber = true;
             }
         }
         private void BarcodeChar4_ValueChanged(object sender, TagValueChangedEventArgs e)
@@ -321,7 +393,16 @@ namespace TipODFreq
                         partNumChar[6] = (char)n;
                     }
                 }
-                Console.WriteLine($"Ky tu 4:{partNumChar[10]}|{partNumChar[11]}");
+
+                partNum = null;
+                foreach (var item in partNumChar)
+                {
+                    if (item != 32)
+                    {
+                        partNum += item;
+                    }
+                }
+                sendPartNumber = true;
             }
         }
         private void BarcodeChar5_ValueChanged(object sender, TagValueChangedEventArgs e)
@@ -355,7 +436,16 @@ namespace TipODFreq
                         partNumChar[8] = (char)n;
                     }
                 }
-                Console.WriteLine($"Ky tu 5:{partNumChar[10]}|{partNumChar[11]}");
+
+                partNum = null;
+                foreach (var item in partNumChar)
+                {
+                    if (item != 32)
+                    {
+                        partNum += item;
+                    }
+                }
+                sendPartNumber = true;
             }
         }
         private void BarcodeChar6_ValueChanged(object sender, TagValueChangedEventArgs e)
@@ -389,8 +479,17 @@ namespace TipODFreq
                         partNumChar[10] = (char)n;
                     }
                 }
+
+                partNum = null;
+                foreach (var item in partNumChar)
+                {
+                    if (item != 32)
+                    {
+                        partNum += item;
+                    }
+                }
+                sendPartNumber = true;
             }
-            Console.WriteLine($"Ky tu 6:{partNumChar[10]}|{partNumChar[11]}");
         }
 
         private void FlagPartScan_ValueChanged(object sender, TagValueChangedEventArgs e)
@@ -469,9 +568,7 @@ namespace TipODFreq
                 string hexValue = value.ToString("X");
 
                 for (int a = 0; a < hexValue.Length; a = a + 2)
-
                 {
-
                     string Char2Convert = hexValue.Substring(a, 2);
 
                     int n = Convert.ToInt32(Char2Convert, 16);//chuyển đổi từ HEX --> DEC
@@ -486,6 +583,16 @@ namespace TipODFreq
                         workOrderChar[0] = (char)n;
                     }
                 }
+
+                workOrder = null;
+                foreach (var item in workOrderChar)
+                {
+                    if (item != 32)
+                    {
+                        workOrder += item;
+                    }
+                }
+                sendWorkOrder = true;
             }
         }
         private void WorkOrder2_ValueChanged(object sender, TagValueChangedEventArgs e)
@@ -515,6 +622,16 @@ namespace TipODFreq
                         workOrderChar[2] = (char)n;
                     }
                 }
+
+                workOrder = null;
+                foreach (var item in workOrderChar)
+                {
+                    if (item != 32)
+                    {
+                        workOrder += item;
+                    }
+                }
+                sendWorkOrder = true;
             }
         }
         private void WorkOrder3_ValueChanged(object sender, TagValueChangedEventArgs e)
@@ -544,6 +661,16 @@ namespace TipODFreq
                         workOrderChar[4] = (char)n;
                     }
                 }
+                workOrder = null;
+                foreach (var item in workOrderChar)
+                {
+                    if (item != 32)
+                    {
+                        workOrder += item;
+                    }
+                }
+                sendWorkOrder = true;
+
             }
         }
         private void WorkOrder4_ValueChanged(object sender, TagValueChangedEventArgs e)
@@ -573,6 +700,16 @@ namespace TipODFreq
                         workOrderChar[6] = (char)n;
                     }
                 }
+
+                workOrder = null;
+                foreach (var item in workOrderChar)
+                {
+                    if (item != 32)
+                    {
+                        workOrder += item;
+                    }
+                }
+                sendWorkOrder = true;
             }
         }
         private void WorkOrder5_ValueChanged(object sender, TagValueChangedEventArgs e)
@@ -602,6 +739,16 @@ namespace TipODFreq
                         workOrderChar[8] = (char)n;
                     }
                 }
+
+                workOrder = null;
+                foreach (var item in workOrderChar)
+                {
+                    if (item != 32)
+                    {
+                        workOrder += item;
+                    }
+                }
+                sendWorkOrder = true;
             }
         }
         private void WorkOrder6_ValueChanged(object sender, TagValueChangedEventArgs e)
@@ -631,6 +778,16 @@ namespace TipODFreq
                         workOrderChar[10] = (char)n;
                     }
                 }
+
+                workOrder = null;
+                foreach (var item in workOrderChar)
+                {
+                    if (item != 32)
+                    {
+                        workOrder += item;
+                    }
+                }
+                sendWorkOrder = true;
             }
         }
 
@@ -699,10 +856,16 @@ namespace TipODFreq
         #region Finish
         private void FinishStation1_ValueChanged(object sender, TagValueChangedEventArgs e)
         {
-            if (e.NewValue == "1")
+            if (e.NewValue != "0")
             {
                 //truyen cac thông số qua cho PLC 3, để phục vụ cho việc log data lên DB.
                 //code ở đây
+                easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Freq02Reading", freq02Reading, WritePiority.High);
+                easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/Finish1", "1", WritePiority.High);
+            }
+            else
+            {
+                easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/Finish1", "0", WritePiority.High);
             }
         }
 
@@ -725,6 +888,10 @@ namespace TipODFreq
         }
         #endregion
 
+        private void Freq02Reading_ValueChanged(object sender, TagValueChangedEventArgs e)
+        {
+            freq02Reading = e.NewValue;
+        }
         //update data vao sql tu csv file
         private void button1_Click(object sender, EventArgs e)
         {
