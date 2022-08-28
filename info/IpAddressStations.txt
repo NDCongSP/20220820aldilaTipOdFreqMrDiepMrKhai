@@ -1,3 +1,3 @@
-Station 1: HMI 1 port LAN - 192.168.3.18
-Station 2: PLC - 192.168.3.
-Station 3: HMI 2 ports Lan - 192.168.3.
+Station 1: HMI 1 port LAN - 192.168.1.18
+Station 2: PLC - 192.168.1.19
+Station 3: HMI 2 ports Lan - 192.168.1.20
