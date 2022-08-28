@@ -38,6 +38,7 @@ namespace TipODFreq
             this.label3 = new System.Windows.Forms.Label();
             this.labWorkOrder = new System.Windows.Forms.Label();
             this.btnUpdateData = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.easyDriverConnector1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPartInfo)).BeginInit();
@@ -132,11 +133,21 @@ namespace TipODFreq
             this.btnUpdateData.UseVisualStyleBackColor = false;
             this.btnUpdateData.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 666);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "label2";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1145, 650);
+            this.ClientSize = new System.Drawing.Size(1145, 688);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -145,6 +156,7 @@ namespace TipODFreq
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridPartInfo)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -158,6 +170,7 @@ namespace TipODFreq
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label labWorkOrder;
         private System.Windows.Forms.Button btnUpdateData;
+        private System.Windows.Forms.Label label2;
     }
 }
 
