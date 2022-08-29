@@ -51,7 +51,7 @@ namespace TipODFreq
             this.easyDriverConnector1.DatabaseName = null;
             this.easyDriverConnector1.MongoDb_ConnectionString = null;
             this.easyDriverConnector1.Port = ((ushort)(8800));
-            this.easyDriverConnector1.RefreshRate = 1000;
+            this.easyDriverConnector1.RefreshRate = 100;
             this.easyDriverConnector1.ServerAddress = "127.0.0.1";
             this.easyDriverConnector1.StationName = null;
             this.easyDriverConnector1.Timeout = 30;

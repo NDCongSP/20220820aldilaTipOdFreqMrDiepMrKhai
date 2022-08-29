@@ -1,5 +1,5 @@
 {
-  "ProjectPath": "D:\\MyCompany\\8.SourceCode\\3.Projects\\20220820aldilaTipOdFreqMrDiepMrKhai\\sourceCode\\TipOdFreqDriver.json",
+  "ProjectPath": "D:\\MyCompany\\8.SourceCode\\3.Projects\\20220820aldilaTipOdFreqMrDiepMrKhai\\sourceCode\\TipOdFreqDriverTest.json",
   "Username": null,
   "Password": null,
   "ParameterContainer": null,
@@ -11,7 +11,7 @@
   "IsReadOnly": true,
   "Enabled": true,
   "CreatedDate": "2022-08-20T10:34:24.8021201+07:00",
-  "ModifiedDate": "2022-08-29T20:20:33.5414447+07:00",
+  "ModifiedDate": "2022-08-29T20:04:07.4339355+07:00",
   "ParameterContainer": {
   "DisplayName": null,
   "DisplayParameters": null,
@@ -31,7 +31,7 @@
   "IsReadOnly": false,
   "Enabled": true,
   "CreatedDate": "2022-08-24T21:46:16.7486241+07:00",
-  "ModifiedDate": "2022-08-29T20:20:33.5414447+07:00",
+  "ModifiedDate": "2022-08-29T20:04:07.4339355+07:00",
   "ParameterContainer": {
   "DisplayName": null,
   "DisplayParameters": null,
@@ -51,7 +51,7 @@
   "IsReadOnly": false,
   "Enabled": true,
   "CreatedDate": "2022-08-24T21:46:21.1658254+07:00",
-  "ModifiedDate": "2022-08-29T21:33:56.7017368+07:00",
+  "ModifiedDate": "2022-08-29T20:04:07.4339355+07:00",
   "ParameterContainer": {
   "DisplayName": null,
   "DisplayParameters": null,
@@ -63,7 +63,7 @@
     "InputContactReadBlockSettings": "[]",
     "OutputCoilsReadBlockSettings": "[]",
     "InputRegisterReadBlockSettings": "[]",
-    "HoldingRegisterReadBlockSettings": "[\r\n  {\r\n    \"AddressType\": 4,\r\n    \"Enabled\": true,\r\n    \"StartAddress\": \"400011\",\r\n    \"EndAddress\": \"400023\"\r\n  },\r\n  {\r\n    \"AddressType\": 4,\r\n    \"Enabled\": true,\r\n    \"StartAddress\": \"400235\",\r\n    \"EndAddress\": \"400275\"\r\n  },\r\n  {\r\n    \"AddressType\": 4,\r\n    \"Enabled\": true,\r\n    \"StartAddress\": \"400801\",\r\n    \"EndAddress\": \"400817\"\r\n  }\r\n]",
+    "HoldingRegisterReadBlockSettings": "[\r\n  {\r\n    \"AddressType\": 4,\r\n    \"Enabled\": true,\r\n    \"StartAddress\": \"400010\",\r\n    \"EndAddress\": \"400023\"\r\n  },\r\n  {\r\n    \"AddressType\": 4,\r\n    \"Enabled\": true,\r\n    \"StartAddress\": \"400801\",\r\n    \"EndAddress\": \"400816\"\r\n  }\r\n]",
     "MaxWritesCount": "10"
   }
 },
@@ -87,13 +87,13 @@
     "Address": "400802"
   }
 },
-  "Address": "400803",
+  "Address": "400802",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
   "AccessPermission": "ReadAndWrite",
   "Offset": 0.0,
-  "Gain": 1.0,
+  "Gain": 0.01,
   "IsInternalTag": false,
   "GUID": null,
   "Retain": false,
@@ -117,13 +117,13 @@
     "Address": "400804"
   }
 },
-  "Address": "400805",
+  "Address": "400804",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
   "AccessPermission": "ReadAndWrite",
   "Offset": 0.0,
-  "Gain": 1.0,
+  "Gain": 0.01,
   "IsInternalTag": false,
   "GUID": null,
   "Retain": false,
@@ -177,13 +177,13 @@
     "Address": "400808"
   }
 },
-  "Address": "400809",
+  "Address": "400808",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
   "AccessPermission": "ReadAndWrite",
   "Offset": 0.0,
-  "Gain": 1.0,
+  "Gain": 0.01,
   "IsInternalTag": false,
   "GUID": null,
   "Retain": false,
@@ -207,13 +207,13 @@
     "Address": "400810"
   }
 },
-  "Address": "400811",
+  "Address": "400810",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
   "AccessPermission": "ReadAndWrite",
   "Offset": 0.0,
-  "Gain": 1.0,
+  "Gain": 0.01,
   "IsInternalTag": false,
   "GUID": null,
   "Retain": false,
@@ -237,7 +237,7 @@
     "Address": "400806"
   }
 },
-  "Address": "400807",
+  "Address": "400806",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
@@ -267,13 +267,13 @@
     "Address": "400814"
   }
 },
-  "Address": "400815",
+  "Address": "400814",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
   "AccessPermission": "ReadAndWrite",
   "Offset": 0.0,
-  "Gain": 1.0,
+  "Gain": 0.01,
   "IsInternalTag": false,
   "GUID": null,
   "Retain": false,
@@ -297,13 +297,13 @@
     "Address": "400816"
   }
 },
-  "Address": "400817",
+  "Address": "400816",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
   "AccessPermission": "ReadAndWrite",
   "Offset": 0.0,
-  "Gain": 1.0,
+  "Gain": 0.01,
   "IsInternalTag": false,
   "GUID": null,
   "Retain": false,
@@ -327,7 +327,7 @@
     "Address": "400812"
   }
 },
-  "Address": "400813",
+  "Address": "400812",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
@@ -357,7 +357,7 @@
     "Address": "400010"
   }
 },
-  "Address": "400275",
+  "Address": "400010",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
@@ -760,87 +760,6 @@
   "Childs": [],
   "HaveTags": true,
   "Tags": []
-},
-    {
-  "Name": "OD1",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-29T21:32:47.4289356+07:00",
-  "ModifiedDate": "2022-08-29T21:32:47.4289356+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {}
-},
-  "Address": "400235",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "OD2",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-29T21:33:01.5531738+07:00",
-  "ModifiedDate": "2022-08-29T21:33:01.5531738+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {}
-},
-  "Address": "400237",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "OD3",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-29T21:33:15.4400482+07:00",
-  "ModifiedDate": "2022-08-29T21:33:15.4400482+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {}
-},
-  "Address": "400239",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
 }
   ]
 }
@@ -853,12 +772,12 @@
   "IsReadOnly": false,
   "Enabled": true,
   "CreatedDate": "2022-08-24T21:54:10.7414528+07:00",
-  "ModifiedDate": "2022-08-29T20:20:33.5414447+07:00",
+  "ModifiedDate": "2022-08-29T20:04:07.4339355+07:00",
   "ParameterContainer": {
   "DisplayName": null,
   "DisplayParameters": null,
   "Parameters": {
-    "IpAddress": "192.168.1.20",
+    "IpAddress": "127.0.0.1",
     "Port": "502",
     "DelayBetweenPool": "5",
     "ScanRate": "100"
@@ -873,7 +792,7 @@
   "IsReadOnly": false,
   "Enabled": true,
   "CreatedDate": "2022-08-24T21:54:14.0964787+07:00",
-  "ModifiedDate": "2022-08-29T20:20:33.5414447+07:00",
+  "ModifiedDate": "2022-08-29T20:04:07.4339355+07:00",
   "ParameterContainer": {
   "DisplayName": null,
   "DisplayParameters": null,
@@ -945,7 +864,7 @@
   "ByteOrder": 0,
   "AccessPermission": "ReadAndWrite",
   "Offset": 0.0,
-  "Gain": 1.0,
+  "Gain": 0.01,
   "IsInternalTag": false,
   "GUID": null,
   "Retain": false,
@@ -1621,12 +1540,12 @@
   "IsReadOnly": false,
   "Enabled": true,
   "CreatedDate": "2022-08-25T15:49:34.7546937+07:00",
-  "ModifiedDate": "2022-08-29T20:20:33.5414447+07:00",
+  "ModifiedDate": "2022-08-29T20:04:07.4339355+07:00",
   "ParameterContainer": {
   "DisplayName": null,
   "DisplayParameters": null,
   "Parameters": {
-    "IpAddress": "192.168.1.18",
+    "IpAddress": "127.0.0.1",
     "Port": "502",
     "DelayBetweenPool": "5",
     "ScanRate": "100"
@@ -1641,7 +1560,7 @@
   "IsReadOnly": false,
   "Enabled": true,
   "CreatedDate": "2022-08-25T15:49:42.025264+07:00",
-  "ModifiedDate": "2022-08-29T20:20:33.5414447+07:00",
+  "ModifiedDate": "2022-08-29T20:04:07.4339355+07:00",
   "ParameterContainer": {
   "DisplayName": null,
   "DisplayParameters": null,
@@ -2163,7 +2082,7 @@
   "ByteOrder": 0,
   "AccessPermission": "ReadAndWrite",
   "Offset": 0.0,
-  "Gain": 0.01,
+  "Gain": 1.0,
   "IsInternalTag": false,
   "GUID": null,
   "Retain": false,

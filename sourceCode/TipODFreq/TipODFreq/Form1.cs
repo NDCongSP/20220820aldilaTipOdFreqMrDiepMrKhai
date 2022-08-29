@@ -34,7 +34,7 @@ namespace TipODFreq
         Timer t = new Timer();
 
         #region các thông số cần lưu lên DB
-        string formularGId = null, freq01Reading = null, freq02Reading = null, motorSanding = null, shaftNum = null;
+        string formularGId = null, freq01Reading = null, freq02Reading = null, motorSanding = null, shaftNum = null, shaftCount = null;
         string diamLLRead1 = null, diamULRead1 = null, passFail1 = null, diamLLRead2 = null, diamULRead2 = null,
             passFail2 = null, diamLLRead3 = null, diamULRead3 = null, passFail3 = null;
 
@@ -92,7 +92,7 @@ namespace TipODFreq
                         gridPartInfo.DataSource = partInfo;
 
                         #region Station1 HMI 1, truyền thông modbus TCP
-                        easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FreqTarget", partInfo[0].FreqTarget.ToString(), WritePiority.Default);
+                        easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FreqTarget", (partInfo[0].FreqTarget * 100).ToString(), WritePiority.Default);
                         easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FormulaGId", partInfo[0].FormulaGId.ToString(), WritePiority.Default);
                         #endregion
 
@@ -106,11 +106,27 @@ namespace TipODFreq
 
                             index += 1;
                         }
+                        if (index == 2)
+                        {
+                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamLL2", "0", WritePiority.Default);
+                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamUL2", "0", WritePiority.Default);
+                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/TipOdLength2", "0", WritePiority.Default);
+
+                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamLL3", "0", WritePiority.Default);
+                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamUL3", "0", WritePiority.Default);
+                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/TipOdLength3", "0", WritePiority.Default);
+                        }
+                        else if (index == 3)
+                        {
+                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamLL3", "0", WritePiority.Default);
+                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamUL3", "0", WritePiority.Default);
+                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/TipOdLength3", "0", WritePiority.Default);
+                        }
                         #endregion
 
                         #region Station3 HMI, truyền thông modbus TCP
                         easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/FormulaPoId", partInfo[0].FormulaPoId.ToString(), WritePiority.Default);
-                        easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/FreqTarget", partInfo[0].FreqTarget.ToString(), WritePiority.Default);
+                        easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/FreqTarget", (partInfo[0].FreqTarget * 100).ToString(), WritePiority.Default);
                         #endregion
 
                         //set bit reset
@@ -218,6 +234,7 @@ namespace TipODFreq
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6").ValueChanged += WorkOrder6_ValueChanged;
 
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading").ValueChanged += Freq02Reading_ValueChanged;
+            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/ShaftCount").ValueChanged += ShaftCount_ValueChanged;
 
             //easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/FlagPartScan").ValueChanged += FlagPartScan_ValueChanged;
             //easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/FlagWorkOrderScan").ValueChanged += FlagWorkOrderScan_ValueChanged;
@@ -315,7 +332,7 @@ namespace TipODFreq
                     {
                         partNum += item;
                     }
-                }                
+                }
                 sendPartNumber = true;
             }
         }
@@ -861,6 +878,8 @@ namespace TipODFreq
                 //truyen cac thông số qua cho PLC 3, để phục vụ cho việc log data lên DB.
                 //code ở đây
                 easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Freq02Reading", freq02Reading, WritePiority.High);
+                easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/ShaftCount", shaftCount, WritePiority.High);
+
                 easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/Finish1", "1", WritePiority.High);
             }
             else
@@ -891,6 +910,11 @@ namespace TipODFreq
         private void Freq02Reading_ValueChanged(object sender, TagValueChangedEventArgs e)
         {
             freq02Reading = e.NewValue;
+        }
+
+        private void ShaftCount_ValueChanged(object sender, TagValueChangedEventArgs e)
+        {
+            shaftCount = e.NewValue;
         }
         //update data vao sql tu csv file
         private void button1_Click(object sender, EventArgs e)
@@ -940,90 +964,90 @@ namespace TipODFreq
             #endregion
 
             #region Formula G
-            lines = System.IO.File.ReadAllLines(GlobalVariables.PathFormulaG);
+            //lines = System.IO.File.ReadAllLines(GlobalVariables.PathFormulaG);
 
-            if (lines.Count() > 0)
-            {
-                var dataFormulaG = new List<tblFormulaGModel>();
+            //if (lines.Count() > 0)
+            //{
+            //    var dataFormulaG = new List<tblFormulaGModel>();
 
-                int index = 0;
-                foreach (string line in lines)
-                {
-                    if (index != 0)
-                    {
-                        string[] columns = line.Split(',');
-                        dataFormulaG.Add(new tblFormulaGModel()
-                        {
-                            Id = int.TryParse(columns[0], out int value) ? value : 0,
-                            U = int.TryParse(columns[1], out value) ? value : 0,
-                            V = int.TryParse(columns[2], out value) ? value : 0,
-                            X = double.TryParse(columns[3], out double value1) ? value1 : 0,
-                            Y = double.TryParse(columns[4], out value1) ? value1 : 0,
-                            Z = int.TryParse(columns[5], out value) ? value : 0,
-                            P = int.TryParse(columns[6], out value) ? value : 0,
-                        });
-                    }
-                    index += 1;
-                }
+            //    int index = 0;
+            //    foreach (string line in lines)
+            //    {
+            //        if (index != 0)
+            //        {
+            //            string[] columns = line.Split(',');
+            //            dataFormulaG.Add(new tblFormulaGModel()
+            //            {
+            //                Id = int.TryParse(columns[0], out int value) ? value : 0,
+            //                U = int.TryParse(columns[1], out value) ? value : 0,
+            //                V = int.TryParse(columns[2], out value) ? value : 0,
+            //                X = double.TryParse(columns[3], out double value1) ? value1 : 0,
+            //                Y = double.TryParse(columns[4], out value1) ? value1 : 0,
+            //                Z = int.TryParse(columns[5], out value) ? value : 0,
+            //                P = int.TryParse(columns[6], out value) ? value : 0,
+            //            });
+            //        }
+            //        index += 1;
+            //    }
 
-                using (var connection = GlobalVariables.GetDbConnection())
-                {
-                    connection.Execute("delete tblFormulaG");
+            //    using (var connection = GlobalVariables.GetDbConnection())
+            //    {
+            //        connection.Execute("delete tblFormulaG");
 
-                    var count = connection.Execute(@"insert tblFormulaG (Id, U, V,X,Y,Z,P) 
-                                                    values (@Id, @U,@V,@X,@Y,@Z,@P)", dataFormulaG);
+            //        var count = connection.Execute(@"insert tblFormulaG (Id, U, V,X,Y,Z,P) 
+            //                                        values (@Id, @U,@V,@X,@Y,@Z,@P)", dataFormulaG);
 
-                    if (dataFormulaG.Count() == count)
-                    {
-                        countExecute += 1;
-                    }
-                }
-            }
+            //        if (dataFormulaG.Count() == count)
+            //        {
+            //            countExecute += 1;
+            //        }
+            //    }
+            //}
             #endregion
 
             #region Formula PO
-            lines = System.IO.File.ReadAllLines(GlobalVariables.PathFormulaPo);
+            //lines = System.IO.File.ReadAllLines(GlobalVariables.PathFormulaPo);
 
-            if (lines.Count() > 0)
-            {
-                var dataFormulaPo = new List<tblFormulaPoModel>();
+            //if (lines.Count() > 0)
+            //{
+            //    var dataFormulaPo = new List<tblFormulaPoModel>();
 
-                int index = 0;
-                foreach (string line in lines)
-                {
-                    if (index != 0)
-                    {
-                        string[] columns = line.Split(',');
-                        dataFormulaPo.Add(new tblFormulaPoModel()
-                        {
-                            Id = int.TryParse(columns[0], out int value) ? value : 0,
-                            U = int.TryParse(columns[1], out value) ? value : 0,
-                            V = int.TryParse(columns[2], out value) ? value : 0,
-                            X = double.TryParse(columns[3], out double value1) ? value1 : 0,
-                            Y = double.TryParse(columns[4], out value1) ? value1 : 0,
-                            Z = int.TryParse(columns[5], out value) ? value : 0,
-                            P = int.TryParse(columns[6], out value) ? value : 0,
-                        });
-                    }
-                    index += 1;
-                }
+            //    int index = 0;
+            //    foreach (string line in lines)
+            //    {
+            //        if (index != 0)
+            //        {
+            //            string[] columns = line.Split(',');
+            //            dataFormulaPo.Add(new tblFormulaPoModel()
+            //            {
+            //                Id = int.TryParse(columns[0], out int value) ? value : 0,
+            //                U = int.TryParse(columns[1], out value) ? value : 0,
+            //                V = int.TryParse(columns[2], out value) ? value : 0,
+            //                X = double.TryParse(columns[3], out double value1) ? value1 : 0,
+            //                Y = double.TryParse(columns[4], out value1) ? value1 : 0,
+            //                Z = int.TryParse(columns[5], out value) ? value : 0,
+            //                P = int.TryParse(columns[6], out value) ? value : 0,
+            //            });
+            //        }
+            //        index += 1;
+            //    }
 
-                using (var connection = GlobalVariables.GetDbConnection())
-                {
-                    connection.Execute("delete tblFormulaPo");
+            //    using (var connection = GlobalVariables.GetDbConnection())
+            //    {
+            //        connection.Execute("delete tblFormulaPo");
 
-                    var count = connection.Execute(@"insert tblFormulaPo (Id, U, V,X,Y,Z,P) 
-                                                    values (@Id, @U,@V,@X,@Y,@Z,@P)", dataFormulaPo);
+            //        var count = connection.Execute(@"insert tblFormulaPo (Id, U, V,X,Y,Z,P) 
+            //                                        values (@Id, @U,@V,@X,@Y,@Z,@P)", dataFormulaPo);
 
-                    if (dataFormulaPo.Count() == count)
-                    {
-                        countExecute += 1;
-                    }
-                }
-            }
+            //        if (dataFormulaPo.Count() == count)
+            //        {
+            //            countExecute += 1;
+            //        }
+            //    }
+            //}
             #endregion
 
-            if (countExecute == 3)
+            if (countExecute == 1)
             {
                 MessageBox.Show("Impport data successfull.");
             }
