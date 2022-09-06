@@ -140,6 +140,7 @@ namespace TipODFreq
                         //easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Reset", "1", WritePiority.Default);
 
                         easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Internal_PartNumber", partNum, WritePiority.High);
+                        easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/Internal_PartNumber", partNum, WritePiority.High);
                         easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FlagPartScan", "0", WritePiority.High);
 
                         partInfo = null;
@@ -164,6 +165,7 @@ namespace TipODFreq
                 if (initialFlag)
                 {
                     easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Internal_WorkOrder", workOrder, WritePiority.High);
+                    easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/Internal_WorkOrder", workOrder, WritePiority.High);
                     easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FlagWorkOrderScan", "0", WritePiority.High);
                 }
 
@@ -240,17 +242,30 @@ namespace TipODFreq
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6").ValueChanged += WorkOrder6_ValueChanged;
 
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading").ValueChanged += Freq02Reading_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/ShaftCount").ValueChanged += ShaftCount_ValueChanged;
 
             //easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/FlagPartScan").ValueChanged += FlagPartScan_ValueChanged;
             //easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/FlagWorkOrderScan").ValueChanged += FlagWorkOrderScan_ValueChanged;
 
-            //các tag báo máy đã đo xong,  staion 1 và 2, khi đo xong sẽ truyền các thông số đo sang station3 để khi station3 đo xong thì nó sẽ log data vào DB
+            //tag tại station1 bao để truyền data sang sattion2 và 3
             easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish").ValueChanged += FinishStation1_ValueChanged;
             //easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Finish").ValueChanged += FinishStation2_ValueChanged;
             //easyDriverConnector1.GetTag("Local Station/Station3Hmi/Device/Finish").ValueChanged += FinishStation3_ValueChanged;
 
+            //các tag báo lưu, khi bit này lên 1 thì lấy các thông tin log vào data
+            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Log").ValueChanged += LogStation1_ValueChanged;
+            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Log").ValueChanged += LogStation2_ValueChanged;
+            easyDriverConnector1.GetTag("Local Station/Station3Hmi/Device/Log").ValueChanged += LogStation3_ValueChanged;
+
             initialFlag = true;
+
+            if (easyDriverConnector1.ConnectionStatus==ConnectionStatus.Connected)
+            {
+                labServerStatus.BackColor = Color.Green;
+            }
+            else
+            {
+                labServerStatus.BackColor = Color.Red;
+            }
         }
 
         #region TagValueChange Events
@@ -874,6 +889,7 @@ namespace TipODFreq
                 Console.WriteLine($"Work Order: {workOrder}");
             }
         }
+
         #endregion
 
         #region Finish
@@ -883,8 +899,7 @@ namespace TipODFreq
             {
                 //truyen cac thông số qua cho PLC 3, để phục vụ cho việc log data lên DB.
                 //code ở đây
-                easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Freq02Reading", freq02Reading, WritePiority.High);
-                easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/ShaftCount", shaftCount, WritePiority.High);
+                easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Freq02", freq02Reading, WritePiority.High);
 
                 easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/Finish1", "1", WritePiority.High);
             }
@@ -913,15 +928,39 @@ namespace TipODFreq
         }
         #endregion
 
+        #region Log DB
+        private void LogStation3_ValueChanged(object sender, TagValueChangedEventArgs e)
+        {
+
+        }
+
+        private void LogStation2_ValueChanged(object sender, TagValueChangedEventArgs e)
+        {
+
+        }
+
+        private void LogStation1_ValueChanged(object sender, TagValueChangedEventArgs e)
+        {
+            if (e.NewValue != "0")
+            {
+                //truyen cac thông số qua cho PLC 3, để phục vụ cho việc log data lên DB.
+                //code ở đây
+                
+
+                easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/ResetLog", "1", WritePiority.High);
+            }
+            else
+            {
+                easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/ResetLog", "0", WritePiority.High);
+            }
+        }
+        #endregion
+
         private void Freq02Reading_ValueChanged(object sender, TagValueChangedEventArgs e)
         {
             freq02Reading = e.NewValue;
         }
-
-        private void ShaftCount_ValueChanged(object sender, TagValueChangedEventArgs e)
-        {
-            shaftCount = e.NewValue;
-        }
+        
         //update data vao sql tu csv file
         private void button1_Click(object sender, EventArgs e)
         {
