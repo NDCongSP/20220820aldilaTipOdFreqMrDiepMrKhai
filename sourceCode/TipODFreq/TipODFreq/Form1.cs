@@ -18,7 +18,7 @@ namespace TipODFreq
     public partial class Form1 : Form
     {
         #region Properties
-        private List<PartInfoModel> partInfo = new List<PartInfoModel>();
+        private List<PartInfoModel> partInfo;//= new List<PartInfoModel>();
         private string partNum = null, workOrder = null;
 
         char[] partNumChar = new char[12];//chứa các ký tự convert từ HMI truyền về
@@ -52,6 +52,8 @@ namespace TipODFreq
         private void Form1_Load(object sender, EventArgs e)
         {
             easyDriverConnector1.Started += EasyDriverConnector1_Started;
+            this.toolStripMenuItemShow.Click += ToolStripMenuItemShow_Click;
+            this.toolStripMenuItemExit.Click += ToolStripMenuItemExit_Click;
 
             t.Interval = 1000;
             t.Tick += T_Tick;
@@ -63,6 +65,7 @@ namespace TipODFreq
             Timer _t = (Timer)sender;
             t.Enabled = false;
 
+            labTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             if (sendPartNumber)
             {
                 Console.WriteLine($"Part number:{partNum}");
@@ -80,6 +83,8 @@ namespace TipODFreq
                 {
                     var para = new DynamicParameters();
                     para.Add("@partNum", partNum);
+
+                    partInfo = new List<PartInfoModel>();
 
                     partInfo = connection.Query<PartInfoModel>("sp_GetFullPartInfo", para, commandType: CommandType.StoredProcedure).ToList();
                 }
@@ -133,11 +138,12 @@ namespace TipODFreq
                         easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/Reset", "1", WritePiority.Default);
                         //easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/Reset", "1", WritePiority.Default);
                         //easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Reset", "1", WritePiority.Default);
+
+                        easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Internal_PartNumber", partNum, WritePiority.High);
+                        easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FlagPartScan", "0", WritePiority.High);
+
+                        partInfo = null;
                     }
-
-                    easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Internal_PartNumber", partNum, WritePiority.High);
-                    easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FlagPartScan", "0", WritePiority.High);
-
                 }
 
                 sendPartNumber = false;
@@ -1056,6 +1062,48 @@ namespace TipODFreq
                 MessageBox.Show("Fail.");
             }
         }
+
+        #region Notify
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            //if the form is minimized  
+            //hide it from the task bar  
+            //and show the system tray icon (represented by the NotifyIcon control)  
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                Hide();
+                notifyIcon.Visible = true;
+            }
+        }
+
+        private void notifyIcon_DoubleClick(object sender, EventArgs e)
+        {
+            Show();
+            this.WindowState = FormWindowState.Normal;
+            notifyIcon.Visible = false;
+        }
+
+        private void ToolStripMenuItemExit_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn muốn thoát khỏi chương trình?", "Cảnh Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void ToolStripMenuItemShow_Click(object sender, EventArgs e)
+        {
+            Show();
+            this.WindowState = FormWindowState.Normal;
+            notifyIcon.Visible = false;
+        }
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Hide();
+            notifyIcon.Visible = true;
+        }
+        #endregion
         #endregion
     }
 }
