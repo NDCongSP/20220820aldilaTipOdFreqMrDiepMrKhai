@@ -122,11 +122,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\tblDataLogPolishingModel.cs" />
+    <Compile Include="Models\tblDataLogTipOdModel.cs" />
     <Compile Include="Models\tblFormulaPoModel.cs" />
     <Compile Include="Models\tblFormulaGModel.cs" />
-    <Compile Include="Models\tblDataLogODModel.cs" />
-    <Compile Include="Models\tblDataLogFreqModel.cs" />
-    <Compile Include="Models\DataModel.cs" />
+    <Compile Include="Models\tblDataLogSandingModel.cs" />
     <Compile Include="Models\PartInfoModel.cs" />
     <Compile Include="Models\tblTipOdFreqModel.cs" />
     <Compile Include="Program.cs" />
