@@ -1128,7 +1128,7 @@ namespace TipODFreq
                         }
                         else if (logType == "4")
                         {
-                            logType = "Production";
+                            logData.LogType = "Production";
 
                             using (var connection = GlobalVariables.GetDbConnection())
                             {
@@ -1287,7 +1287,7 @@ namespace TipODFreq
                         }
                         else if (logType == "4")
                         {
-                            logType = "Production";
+                            logData.LogStyle = "Production";
 
                             using (var connection = GlobalVariables.GetDbConnection())
                             {
