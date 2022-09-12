@@ -32,7 +32,7 @@ namespace TipODFreq
         bool initialFlag = false;
 
         string logType = "1";//1--No; 2-5 pcs; 4-all
-        int logCount = 0;//sử dụng trong trường hợp lưu 5 cây cho 1 part
+        int logCountSanding = 0, logCountTipOd = 0, logCountPolishing = 0;//sử dụng trong trường hợp lưu 5 cây cho 1 part
 
         Timer t = new Timer();
 
@@ -154,7 +154,7 @@ namespace TipODFreq
                         easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FlagPartScan", "0", WritePiority.High);
 
                         partInfo = null;
-                        logCount = 0;//reset bien dem log data 5 cay khi quet part moi
+                        logCountSanding = logCountTipOd = logCountPolishing = 0;//reset bien dem log data 5 cay khi quet part moi
                     }
                 }
 
@@ -188,189 +188,196 @@ namespace TipODFreq
 
         private void EasyDriverConnector1_Started(object sender, EventArgs e)
         {
-            #region Doc cac tag ban dau
-
-            BarcodeChar1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1").Value));
-            BarcodeChar2_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2").Value));
-            BarcodeChar3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3").Value));
-            BarcodeChar4_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4").Value));
-            BarcodeChar5_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5").Value));
-            BarcodeChar6_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6").Value));
-
-            WorkOrder1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder1"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder1")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder1").Value));
-            WorkOrder2_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder2"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder2")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder2").Value));
-            WorkOrder3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder3"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder3")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder3").Value));
-            WorkOrder4_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder4"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder4")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder4").Value));
-            WorkOrder5_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder5"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder5")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder5").Value));
-            WorkOrder6_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6").Value));
-
-            Freq02Reading_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading"),
-                       new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading")
-                       , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading").Value));
-
-            FinishStation1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish"),
-                      new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish")
-                      , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish").Value));
-            FinishStation1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish"),
-                      new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish")
-                      , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish").Value));
-            LogType_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/LogType"),
-                      new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/LogType")
-                      , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/LogType").Value));
-            #endregion
-
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1").ValueChanged += BarcodeChar1_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2").ValueChanged += BarcodeChar2_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3").ValueChanged += BarcodeChar3_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4").ValueChanged += BarcodeChar4_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5").ValueChanged += BarcodeChar5_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6").ValueChanged += BarcodeChar6_ValueChanged;
-
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder1").ValueChanged += WorkOrder1_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder2").ValueChanged += WorkOrder2_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder3").ValueChanged += WorkOrder3_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder4").ValueChanged += WorkOrder4_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder5").ValueChanged += WorkOrder5_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6").ValueChanged += WorkOrder6_ValueChanged;
-
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading").ValueChanged += Freq02Reading_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/LogType").ValueChanged += LogType_ValueChanged;
-
-            //easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/FlagPartScan").ValueChanged += FlagPartScan_ValueChanged;
-            //easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/FlagWorkOrderScan").ValueChanged += FlagWorkOrderScan_ValueChanged;
-
-            //tag tại station1 bao để truyền data sang sattion2 và 3
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish").ValueChanged += FinishStation1_ValueChanged;
-            //easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Finish").ValueChanged += FinishStation2_ValueChanged;
-            //easyDriverConnector1.GetTag("Local Station/Station3Hmi/Device/Finish").ValueChanged += FinishStation3_ValueChanged;
-
-            //các tag báo lưu, khi bit này lên 1 thì lấy các thông tin log vào data
-            easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Log").ValueChanged += LogStation1_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Log").ValueChanged += LogStation2_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station3Hmi/Device/Log").ValueChanged += LogStation3_ValueChanged;
-
-            #region tip OD data Log
-            #region doc cac gia tri ban dau
-            DiamLL1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL1"),
-                      new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL1")
-                      , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL1").Value));
-            DiamUL1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL1"),
-                      new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL1")
-                      , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL1").Value));
-            TipOdLength1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength1"),
-                      new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength1")
-                      , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength1").Value));
-
-            DiamLL2_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL2"),
-                      new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL2")
-                      , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL2").Value));
-            DiamUL2_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL2"),
-                      new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL2")
-                      , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL2").Value));
-            TipOdLength2_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength2"),
-                      new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength2")
-                      , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength2").Value));
-
-            DiamLL3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL3"),
-                      new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL3")
-                      , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL3").Value));
-            DiamUL3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL1"),
-                      new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL3")
-                      , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL3").Value));
-            TipOdLength3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength3"),
-                      new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength3")
-                      , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength3").Value));
-
-            OD1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD1"),
-                     new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD1")
-                     , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD1").Value));
-            PassFail1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail1"),
-                      new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail1")
-                      , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail1").Value));
-
-            OD2_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD2"),
-                     new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD2")
-                     , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD2").Value));
-            PassFail2_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail2"),
-                      new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail2")
-                      , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail2").Value));
-
-            OD3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD3"),
-                     new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD3")
-                     , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD3").Value));
-            PassFail3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail3"),
-                      new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail3")
-                      , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail3").Value));
-
-            Internal_PartNumber_Station3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Internal_PartNumber"),
-                     new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Internal_PartNumber")
-                     , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Internal_PartNumber").Value));
-            Internal_WorkOrder_Station3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Internal_WorkOrder"),
-                      new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Internal_WorkOrder")
-                      , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Internal_WorkOrder").Value));
-
-            ShaftNumber_Station3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/ShaftNumber"),
-                      new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/ShaftNumber")
-                      , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/ShaftNumber").Value));
-            #endregion
-
-            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL1").ValueChanged += DiamLL1_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL1").ValueChanged += DiamUL1_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength1").ValueChanged += TipOdLength1_ValueChanged;
-
-            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL2").ValueChanged += DiamLL2_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL2").ValueChanged += DiamUL2_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength2").ValueChanged += TipOdLength2_ValueChanged;
-
-            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL3").ValueChanged += DiamLL3_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL3").ValueChanged += DiamUL3_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength3").ValueChanged += TipOdLength3_ValueChanged;
-
-            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD1").ValueChanged += OD1_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail1").ValueChanged += PassFail1_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD2").ValueChanged += OD2_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail2").ValueChanged += PassFail2_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD3").ValueChanged += OD3_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail3").ValueChanged += PassFail3_ValueChanged;
-
-            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Internal_PartNumber").ValueChanged += Internal_PartNumber_Station3_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Internal_WorkOrder").ValueChanged += Internal_WorkOrder_Station3_ValueChanged;
-            easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/ShaftNumber").ValueChanged += ShaftNumber_Station3_ValueChanged;
-            #endregion
-
-            initialFlag = true;
-
-            if (easyDriverConnector1.ConnectionStatus == ConnectionStatus.Connected)
+            try
             {
-                labServerStatus.BackColor = Color.Green;
+                #region Doc cac tag ban dau
+
+                BarcodeChar1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1"),
+                              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1")
+                              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1").Value));
+                BarcodeChar2_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2"),
+                              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2")
+                              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2").Value));
+                BarcodeChar3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3"),
+                              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3")
+                              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3").Value));
+                BarcodeChar4_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4"),
+                              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4")
+                              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4").Value));
+                BarcodeChar5_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5"),
+                              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5")
+                              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5").Value));
+                BarcodeChar6_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6"),
+                              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6")
+                              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6").Value));
+
+                WorkOrder1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder1"),
+                              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder1")
+                              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder1").Value));
+                WorkOrder2_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder2"),
+                              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder2")
+                              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder2").Value));
+                WorkOrder3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder3"),
+                              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder3")
+                              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder3").Value));
+                WorkOrder4_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder4"),
+                              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder4")
+                              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder4").Value));
+                WorkOrder5_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder5"),
+                              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder5")
+                              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder5").Value));
+                WorkOrder6_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6"),
+                              new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6")
+                              , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6").Value));
+
+                Freq02Reading_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading"),
+                           new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading")
+                           , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading").Value));
+
+                FinishStation1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish").Value));
+                FinishStation1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish").Value));
+                LogType_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/LogType"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/LogType")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/LogType").Value));
+                #endregion
+
+                easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1").ValueChanged += BarcodeChar1_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar2").ValueChanged += BarcodeChar2_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar3").ValueChanged += BarcodeChar3_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar4").ValueChanged += BarcodeChar4_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar5").ValueChanged += BarcodeChar5_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar6").ValueChanged += BarcodeChar6_ValueChanged;
+
+                easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder1").ValueChanged += WorkOrder1_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder2").ValueChanged += WorkOrder2_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder3").ValueChanged += WorkOrder3_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder4").ValueChanged += WorkOrder4_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder5").ValueChanged += WorkOrder5_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6").ValueChanged += WorkOrder6_ValueChanged;
+
+                easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading").ValueChanged += Freq02Reading_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/LogType").ValueChanged += LogType_ValueChanged;
+
+                //easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/FlagPartScan").ValueChanged += FlagPartScan_ValueChanged;
+                //easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/FlagWorkOrderScan").ValueChanged += FlagWorkOrderScan_ValueChanged;
+
+                //tag tại station1 bao để truyền data sang sattion2 và 3
+                easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish").ValueChanged += FinishStation1_ValueChanged;
+                //easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Finish").ValueChanged += FinishStation2_ValueChanged;
+                //easyDriverConnector1.GetTag("Local Station/Station3Hmi/Device/Finish").ValueChanged += FinishStation3_ValueChanged;
+
+                //các tag báo lưu, khi bit này lên 1 thì lấy các thông tin log vào data
+                easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Log").ValueChanged += LogStation1_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Log").ValueChanged += LogStation2_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station3Hmi/Device/Log").ValueChanged += LogStation3_ValueChanged;
+
+                #region tip OD data Log
+                #region doc cac gia tri ban dau
+                DiamLL1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL1"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL1")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL1").Value));
+                DiamUL1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL1"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL1")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL1").Value));
+                TipOdLength1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength1"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength1")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength1").Value));
+
+                DiamLL2_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL2"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL2")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL2").Value));
+                DiamUL2_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL2"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL2")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL2").Value));
+                TipOdLength2_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength2"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength2")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength2").Value));
+
+                DiamLL3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL3"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL3")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL3").Value));
+                DiamUL3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL1"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL3")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL3").Value));
+                TipOdLength3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength3"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength3")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength3").Value));
+
+                OD1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD1"),
+                         new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD1")
+                         , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD1").Value));
+                PassFail1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail1"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail1")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail1").Value));
+
+                OD2_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD2"),
+                         new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD2")
+                         , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD2").Value));
+                PassFail2_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail2"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail2")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail2").Value));
+
+                OD3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD3"),
+                         new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD3")
+                         , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD3").Value));
+                PassFail3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail3"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail3")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail3").Value));
+
+                Internal_PartNumber_Station3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Internal_PartNumber"),
+                         new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Internal_PartNumber")
+                         , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Internal_PartNumber").Value));
+                Internal_WorkOrder_Station3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Internal_WorkOrder"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Internal_WorkOrder")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Internal_WorkOrder").Value));
+
+                ShaftNumber_Station3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/ShaftNumber"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/ShaftNumber")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/ShaftNumber").Value));
+                #endregion
+
+                easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL1").ValueChanged += DiamLL1_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL1").ValueChanged += DiamUL1_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength1").ValueChanged += TipOdLength1_ValueChanged;
+
+                easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL2").ValueChanged += DiamLL2_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL2").ValueChanged += DiamUL2_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength2").ValueChanged += TipOdLength2_ValueChanged;
+
+                easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamLL3").ValueChanged += DiamLL3_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/DiamUL3").ValueChanged += DiamUL3_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/TipOdLength3").ValueChanged += TipOdLength3_ValueChanged;
+
+                easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD1").ValueChanged += OD1_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail1").ValueChanged += PassFail1_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD2").ValueChanged += OD2_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail2").ValueChanged += PassFail2_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/OD3").ValueChanged += OD3_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/PassFail3").ValueChanged += PassFail3_ValueChanged;
+
+                easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Internal_PartNumber").ValueChanged += Internal_PartNumber_Station3_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Internal_WorkOrder").ValueChanged += Internal_WorkOrder_Station3_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/ShaftNumber").ValueChanged += ShaftNumber_Station3_ValueChanged;
+                #endregion
+
+                initialFlag = true;
+
+                if (easyDriverConnector1.ConnectionStatus == ConnectionStatus.Connected)
+                {
+                    labServerStatus.BackColor = Color.Green;
+                }
+                else
+                {
+                    labServerStatus.BackColor = Color.Red;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                labServerStatus.BackColor = Color.Red;
+                MessageBox.Show($"easyDriver initial exception: {ex.Message}");
             }
         }
 
@@ -1099,7 +1106,7 @@ namespace TipODFreq
                         if (logType == "2")
                         {
                             logData.LogType = "Pilot";
-                            if (logCount < 5)
+                            if (logCountPolishing < 5)
                             {
                                 using (var connection = GlobalVariables.GetDbConnection())
                                 {
@@ -1117,7 +1124,7 @@ namespace TipODFreq
                                 }
                             }
 
-                            logCount += 1;
+                            logCountPolishing += 1;
                         }
                         else if (logType == "4")
                         {
@@ -1165,7 +1172,7 @@ namespace TipODFreq
                     {
                         if (logType == "2")
                         {
-                            if (logCount < 5)
+                            if (logCountTipOd < 5)
                             {
                                 foreach (var item in tipOdDataLog)
                                 {
@@ -1181,7 +1188,7 @@ namespace TipODFreq
                                             para.Add("@partNum", item.Part);
                                             para.Add("@diamReading", item.DiamReading);
                                             para.Add("@measType", item.MeasType);
-                                            para.Add("@diamLL", item.DiamLL);
+                                            para.Add("@diamLL", item.DiamLL/100);
                                             para.Add("@diamUL", item.DiamUL);
                                             para.Add("@passFail", item.PassFail);
                                             para.Add("@logType", item.LogType);
@@ -1192,7 +1199,7 @@ namespace TipODFreq
                                 }
                             }
 
-                            logCount += 1;
+                            logCountTipOd += 1;
                         }
                         else if (logType == "4")
                         {
@@ -1257,7 +1264,7 @@ namespace TipODFreq
                         if (logType == "2")
                         {
                             logData.LogStyle = "Pilot";
-                            if (logCount < 5)
+                            if (logCountSanding < 5)
                             {
                                 using (var connection = GlobalVariables.GetDbConnection())
                                 {
@@ -1276,7 +1283,7 @@ namespace TipODFreq
                                 }
                             }
 
-                            logCount += 1;
+                            logCountSanding += 1;
                         }
                         else if (logType == "4")
                         {
