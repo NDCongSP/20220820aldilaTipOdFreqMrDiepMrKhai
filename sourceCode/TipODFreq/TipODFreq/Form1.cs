@@ -1105,7 +1105,7 @@ namespace TipODFreq
 
                         if (logType == "2")
                         {
-                            logData.LogType = "Pilot";
+                            logData.LogType = "Production";
                             if (logCountPolishing < 5)
                             {
                                 using (var connection = GlobalVariables.GetDbConnection())
@@ -1128,7 +1128,7 @@ namespace TipODFreq
                         }
                         else if (logType == "4")
                         {
-                            logData.LogType = "Production";
+                            logData.LogType = "Pilot";
 
                             using (var connection = GlobalVariables.GetDbConnection())
                             {
@@ -1178,7 +1178,7 @@ namespace TipODFreq
                                 {
                                     if (item.DiamLL != 0 && item.DiamUL != 0)
                                     {
-                                        item.LogType = "Pilot";
+                                        item.LogType = "Production";
 
                                         using (var connection = GlobalVariables.GetDbConnection())
                                         {
@@ -1188,7 +1188,7 @@ namespace TipODFreq
                                             para.Add("@partNum", item.Part);
                                             para.Add("@diamReading", item.DiamReading);
                                             para.Add("@measType", item.MeasType);
-                                            para.Add("@diamLL", item.DiamLL/100);
+                                            para.Add("@diamLL", item.DiamLL / 100);
                                             para.Add("@diamUL", item.DiamUL);
                                             para.Add("@passFail", item.PassFail);
                                             para.Add("@logType", item.LogType);
@@ -1207,7 +1207,7 @@ namespace TipODFreq
                             {
                                 if (item.DiamLL != 0 && item.DiamUL != 0)
                                 {
-                                    item.LogType = "Production";
+                                    item.LogType = "Pilot";
 
                                     using (var connection = GlobalVariables.GetDbConnection())
                                     {
@@ -1263,7 +1263,7 @@ namespace TipODFreq
                         logData.FormulaGId = int.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/FormulaGId").Value, out value) ? value : 0;
                         if (logType == "2")
                         {
-                            logData.LogStyle = "Pilot";
+                            logData.LogStyle = "Production";
                             if (logCountSanding < 5)
                             {
                                 using (var connection = GlobalVariables.GetDbConnection())
@@ -1287,7 +1287,7 @@ namespace TipODFreq
                         }
                         else if (logType == "4")
                         {
-                            logData.LogStyle = "Production";
+                            logData.LogStyle = "Pilot";
 
                             using (var connection = GlobalVariables.GetDbConnection())
                             {
