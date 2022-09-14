@@ -65,6 +65,29 @@ namespace TipODFreq
             this.toolStripMenuItemShow.Click += ToolStripMenuItemShow_Click;
             this.toolStripMenuItemExit.Click += ToolStripMenuItemExit_Click;
 
+            #region Get dataLog
+            using (var connection = GlobalVariables.GetDbConnection())
+            {
+                var dataSanding = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogSanding order by CreatedDate desc").ToList();
+                if (dataSanding.Count > 0)
+                {
+                    dataGridViewSanding.DataSource = dataSanding;
+                }
+
+                var dataTipOd = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogTipOd order by CreatedDate desc").ToList();
+                if (dataTipOd.Count > 0)
+                {
+                    dataGridViewTipOd.DataSource = dataTipOd;
+                }
+
+                var dataPolishing = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogPolishing order by CreatedDate desc").ToList();
+                if (dataPolishing.Count > 0)
+                {
+                    dataGridViewPolishing.DataSource = dataPolishing;
+                }
+            }
+            #endregion
+
             t.Interval = 1000;
             t.Tick += T_Tick;
             t.Enabled = true;
@@ -230,16 +253,14 @@ namespace TipODFreq
                               new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6")
                               , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6").Value));
 
-                Freq02Reading_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading"),
-                           new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading")
-                           , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading").Value));
+                //Freq02Reading_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading"),
+                //           new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading")
+                //           , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading").Value));
 
-                FinishStation1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish").Value));
-                FinishStation1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish").Value));
+                //FinishStation1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish"),
+                //          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish")
+                //          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish").Value));
+               
                 LogType_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/LogType"),
                           new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/LogType")
                           , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/LogType").Value));
@@ -259,14 +280,14 @@ namespace TipODFreq
                 easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder5").ValueChanged += WorkOrder5_ValueChanged;
                 easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6").ValueChanged += WorkOrder6_ValueChanged;
 
-                easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading").ValueChanged += Freq02Reading_ValueChanged;
+                //easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading").ValueChanged += Freq02Reading_ValueChanged;
                 easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/LogType").ValueChanged += LogType_ValueChanged;
 
                 //easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/FlagPartScan").ValueChanged += FlagPartScan_ValueChanged;
                 //easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/FlagWorkOrderScan").ValueChanged += FlagWorkOrderScan_ValueChanged;
 
                 //tag tại station1 bao để truyền data sang sattion2 và 3
-                easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish").ValueChanged += FinishStation1_ValueChanged;
+                //easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish").ValueChanged += FinishStation1_ValueChanged;
                 //easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Finish").ValueChanged += FinishStation2_ValueChanged;
                 //easyDriverConnector1.GetTag("Local Station/Station3Hmi/Device/Finish").ValueChanged += FinishStation3_ValueChanged;
 
@@ -1121,6 +1142,21 @@ namespace TipODFreq
                                     para.Add("@logType", logData.LogType);
 
                                     var result = connection.Execute("sp_tblDataLogPolishingInsert", para, commandType: CommandType.StoredProcedure);
+
+                                    var dataPolishing = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogPolishing order by CreatedDate desc").ToList();
+                                    if (dataPolishing.Count > 0)
+                                    {
+                                        if (dataGridViewPolishing.InvokeRequired)
+                                        {
+                                            dataGridViewPolishing.Invoke(new Action(() => {
+                                                dataGridViewPolishing.DataSource = dataPolishing;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            dataGridViewPolishing.DataSource = dataPolishing;
+                                        }
+                                    }
                                 }
                             }
 
@@ -1143,6 +1179,21 @@ namespace TipODFreq
                                 para.Add("@logType", logData.LogType);
 
                                 var result = connection.Execute("sp_tblDataLogPolishingInsert", para, commandType: CommandType.StoredProcedure);
+
+                                var dataPolishing = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogPolishing order by CreatedDate desc").ToList();
+                                if (dataPolishing.Count > 0)
+                                {
+                                    if (dataGridViewPolishing.InvokeRequired)
+                                    {
+                                        dataGridViewPolishing.Invoke(new Action(() => {
+                                            dataGridViewPolishing.DataSource = dataPolishing;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        dataGridViewPolishing.DataSource = dataPolishing;
+                                    }
+                                }
                             }
                         }
                     }
@@ -1194,6 +1245,21 @@ namespace TipODFreq
                                             para.Add("@logType", item.LogType);
 
                                             var result = connection.Execute("sp_tblDataLogTipOdInsert", para, commandType: CommandType.StoredProcedure);
+
+                                            var dataTipOd = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogTipOd order by CreatedDate desc").ToList();
+                                            if (dataTipOd.Count > 0)
+                                            {
+                                                if (dataGridViewTipOd.InvokeRequired)
+                                                {
+                                                    dataGridViewTipOd.Invoke(new Action(() => {
+                                                        dataGridViewTipOd.DataSource = dataTipOd;
+                                                    }));
+                                                }
+                                                else
+                                                {
+                                                    dataGridViewTipOd.DataSource = dataTipOd;
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -1223,6 +1289,21 @@ namespace TipODFreq
                                         para.Add("@logType", item.LogType);
 
                                         var result = connection.Execute("sp_tblDataLogTipOdInsert", para, commandType: CommandType.StoredProcedure);
+
+                                        var dataTipOd = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogTipOd order by CreatedDate desc").ToList();
+                                        if (dataTipOd.Count > 0)
+                                        {
+                                            if (dataGridViewTipOd.InvokeRequired)
+                                            {
+                                                dataGridViewTipOd.Invoke(new Action(() => {
+                                                    dataGridViewTipOd.DataSource = dataTipOd;
+                                                }));
+                                            }
+                                            else
+                                            {
+                                                dataGridViewTipOd.DataSource = dataTipOd;
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -1280,6 +1361,21 @@ namespace TipODFreq
                                     para.Add("@partNum", logData.Part);
 
                                     var result = connection.Execute("sp_tblDataLogSandingInsert", para, commandType: CommandType.StoredProcedure);
+
+                                    var dataSanding = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogSanding order by CreatedDate desc").ToList();
+                                    if (dataSanding.Count > 0)
+                                    {
+                                        if (dataGridViewSanding.InvokeRequired)
+                                        {
+                                            dataGridViewSanding.Invoke(new Action(() => {
+                                                dataGridViewSanding.DataSource = dataSanding;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            dataGridViewSanding.DataSource = dataSanding;
+                                        }
+                                    }
                                 }
                             }
 
@@ -1303,6 +1399,21 @@ namespace TipODFreq
                                 para.Add("@partNum", logData.Part);
 
                                 var result = connection.Execute("sp_tblDataLogSandingInsert", para, commandType: CommandType.StoredProcedure);
+
+                                var dataSanding = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogSanding order by CreatedDate desc").ToList();
+                                if (dataSanding.Count > 0)
+                                {
+                                    if (dataGridViewSanding.InvokeRequired)
+                                    {
+                                        dataGridViewSanding.Invoke(new Action(()=> {
+                                            dataGridViewSanding.DataSource = dataSanding;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        dataGridViewSanding.DataSource = dataSanding;
+                                    }
+                                }
                             }
                         }
                     }
@@ -1314,9 +1425,9 @@ namespace TipODFreq
                     easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/ResetLog", "0", WritePiority.High);
                 }
             }
-            catch
+            catch(Exception ex)
             {
-
+                Console.WriteLine($"{ex}");
             }
         }
 
@@ -1399,6 +1510,11 @@ namespace TipODFreq
         private void LogType_ValueChanged(object sender, TagValueChangedEventArgs e)
         {
             logType = e.NewValue;
+
+            if (logType == "4")
+            {
+                logCountSanding = logCountTipOd = logCountPolishing = 0;
+            }
         }
         #endregion
         #endregion

@@ -62,6 +62,13 @@ namespace TipODFreq
             this.easyLabel12 = new EasyScada.Winforms.Controls.EasyLabel();
             this.easyLabel13 = new EasyScada.Winforms.Controls.EasyLabel();
             this.labServerStatus = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dataGridViewSanding = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTipOd = new System.Windows.Forms.DataGridView();
+            this.dataGridViewPolishing = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.easyDriverConnector1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPartInfo)).BeginInit();
@@ -79,6 +86,13 @@ namespace TipODFreq
             ((System.ComponentModel.ISupportInitialize)(this.easyLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.easyLabel12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.easyLabel13)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSanding)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipOd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPolishing)).BeginInit();
             this.SuspendLayout();
             // 
             // easyDriverConnector1
@@ -226,7 +240,7 @@ namespace TipODFreq
             // easyLabel1
             // 
             this.easyLabel1.DisplayMode = EasyScada.Winforms.Controls.DisplayMode.Value;
-            this.easyLabel1.Location = new System.Drawing.Point(101, 358);
+            this.easyLabel1.Location = new System.Drawing.Point(12, 257);
             this.easyLabel1.Name = "easyLabel1";
             this.easyLabel1.Size = new System.Drawing.Size(100, 23);
             this.easyLabel1.StringFormat = null;
@@ -237,7 +251,7 @@ namespace TipODFreq
             // easyLabel2
             // 
             this.easyLabel2.DisplayMode = EasyScada.Winforms.Controls.DisplayMode.Value;
-            this.easyLabel2.Location = new System.Drawing.Point(101, 394);
+            this.easyLabel2.Location = new System.Drawing.Point(12, 293);
             this.easyLabel2.Name = "easyLabel2";
             this.easyLabel2.Size = new System.Drawing.Size(100, 23);
             this.easyLabel2.StringFormat = null;
@@ -248,9 +262,9 @@ namespace TipODFreq
             // easyLabel3
             // 
             this.easyLabel3.DisplayMode = EasyScada.Winforms.Controls.DisplayMode.Value;
-            this.easyLabel3.Location = new System.Drawing.Point(636, 358);
+            this.easyLabel3.Location = new System.Drawing.Point(12, 349);
             this.easyLabel3.Name = "easyLabel3";
-            this.easyLabel3.Size = new System.Drawing.Size(100, 23);
+            this.easyLabel3.Size = new System.Drawing.Size(58, 23);
             this.easyLabel3.StringFormat = null;
             this.easyLabel3.TabIndex = 9;
             this.easyLabel3.TagPath = "Local Station/Station2Plc/Device/DiamLL1";
@@ -259,9 +273,9 @@ namespace TipODFreq
             // easyLabel4
             // 
             this.easyLabel4.DisplayMode = EasyScada.Winforms.Controls.DisplayMode.Value;
-            this.easyLabel4.Location = new System.Drawing.Point(636, 394);
+            this.easyLabel4.Location = new System.Drawing.Point(12, 385);
             this.easyLabel4.Name = "easyLabel4";
-            this.easyLabel4.Size = new System.Drawing.Size(100, 23);
+            this.easyLabel4.Size = new System.Drawing.Size(58, 23);
             this.easyLabel4.StringFormat = null;
             this.easyLabel4.TabIndex = 10;
             this.easyLabel4.TagPath = "Local Station/Station2Plc/Device/DiamUL1";
@@ -270,7 +284,7 @@ namespace TipODFreq
             // easyLabel5
             // 
             this.easyLabel5.DisplayMode = EasyScada.Winforms.Controls.DisplayMode.Value;
-            this.easyLabel5.Location = new System.Drawing.Point(259, 358);
+            this.easyLabel5.Location = new System.Drawing.Point(95, 257);
             this.easyLabel5.Name = "easyLabel5";
             this.easyLabel5.Size = new System.Drawing.Size(100, 23);
             this.easyLabel5.StringFormat = null;
@@ -281,7 +295,7 @@ namespace TipODFreq
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(101, 310);
+            this.label2.Location = new System.Drawing.Point(12, 234);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 12;
@@ -290,7 +304,7 @@ namespace TipODFreq
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(256, 310);
+            this.label4.Location = new System.Drawing.Point(92, 234);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 13);
             this.label4.TabIndex = 13;
@@ -299,7 +313,7 @@ namespace TipODFreq
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(633, 310);
+            this.label5.Location = new System.Drawing.Point(12, 327);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 13);
             this.label5.TabIndex = 14;
@@ -308,7 +322,7 @@ namespace TipODFreq
             // easyLabel6
             // 
             this.easyLabel6.DisplayMode = EasyScada.Winforms.Controls.DisplayMode.Value;
-            this.easyLabel6.Location = new System.Drawing.Point(259, 394);
+            this.easyLabel6.Location = new System.Drawing.Point(94, 293);
             this.easyLabel6.Name = "easyLabel6";
             this.easyLabel6.Size = new System.Drawing.Size(100, 23);
             this.easyLabel6.StringFormat = null;
@@ -319,9 +333,9 @@ namespace TipODFreq
             // easyLabel7
             // 
             this.easyLabel7.DisplayMode = EasyScada.Winforms.Controls.DisplayMode.Value;
-            this.easyLabel7.Location = new System.Drawing.Point(636, 431);
+            this.easyLabel7.Location = new System.Drawing.Point(12, 422);
             this.easyLabel7.Name = "easyLabel7";
-            this.easyLabel7.Size = new System.Drawing.Size(100, 23);
+            this.easyLabel7.Size = new System.Drawing.Size(58, 23);
             this.easyLabel7.StringFormat = null;
             this.easyLabel7.TabIndex = 16;
             this.easyLabel7.TagPath = "Local Station/Station2Plc/Device/TipOdLength1";
@@ -330,9 +344,9 @@ namespace TipODFreq
             // easyLabel8
             // 
             this.easyLabel8.DisplayMode = EasyScada.Winforms.Controls.DisplayMode.Value;
-            this.easyLabel8.Location = new System.Drawing.Point(742, 431);
+            this.easyLabel8.Location = new System.Drawing.Point(93, 422);
             this.easyLabel8.Name = "easyLabel8";
-            this.easyLabel8.Size = new System.Drawing.Size(100, 23);
+            this.easyLabel8.Size = new System.Drawing.Size(58, 23);
             this.easyLabel8.StringFormat = null;
             this.easyLabel8.TabIndex = 19;
             this.easyLabel8.TagPath = "Local Station/Station2Plc/Device/TipOdLength2";
@@ -341,9 +355,9 @@ namespace TipODFreq
             // easyLabel9
             // 
             this.easyLabel9.DisplayMode = EasyScada.Winforms.Controls.DisplayMode.Value;
-            this.easyLabel9.Location = new System.Drawing.Point(742, 394);
+            this.easyLabel9.Location = new System.Drawing.Point(93, 385);
             this.easyLabel9.Name = "easyLabel9";
-            this.easyLabel9.Size = new System.Drawing.Size(100, 23);
+            this.easyLabel9.Size = new System.Drawing.Size(58, 23);
             this.easyLabel9.StringFormat = null;
             this.easyLabel9.TabIndex = 18;
             this.easyLabel9.TagPath = "Local Station/Station2Plc/Device/DiamUL2";
@@ -352,9 +366,9 @@ namespace TipODFreq
             // easyLabel10
             // 
             this.easyLabel10.DisplayMode = EasyScada.Winforms.Controls.DisplayMode.Value;
-            this.easyLabel10.Location = new System.Drawing.Point(742, 358);
+            this.easyLabel10.Location = new System.Drawing.Point(93, 349);
             this.easyLabel10.Name = "easyLabel10";
-            this.easyLabel10.Size = new System.Drawing.Size(100, 23);
+            this.easyLabel10.Size = new System.Drawing.Size(58, 23);
             this.easyLabel10.StringFormat = null;
             this.easyLabel10.TabIndex = 17;
             this.easyLabel10.TagPath = "Local Station/Station2Plc/Device/DiamLL2";
@@ -363,9 +377,9 @@ namespace TipODFreq
             // easyLabel11
             // 
             this.easyLabel11.DisplayMode = EasyScada.Winforms.Controls.DisplayMode.Value;
-            this.easyLabel11.Location = new System.Drawing.Point(857, 431);
+            this.easyLabel11.Location = new System.Drawing.Point(177, 422);
             this.easyLabel11.Name = "easyLabel11";
-            this.easyLabel11.Size = new System.Drawing.Size(100, 23);
+            this.easyLabel11.Size = new System.Drawing.Size(58, 23);
             this.easyLabel11.StringFormat = null;
             this.easyLabel11.TabIndex = 22;
             this.easyLabel11.TagPath = "Local Station/Station2Plc/Device/TipOdLength3";
@@ -374,9 +388,9 @@ namespace TipODFreq
             // easyLabel12
             // 
             this.easyLabel12.DisplayMode = EasyScada.Winforms.Controls.DisplayMode.Value;
-            this.easyLabel12.Location = new System.Drawing.Point(857, 394);
+            this.easyLabel12.Location = new System.Drawing.Point(177, 385);
             this.easyLabel12.Name = "easyLabel12";
-            this.easyLabel12.Size = new System.Drawing.Size(100, 23);
+            this.easyLabel12.Size = new System.Drawing.Size(58, 23);
             this.easyLabel12.StringFormat = null;
             this.easyLabel12.TabIndex = 21;
             this.easyLabel12.TagPath = "Local Station/Station2Plc/Device/DiamUL3";
@@ -385,9 +399,9 @@ namespace TipODFreq
             // easyLabel13
             // 
             this.easyLabel13.DisplayMode = EasyScada.Winforms.Controls.DisplayMode.Value;
-            this.easyLabel13.Location = new System.Drawing.Point(857, 358);
+            this.easyLabel13.Location = new System.Drawing.Point(177, 349);
             this.easyLabel13.Name = "easyLabel13";
-            this.easyLabel13.Size = new System.Drawing.Size(100, 23);
+            this.easyLabel13.Size = new System.Drawing.Size(58, 23);
             this.easyLabel13.StringFormat = null;
             this.easyLabel13.TabIndex = 20;
             this.easyLabel13.TagPath = "Local Station/Station2Plc/Device/DiamLL3";
@@ -402,11 +416,79 @@ namespace TipODFreq
             this.labServerStatus.TabIndex = 23;
             this.labServerStatus.Text = "Server Connect Status";
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Location = new System.Drawing.Point(281, 240);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(850, 423);
+            this.tabControl1.TabIndex = 24;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.dataGridViewSanding);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(842, 397);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Sanding";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.dataGridViewTipOd);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(842, 397);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Tip OD";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.dataGridViewPolishing);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(842, 397);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Polishing";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewSanding
+            // 
+            this.dataGridViewSanding.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSanding.Location = new System.Drawing.Point(6, 7);
+            this.dataGridViewSanding.Name = "dataGridViewSanding";
+            this.dataGridViewSanding.Size = new System.Drawing.Size(830, 384);
+            this.dataGridViewSanding.TabIndex = 5;
+            // 
+            // dataGridViewTipOd
+            // 
+            this.dataGridViewTipOd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTipOd.Location = new System.Drawing.Point(6, 6);
+            this.dataGridViewTipOd.Name = "dataGridViewTipOd";
+            this.dataGridViewTipOd.Size = new System.Drawing.Size(830, 384);
+            this.dataGridViewTipOd.TabIndex = 6;
+            // 
+            // dataGridViewPolishing
+            // 
+            this.dataGridViewPolishing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPolishing.Location = new System.Drawing.Point(6, 6);
+            this.dataGridViewPolishing.Name = "dataGridViewPolishing";
+            this.dataGridViewPolishing.Size = new System.Drawing.Size(830, 384);
+            this.dataGridViewPolishing.TabIndex = 6;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1145, 688);
+            this.ClientSize = new System.Drawing.Size(1143, 688);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.labServerStatus);
             this.Controls.Add(this.easyLabel11);
             this.Controls.Add(this.easyLabel12);
@@ -449,6 +531,13 @@ namespace TipODFreq
             ((System.ComponentModel.ISupportInitialize)(this.easyLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.easyLabel12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.easyLabel13)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSanding)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipOd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPolishing)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -487,6 +576,13 @@ namespace TipODFreq
         private EasyScada.Winforms.Controls.EasyLabel easyLabel12;
         private EasyScada.Winforms.Controls.EasyLabel easyLabel13;
         private System.Windows.Forms.Label labServerStatus;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.DataGridView dataGridViewSanding;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.DataGridView dataGridViewTipOd;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.DataGridView dataGridViewPolishing;
     }
 }
 
