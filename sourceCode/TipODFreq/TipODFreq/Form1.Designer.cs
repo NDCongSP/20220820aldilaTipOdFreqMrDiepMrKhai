@@ -64,10 +64,10 @@ namespace TipODFreq
             this.labServerStatus = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dataGridViewSanding = new System.Windows.Forms.DataGridView();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataGridViewTipOd = new System.Windows.Forms.DataGridView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dataGridViewPolishing = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.easyDriverConnector1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -88,10 +88,10 @@ namespace TipODFreq
             ((System.ComponentModel.ISupportInitialize)(this.easyLabel13)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSanding)).BeginInit();
+            this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipOd)).BeginInit();
+            this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPolishing)).BeginInit();
             this.SuspendLayout();
             // 
@@ -136,6 +136,7 @@ namespace TipODFreq
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.labWorkOrder);
             this.groupBox1.Controls.Add(this.labPartNum);
+            this.groupBox1.Enabled = false;
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 28);
             this.groupBox1.Name = "groupBox1";
@@ -147,6 +148,7 @@ namespace TipODFreq
             // btnUpdateData
             // 
             this.btnUpdateData.BackColor = System.Drawing.Color.Teal;
+            this.btnUpdateData.Enabled = false;
             this.btnUpdateData.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnUpdateData.Location = new System.Drawing.Point(836, 16);
             this.btnUpdateData.Name = "btnUpdateData";
@@ -289,7 +291,7 @@ namespace TipODFreq
             this.easyLabel5.Size = new System.Drawing.Size(100, 23);
             this.easyLabel5.StringFormat = null;
             this.easyLabel5.TabIndex = 11;
-            this.easyLabel5.TagPath = "Local Station/Station3Hmi/Device/FreqTarget";
+            this.easyLabel5.TagPath = "Local Station/Station3Plc/Device/FreqTarget";
             this.easyLabel5.Text = "easyLabel5";
             // 
             // label2
@@ -327,7 +329,7 @@ namespace TipODFreq
             this.easyLabel6.Size = new System.Drawing.Size(100, 23);
             this.easyLabel6.StringFormat = null;
             this.easyLabel6.TabIndex = 15;
-            this.easyLabel6.TagPath = "Local Station/Station3Hmi/Device/FormulaPoId";
+            this.easyLabel6.TagPath = "Local Station/Station3Plc/Device/FormulaPoId";
             this.easyLabel6.Text = "easyLabel6";
             // 
             // easyLabel7
@@ -438,6 +440,15 @@ namespace TipODFreq
             this.tabPage1.Text = "Sanding";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // dataGridViewSanding
+            // 
+            this.dataGridViewSanding.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSanding.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewSanding.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewSanding.Name = "dataGridViewSanding";
+            this.dataGridViewSanding.Size = new System.Drawing.Size(836, 391);
+            this.dataGridViewSanding.TabIndex = 5;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dataGridViewTipOd);
@@ -449,6 +460,15 @@ namespace TipODFreq
             this.tabPage2.Text = "Tip OD";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // dataGridViewTipOd
+            // 
+            this.dataGridViewTipOd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTipOd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewTipOd.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewTipOd.Name = "dataGridViewTipOd";
+            this.dataGridViewTipOd.Size = new System.Drawing.Size(836, 391);
+            this.dataGridViewTipOd.TabIndex = 6;
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.dataGridViewPolishing);
@@ -459,28 +479,13 @@ namespace TipODFreq
             this.tabPage3.Text = "Polishing";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // dataGridViewSanding
-            // 
-            this.dataGridViewSanding.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewSanding.Location = new System.Drawing.Point(6, 7);
-            this.dataGridViewSanding.Name = "dataGridViewSanding";
-            this.dataGridViewSanding.Size = new System.Drawing.Size(830, 384);
-            this.dataGridViewSanding.TabIndex = 5;
-            // 
-            // dataGridViewTipOd
-            // 
-            this.dataGridViewTipOd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTipOd.Location = new System.Drawing.Point(6, 6);
-            this.dataGridViewTipOd.Name = "dataGridViewTipOd";
-            this.dataGridViewTipOd.Size = new System.Drawing.Size(830, 384);
-            this.dataGridViewTipOd.TabIndex = 6;
-            // 
             // dataGridViewPolishing
             // 
             this.dataGridViewPolishing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPolishing.Location = new System.Drawing.Point(6, 6);
+            this.dataGridViewPolishing.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewPolishing.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewPolishing.Name = "dataGridViewPolishing";
-            this.dataGridViewPolishing.Size = new System.Drawing.Size(830, 384);
+            this.dataGridViewPolishing.Size = new System.Drawing.Size(842, 397);
             this.dataGridViewPolishing.TabIndex = 6;
             // 
             // Form1
@@ -533,10 +538,10 @@ namespace TipODFreq
             ((System.ComponentModel.ISupportInitialize)(this.easyLabel13)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSanding)).EndInit();
+            this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipOd)).EndInit();
+            this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPolishing)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

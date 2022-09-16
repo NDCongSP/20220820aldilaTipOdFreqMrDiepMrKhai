@@ -130,8 +130,8 @@ namespace TipODFreq
                         gridPartInfo.DataSource = partInfo;
 
                         #region Station1 HMI 1, truyền thông modbus TCP
-                        easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FreqTarget", (partInfo[0].FreqTarget * 100).ToString(), WritePiority.Default);
-                        easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FormulaGId", partInfo[0].FormulaGId.ToString(), WritePiority.Default);
+                        easyDriverConnector1.WriteTagAsync("Local Station/Station1Plc/Device/FreqTarget", (partInfo[0].FreqTarget * 100).ToString(), WritePiority.Default);
+                        easyDriverConnector1.WriteTagAsync("Local Station/Station1Plc/Device/FormulaGId", partInfo[0].FormulaGId.ToString(), WritePiority.Default);
                         #endregion
 
                         #region Station2 PLC, truyền thông modbus TCP
@@ -163,16 +163,16 @@ namespace TipODFreq
                         #endregion
 
                         #region Station3 HMI, truyền thông modbus TCP
-                        easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/FormulaPoId", partInfo[0].FormulaPoId.ToString(), WritePiority.Default);
-                        easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/FreqTarget", (partInfo[0].FreqTarget * 100).ToString(), WritePiority.Default);
+                        easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/FormulaPoId", partInfo[0].FormulaPoId.ToString(), WritePiority.Default);
+                        easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/FreqTarget", (partInfo[0].FreqTarget * 100).ToString(), WritePiority.Default);
                         #endregion
 
                         //set bit reset
                         easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/Reset", "1", WritePiority.Default);
                         //easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/Reset", "1", WritePiority.Default);
-                        //easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Reset", "1", WritePiority.Default);
+                        //easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/Reset", "1", WritePiority.Default);
 
-                        easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Internal_PartNumber", partNum, WritePiority.High);
+                        easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/Internal_PartNumber", partNum, WritePiority.High);
                         easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/Internal_PartNumber", partNum, WritePiority.High);
                         easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FlagPartScan", "0", WritePiority.High);
 
@@ -198,7 +198,7 @@ namespace TipODFreq
 
                 if (initialFlag)
                 {
-                    easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Internal_WorkOrder", workOrder, WritePiority.High);
+                    easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/Internal_WorkOrder", workOrder, WritePiority.High);
                     easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/Internal_WorkOrder", workOrder, WritePiority.High);
                     easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FlagWorkOrderScan", "0", WritePiority.High);
                 }
@@ -261,9 +261,9 @@ namespace TipODFreq
                 //          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish")
                 //          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish").Value));
                
-                LogType_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/LogType"),
-                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/LogType")
-                          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/LogType").Value));
+                LogType_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/LogType"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/LogType")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/LogType").Value));
                 #endregion
 
                 easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1").ValueChanged += BarcodeChar1_ValueChanged;
@@ -289,12 +289,12 @@ namespace TipODFreq
                 //tag tại station1 bao để truyền data sang sattion2 và 3
                 //easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish").ValueChanged += FinishStation1_ValueChanged;
                 //easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Finish").ValueChanged += FinishStation2_ValueChanged;
-                //easyDriverConnector1.GetTag("Local Station/Station3Hmi/Device/Finish").ValueChanged += FinishStation3_ValueChanged;
+                //easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/Finish").ValueChanged += FinishStation3_ValueChanged;
 
                 //các tag báo lưu, khi bit này lên 1 thì lấy các thông tin log vào data
                 easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Log").ValueChanged += LogStation1_ValueChanged;
                 easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Log").ValueChanged += LogStation2_ValueChanged;
-                easyDriverConnector1.GetTag("Local Station/Station3Hmi/Device/Log").ValueChanged += LogStation3_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/Log").ValueChanged += LogStation3_ValueChanged;
 
                 #region tip OD data Log
                 #region doc cac gia tri ban dau
@@ -1061,49 +1061,6 @@ namespace TipODFreq
         }
         #endregion
 
-        #region Finish
-        private void FinishStation1_ValueChanged(object sender, TagValueChangedEventArgs e)
-        {
-            try
-            {
-                if (e.NewValue != "0")
-                {
-                    //truyen cac thông số qua cho PLC 3, để phục vụ cho việc log data lên DB.
-                    //code ở đây
-                    easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/Freq02", freq02Reading, WritePiority.High);
-
-                    easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/Finish1", "1", WritePiority.High);
-                }
-                else
-                {
-                    easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/Finish1", "0", WritePiority.High);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-        }
-
-        private void FinishStation3_ValueChanged(object sender, TagValueChangedEventArgs e)
-        {
-            if (e.NewValue == "1")
-            {
-                //Log DB.
-                //code ở đây
-            }
-        }
-
-        private void FinishStation2_ValueChanged(object sender, TagValueChangedEventArgs e)
-        {
-            if (e.NewValue == "1")
-            {
-                //truyen cac thông số qua cho PLC 3, để phục vụ cho việc log data lên DB.
-                //code ở đây
-            }
-        }
-        #endregion
-
         #region Log DB
         private void LogStation3_ValueChanged(object sender, TagValueChangedEventArgs e)
         {
@@ -1116,13 +1073,13 @@ namespace TipODFreq
                     if (logType != "1")
                     {
                         var logData = new tblDataLogPolishingModel();
-                        logData.Part = easyDriverConnector1.GetTag("Local Station/Station3Hmi/Device/Internal_PartNumber").Value;
-                        logData.WorkOrder = easyDriverConnector1.GetTag("Local Station/Station3Hmi/Device/Internal_WorkOrder").Value;
-                        logData.ShaftNumber = int.TryParse(easyDriverConnector1.GetTag("Local Station/Station3Hmi/Device/ShaftNumber").Value, out int value) ? value : 0;
-                        logData.FreqReading = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station3Hmi/Device/Freq02Reading").Value, out double value1) ? value1 : 0;
-                        logData.FreqTarget = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station3Hmi/Device/FreqTarget").Value, out value1) ? value1 : 0;
-                        logData.MortorPolishing = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station3Hmi/Device/MortorPolish").Value, out value1) ? value1 : 0;
-                        logData.FormulaPO = int.TryParse(easyDriverConnector1.GetTag("Local Station/Station3Hmi/Device/FormulaPoId").Value, out value) ? value : 0;
+                        logData.Part = easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/Internal_PartNumber").Value;
+                        logData.WorkOrder = easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/Internal_WorkOrder").Value;
+                        logData.ShaftNumber = int.TryParse(easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/ShaftNumber").Value, out int value) ? value : 0;
+                        logData.FreqReading = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/Freq02Reading").Value, out double value1) ? value1 : 0;
+                        logData.FreqTarget = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/FreqTarget").Value, out value1) ? value1 : 0;
+                        logData.MortorPolishing = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/MortorPolish").Value, out value1) ? value1 : 0;
+                        logData.FormulaPO = int.TryParse(easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/FormulaPoId").Value, out value) ? value : 0;
 
                         if (logType == "2")
                         {
@@ -1198,11 +1155,11 @@ namespace TipODFreq
                         }
                     }
 
-                    easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/ResetLog", "1", WritePiority.High);
+                    easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/ResetLog", "1", WritePiority.High);
                 }
                 else
                 {
-                    easyDriverConnector1.WriteTagAsync("Local Station/Station3Hmi/Device/ResetLog", "0", WritePiority.High);
+                    easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/ResetLog", "0", WritePiority.High);
                 }
             }
             catch
@@ -1336,12 +1293,12 @@ namespace TipODFreq
                         var logData = new tblDataLogSandingModel();
                         logData.Part = partNum;
                         logData.WorkOrder = workOrder;
-                        logData.ShaftNumber = int.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/ShaftNumber").Value, out int value) ? value : 0;
-                        logData.Freq01Reading = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq01Reading").Value, out double value1) ? value1 : 0;
+                        logData.ShaftNumber = int.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/ShaftNumber").Value, out int value) ? value : 0;
+                        logData.Freq01Reading = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/Freq01Reading").Value, out double value1) ? value1 : 0;
                         logData.Freq02Reading = double.TryParse(freq02Reading, out value1) ? value1 : 0;
-                        logData.MotorSandingSpeed = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/MotorSanding").Value, out value1) ? value1 : 0;
-                        logData.FreqTarget = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/FreqTarget").Value, out value1) ? value1 : 0;
-                        logData.FormulaGId = int.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/FormulaGId").Value, out value) ? value : 0;
+                        logData.MotorSandingSpeed = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/MotorSanding").Value, out value1) ? value1 : 0;
+                        logData.FreqTarget = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/FreqTarget").Value, out value1) ? value1 : 0;
+                        logData.FormulaGId = int.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/FormulaGId").Value, out value) ? value : 0;
                         if (logType == "2")
                         {
                             logData.LogStyle = "Production";
@@ -1418,11 +1375,11 @@ namespace TipODFreq
                         }
                     }
 
-                    easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/ResetLog", "1", WritePiority.High);
+                    easyDriverConnector1.WriteTagAsync("Local Station/Station1Plc/Device/ResetLog", "1", WritePiority.High);
                 }
                 else
                 {
-                    easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/ResetLog", "0", WritePiority.High);
+                    easyDriverConnector1.WriteTagAsync("Local Station/Station1Plc/Device/ResetLog", "0", WritePiority.High);
                 }
             }
             catch(Exception ex)

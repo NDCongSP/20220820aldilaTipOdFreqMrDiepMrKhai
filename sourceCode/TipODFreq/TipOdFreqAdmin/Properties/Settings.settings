@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TipOdFreqAdmin.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ConString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">4LxE/a+D1aN38ut8vvBCcghMbkTSmcyBcML3Uo+yGpjDFhvHDZ0TTQrNs5BzWTrmXuV8s2qBvGaXtRuv57ncQupXJvdJ9GzPyMRqOL2jhjvjKeVvAbpe3jKbL2NvbpFd7v7h5NvIduukatQeC2mdfmc+ovHfxjti80ChX5YyHIRPpqjUrtLjog==</Value>
+    </Setting>
+    <Setting Name="PathCsvDataOd" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\MyCompany\8.SourceCode\3.Projects\20220820aldilaTipOdFreqMrDiepMrKhai\info\DATA\DATABASE\Database-Tip OD-Frequency- hieu chinh.csv</Value>
+    </Setting>
+    <Setting Name="PathCsvDataFormulaG" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\MyCompany\8.SourceCode\3.Projects\20220820aldilaTipOdFreqMrDiepMrKhai\info\DATA\DATABASE\cong thuc G.csv</Value>
+    </Setting>
+    <Setting Name="PathCsvDataFormulaPo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\MyCompany\8.SourceCode\3.Projects\20220820aldilaTipOdFreqMrDiepMrKhai\info\DATA\DATABASE\cong thuc PO.csv</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
