@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,9 +25,74 @@ namespace TipOdFreqAdmin
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.btnQuery.Click += BtnQuery_Click;
+            this.btnExport.Click += BtnExport_Click;
+
             nT.Interval = 100;
             nT.Enabled = true;
             nT.Tick += NT_Tick;
+        }
+
+        private void BtnExport_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            //sfd.Filter = "CSV File |*.csv";
+            //sfd.FileName = "BaoCao";
+
+            //if (sfd.ShowDialog() == DialogResult.OK)
+            //{
+
+
+            //    //wb.SaveAs(sfd.FileName);
+            //    if (MessageBox.Show($"Xuất báo cáo thành công! Bạn có muốn mở file không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            //    {
+            //        //OpenFile(_pathOpen);
+            //    }
+            //}
+
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    string[] files = Directory.GetFiles(fbd.SelectedPath);
+
+                    System.Windows.Forms.MessageBox.Show("Files found: " + files.Length.ToString(), "Message");
+                }
+            }
+        }
+
+        private void BtnQuery_Click(object sender, EventArgs e)
+        {
+            var _from = dateTimePickerFrom.Text;
+            var _to = dateTimePickerTo.Text;
+            var _logType = comboBoxLogType.Text;
+
+            using (var connection = GlobalVariables.GetDbConnection())
+            {
+                var dataSanding = connection.Query<tblDataLogSandingModel>("select Station, ShaftNumber, CreatedDate, WorkOrder, Part,Freq01Reading,MotorSandingSpeed,Freq02Reading,FreqTarget,FormulaGId,LogStyle " +
+                    "from tblDataLogSanding " +
+                    $"Where CreatedDate >= '{_from}' and CreatedDate <= '{_to}' and LogStyle = '{_logType}'").ToList();
+                if (dataSanding.Count > 0)
+                {
+                    dataGridViewSanding.DataSource = dataSanding;
+                    dataGridViewSanding.Columns["Id"].Visible = false;
+                    dataGridViewSanding.AutoResizeColumns();
+                }
+
+                var dataTipOd = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogTipOd order by CreatedDate desc").ToList();
+                if (dataTipOd.Count > 0)
+                {
+                    dataGridViewTipOd.DataSource = dataTipOd;
+                }
+
+                var dataPolishing = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogPolishing order by CreatedDate desc").ToList();
+                if (dataPolishing.Count > 0)
+                {
+                    dataGridViewPolishing.DataSource = dataPolishing;
+                }
+            }
         }
 
         private void NT_Tick(object sender, EventArgs e)
@@ -36,7 +103,8 @@ namespace TipOdFreqAdmin
 
             if (labStatus.InvokeRequired)
             {
-                labStatus.Invoke(new Action(()=> {
+                labStatus.Invoke(new Action(() =>
+                {
                     labStatus.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                 }));
             }
@@ -191,6 +259,17 @@ namespace TipOdFreqAdmin
             {
 
             }
+        }
+
+        public static void OpenFile(string fileName)
+        {
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.FileName = fileName;
+            info.CreateNoWindow = true;
+            info.WindowStyle = ProcessWindowStyle.Normal;
+            Process p = new Process();
+            p.StartInfo = info;
+            p.Start();
         }
     }
 }
