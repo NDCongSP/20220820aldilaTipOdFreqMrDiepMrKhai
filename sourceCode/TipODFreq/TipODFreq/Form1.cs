@@ -167,14 +167,15 @@ namespace TipODFreq
                         easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/FreqTarget", (partInfo[0].FreqTarget * 100).ToString(), WritePiority.Default);
                         #endregion
 
-                        //set bit reset
-                        easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/Reset", "1", WritePiority.Default);
-                        //easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/Reset", "1", WritePiority.Default);
-                        //easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/Reset", "1", WritePiority.Default);
+                        #region Bật các bit báo part thay đổi cho trạm 1, 2 và trạm 3
+                        easyDriverConnector1.WriteTagAsync("Local Station/Station1Plc/Device/PartChange", "1", WritePiority.High);
+                        easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/PartChange", "1", WritePiority.High);
+                        easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/PartChange", "1", WritePiority.High);
+                        #endregion
 
                         easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/Internal_PartNumber", partNum, WritePiority.High);
                         easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/Internal_PartNumber", partNum, WritePiority.High);
-                        easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FlagPartScan", "0", WritePiority.High);
+                        //easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FlagPartScan", "0", WritePiority.High);
 
                         partInfo = null;
                         logCountSanding = logCountTipOd = logCountPolishing = 0;//reset bien dem log data 5 cay khi quet part moi
@@ -200,7 +201,7 @@ namespace TipODFreq
                 {
                     easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/Internal_WorkOrder", workOrder, WritePiority.High);
                     easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/Internal_WorkOrder", workOrder, WritePiority.High);
-                    easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FlagWorkOrderScan", "0", WritePiority.High);
+                    //easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FlagWorkOrderScan", "0", WritePiority.High);
                 }
 
                 sendWorkOrder = false;

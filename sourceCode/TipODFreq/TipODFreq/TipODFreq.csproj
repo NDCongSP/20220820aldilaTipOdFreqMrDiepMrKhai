@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>LogoPT.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClosedXML">
       <HintPath>C:\Program Files (x86)\PT Automation Solution\Easy Driver Server\Toolkit\ClosedXML.DLL</HintPath>
@@ -162,6 +165,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LogoPT.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

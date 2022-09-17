@@ -11,7 +11,7 @@
   "IsReadOnly": true,
   "Enabled": true,
   "CreatedDate": "2022-08-20T10:34:24.8021201+07:00",
-  "ModifiedDate": "2022-09-16T13:03:08.942387+07:00",
+  "ModifiedDate": "2022-09-17T16:02:13.7803524+07:00",
   "ParameterContainer": {
   "DisplayName": null,
   "DisplayParameters": null,
@@ -31,7 +31,7 @@
   "IsReadOnly": false,
   "Enabled": true,
   "CreatedDate": "2022-08-24T21:46:16.7486241+07:00",
-  "ModifiedDate": "2022-09-16T13:02:27.3702272+07:00",
+  "ModifiedDate": "2022-09-17T16:02:13.7803524+07:00",
   "ParameterContainer": {
   "DisplayName": null,
   "DisplayParameters": null,
@@ -51,7 +51,7 @@
   "IsReadOnly": false,
   "Enabled": true,
   "CreatedDate": "2022-08-24T21:46:21.1658254+07:00",
-  "ModifiedDate": "2022-09-16T13:02:27.3702272+07:00",
+  "ModifiedDate": "2022-09-17T16:07:17.0210689+07:00",
   "ParameterContainer": {
   "DisplayName": null,
   "DisplayParameters": null,
@@ -63,7 +63,7 @@
     "InputContactReadBlockSettings": "[]",
     "OutputCoilsReadBlockSettings": "[]",
     "InputRegisterReadBlockSettings": "[]",
-    "HoldingRegisterReadBlockSettings": "[\r\n  {\r\n    \"AddressType\": 4,\r\n    \"Enabled\": true,\r\n    \"StartAddress\": \"400011\",\r\n    \"EndAddress\": \"400025\"\r\n  },\r\n  {\r\n    \"AddressType\": 4,\r\n    \"Enabled\": true,\r\n    \"StartAddress\": \"400801\",\r\n    \"EndAddress\": \"400876\"\r\n  }\r\n]",
+    "HoldingRegisterReadBlockSettings": "[\r\n  {\r\n    \"AddressType\": 4,\r\n    \"Enabled\": true,\r\n    \"StartAddress\": \"400801\",\r\n    \"EndAddress\": \"400878\"\r\n  }\r\n]",
     "MaxWritesCount": "10"
   }
 },
@@ -372,66 +372,6 @@
   "Tags": []
 },
     {
-  "Name": "Finish",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T21:48:03.4978999+07:00",
-  "ModifiedDate": "2022-08-24T21:48:03.4978999+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400011"
-  }
-},
-  "Address": "400011",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "Reset",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T21:48:14.8006833+07:00",
-  "ModifiedDate": "2022-08-24T21:48:14.8006833+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400012"
-  }
-},
-  "Address": "400012",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
   "Name": "ShaftNumber",
   "Description": "PLC1",
   "ItemType": "Tag",
@@ -552,36 +492,6 @@
   "Tags": []
 },
     {
-  "Name": "ViTriDo",
-  "Description": "3:VT1-VT2; 5:VT1-VT3; 7:VT1-VT2-VT3",
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-08-24T22:09:43.9027413+07:00",
-  "ModifiedDate": "2022-08-24T22:09:43.9027413+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400023"
-  }
-},
-  "Address": "400023",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
   "Name": "OD1",
   "Description": null,
   "ItemType": "Tag",
@@ -664,66 +574,6 @@
   "AccessPermission": "ReadAndWrite",
   "Offset": 0.0,
   "Gain": 0.01,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "PartChange",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-09-06T19:36:15.2539102+07:00",
-  "ModifiedDate": "2022-09-06T19:36:15.2539102+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400024"
-  }
-},
-  "Address": "400024",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
-  "IsInternalTag": false,
-  "GUID": null,
-  "Retain": false,
-  "Childs": [],
-  "HaveTags": true,
-  "Tags": []
-},
-    {
-  "Name": "ResetFinish",
-  "Description": null,
-  "ItemType": "Tag",
-  "IsReadOnly": false,
-  "Enabled": true,
-  "CreatedDate": "2022-09-06T19:39:06.4948238+07:00",
-  "ModifiedDate": "2022-09-06T19:39:06.4948238+07:00",
-  "ParameterContainer": {
-  "DisplayName": null,
-  "DisplayParameters": null,
-  "Parameters": {
-    "DataType": "Word",
-    "Address": "400025"
-  }
-},
-  "Address": "400025",
-  "DataTypeName": "Word",
-  "RefreshRate": 100,
-  "ByteOrder": 0,
-  "AccessPermission": "ReadAndWrite",
-  "Offset": 0.0,
-  "Gain": 1.0,
   "IsInternalTag": false,
   "GUID": null,
   "Retain": false,
@@ -850,6 +700,60 @@
   "Childs": [],
   "HaveTags": true,
   "Tags": []
+},
+    {
+  "Name": "PartChange",
+  "Description": null,
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-09-17T16:06:54.6847404+07:00",
+  "ModifiedDate": "2022-09-17T16:06:54.6847404+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {}
+},
+  "Address": "400877",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "ResetPartChange",
+  "Description": null,
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-09-17T16:06:54.6847404+07:00",
+  "ModifiedDate": "2022-09-17T16:06:54.6847404+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {}
+},
+  "Address": "400878",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
 }
   ]
 }
@@ -862,7 +766,7 @@
   "IsReadOnly": false,
   "Enabled": true,
   "CreatedDate": "2022-08-25T15:49:34.7546937+07:00",
-  "ModifiedDate": "2022-09-16T13:02:27.3702272+07:00",
+  "ModifiedDate": "2022-09-17T16:02:13.7803524+07:00",
   "ParameterContainer": {
   "DisplayName": null,
   "DisplayParameters": null,
@@ -882,7 +786,7 @@
   "IsReadOnly": false,
   "Enabled": true,
   "CreatedDate": "2022-08-25T15:49:42.025264+07:00",
-  "ModifiedDate": "2022-09-16T13:03:08.942387+07:00",
+  "ModifiedDate": "2022-09-17T16:02:13.7803524+07:00",
   "ParameterContainer": {
   "DisplayName": null,
   "DisplayParameters": null,
@@ -1333,7 +1237,7 @@
   "IsReadOnly": false,
   "Enabled": true,
   "CreatedDate": "2022-09-14T19:57:00.2428228+07:00",
-  "ModifiedDate": "2022-09-16T13:02:27.3702272+07:00",
+  "ModifiedDate": "2022-09-17T16:02:13.7803524+07:00",
   "ParameterContainer": {
   "DisplayName": null,
   "DisplayParameters": null,
@@ -1353,7 +1257,7 @@
   "IsReadOnly": false,
   "Enabled": true,
   "CreatedDate": "2022-09-14T19:57:12.1928725+07:00",
-  "ModifiedDate": "2022-09-16T13:02:27.3702272+07:00",
+  "ModifiedDate": "2022-09-17T16:05:32.178167+07:00",
   "ParameterContainer": {
   "DisplayName": null,
   "DisplayParameters": null,
@@ -1365,7 +1269,7 @@
     "InputContactReadBlockSettings": "[]",
     "OutputCoilsReadBlockSettings": "[]",
     "InputRegisterReadBlockSettings": "[]",
-    "HoldingRegisterReadBlockSettings": "[]",
+    "HoldingRegisterReadBlockSettings": "[\r\n  {\r\n    \"AddressType\": 4,\r\n    \"Enabled\": true,\r\n    \"StartAddress\": \"400819\",\r\n    \"EndAddress\": \"400912\"\r\n  }\r\n]",
     "MaxWritesCount": "10"
   }
 },
@@ -1386,7 +1290,7 @@
   "DisplayParameters": null,
   "Parameters": {}
 },
-  "Address": "400013",
+  "Address": "400823",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
@@ -1413,7 +1317,7 @@
   "DisplayParameters": null,
   "Parameters": {}
 },
-  "Address": "400014",
+  "Address": "400819",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
@@ -1440,7 +1344,7 @@
   "DisplayParameters": null,
   "Parameters": {}
 },
-  "Address": "400015",
+  "Address": "400827",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
@@ -1467,7 +1371,7 @@
   "DisplayParameters": null,
   "Parameters": {}
 },
-  "Address": "400016",
+  "Address": "400829",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
@@ -1494,7 +1398,7 @@
   "DisplayParameters": null,
   "Parameters": {}
 },
-  "Address": "400017",
+  "Address": "400825",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
@@ -1521,7 +1425,7 @@
   "DisplayParameters": null,
   "Parameters": {}
 },
-  "Address": "400018",
+  "Address": "400831",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
@@ -1548,7 +1452,7 @@
   "DisplayParameters": null,
   "Parameters": {}
 },
-  "Address": "400025",
+  "Address": "400911",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
@@ -1575,7 +1479,7 @@
   "DisplayParameters": null,
   "Parameters": {}
 },
-  "Address": "400026",
+  "Address": "400912",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
@@ -1602,7 +1506,61 @@
   "DisplayParameters": null,
   "Parameters": {}
 },
-  "Address": "400027",
+  "Address": "400833",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "PartChange",
+  "Description": null,
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-09-17T16:05:10.0848735+07:00",
+  "ModifiedDate": "2022-09-17T16:05:10.0848735+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {}
+},
+  "Address": "400908",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "ResetPartChange",
+  "Description": null,
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-09-17T16:05:21.4014848+07:00",
+  "ModifiedDate": "2022-09-17T16:05:21.4014848+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {}
+},
+  "Address": "400909",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
@@ -1627,7 +1585,7 @@
   "IsReadOnly": false,
   "Enabled": true,
   "CreatedDate": "2022-09-14T20:16:39.5664578+07:00",
-  "ModifiedDate": "2022-09-16T13:02:27.3702272+07:00",
+  "ModifiedDate": "2022-09-17T16:02:13.7803524+07:00",
   "ParameterContainer": {
   "DisplayName": null,
   "DisplayParameters": null,
@@ -1647,7 +1605,7 @@
   "IsReadOnly": false,
   "Enabled": true,
   "CreatedDate": "2022-09-14T20:16:48.2372766+07:00",
-  "ModifiedDate": "2022-09-16T13:02:27.3702272+07:00",
+  "ModifiedDate": "2022-09-17T16:15:21.6242803+07:00",
   "ParameterContainer": {
   "DisplayName": null,
   "DisplayParameters": null,
@@ -1659,7 +1617,7 @@
     "InputContactReadBlockSettings": "[]",
     "OutputCoilsReadBlockSettings": "[]",
     "InputRegisterReadBlockSettings": "[]",
-    "HoldingRegisterReadBlockSettings": "[]",
+    "HoldingRegisterReadBlockSettings": "[\r\n  {\r\n    \"AddressType\": 4,\r\n    \"Enabled\": true,\r\n    \"StartAddress\": \"400821\",\r\n    \"EndAddress\": \"400916\"\r\n  }\r\n]",
     "MaxWritesCount": "10"
   }
 },
@@ -1680,7 +1638,7 @@
   "DisplayParameters": null,
   "Parameters": {}
 },
-  "Address": "400001",
+  "Address": "400821",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
@@ -1707,7 +1665,7 @@
   "DisplayParameters": null,
   "Parameters": {}
 },
-  "Address": "400002",
+  "Address": "400823",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
@@ -1734,7 +1692,7 @@
   "DisplayParameters": null,
   "Parameters": {}
 },
-  "Address": "400003",
+  "Address": "400833",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
@@ -1761,7 +1719,7 @@
   "DisplayParameters": null,
   "Parameters": {}
 },
-  "Address": "400004",
+  "Address": "400851",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
@@ -1788,7 +1746,7 @@
   "DisplayParameters": null,
   "Parameters": {}
 },
-  "Address": "400009",
+  "Address": "400853",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
@@ -1815,7 +1773,7 @@
   "DisplayParameters": null,
   "Parameters": {}
 },
-  "Address": "400010",
+  "Address": "400857",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
@@ -1842,7 +1800,7 @@
   "DisplayParameters": null,
   "Parameters": {}
 },
-  "Address": "400028",
+  "Address": "400915",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
@@ -1869,7 +1827,7 @@
   "DisplayParameters": null,
   "Parameters": {}
 },
-  "Address": "400029",
+  "Address": "400916",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
@@ -1896,13 +1854,67 @@
   "DisplayParameters": null,
   "Parameters": {}
 },
-  "Address": "400030",
+  "Address": "400857",
   "DataTypeName": "Word",
   "RefreshRate": 100,
   "ByteOrder": 0,
   "AccessPermission": "ReadAndWrite",
   "Offset": 0.0,
   "Gain": 0.01,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "PartChange",
+  "Description": null,
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-09-17T16:14:59.4148711+07:00",
+  "ModifiedDate": "2022-09-17T16:14:59.4148711+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {}
+},
+  "Address": "400913",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
+  "IsInternalTag": false,
+  "GUID": null,
+  "Retain": false,
+  "Childs": [],
+  "HaveTags": true,
+  "Tags": []
+},
+    {
+  "Name": "ResetPartChange",
+  "Description": null,
+  "ItemType": "Tag",
+  "IsReadOnly": false,
+  "Enabled": true,
+  "CreatedDate": "2022-09-17T16:15:10.6218088+07:00",
+  "ModifiedDate": "2022-09-17T16:15:10.6218088+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {}
+},
+  "Address": "400914",
+  "DataTypeName": "Word",
+  "RefreshRate": 100,
+  "ByteOrder": 0,
+  "AccessPermission": "ReadAndWrite",
+  "Offset": 0.0,
+  "Gain": 1.0,
   "IsInternalTag": false,
   "GUID": null,
   "Retain": false,

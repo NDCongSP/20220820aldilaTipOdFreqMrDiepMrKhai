@@ -29,6 +29,7 @@ namespace TipOdFreqAdmin
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnUpdateData = new System.Windows.Forms.Button();
             this.labStatus = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -281,6 +282,8 @@ namespace TipOdFreqAdmin
             this.Controls.Add(this.labStatus);
             this.Controls.Add(this.btnUpdatePathExport);
             this.Controls.Add(this.btnUpdateData);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tip OD Freq Admin";

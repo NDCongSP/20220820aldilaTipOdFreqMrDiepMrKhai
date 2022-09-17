@@ -156,6 +156,7 @@ namespace TipODFreq
             this.btnUpdateData.TabIndex = 4;
             this.btnUpdateData.Text = "Update data sql from CSV file";
             this.btnUpdateData.UseVisualStyleBackColor = false;
+            this.btnUpdateData.Visible = false;
             this.btnUpdateData.Click += new System.EventHandler(this.button1_Click);
             // 
             // gridPartInfo
