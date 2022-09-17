@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TipOdFreqAdmin
 {
-   public static class GlobalVariables
+    public static class GlobalVariables
     {
         public static string ConnectionString { get; set; }
         public static IDbConnection GetDbConnection()
@@ -21,5 +21,6 @@ namespace TipOdFreqAdmin
         public static string PathOd { get; set; }
         public static string PathFormulaG { get; set; }
         public static string PathFormulaPo { get; set; }
+        public static string PathExport { get; set; }
     }
 }

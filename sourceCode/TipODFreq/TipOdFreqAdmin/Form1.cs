@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,39 +28,128 @@ namespace TipOdFreqAdmin
         {
             this.btnQuery.Click += BtnQuery_Click;
             this.btnExport.Click += BtnExport_Click;
+            this.btnUpdatePathExport.Click += BtnUpdatePathExport_Click;
 
             nT.Interval = 100;
             nT.Enabled = true;
             nT.Tick += NT_Tick;
         }
 
-        private void BtnExport_Click(object sender, EventArgs e)
+        private void BtnUpdatePathExport_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
-            //sfd.Filter = "CSV File |*.csv";
-            //sfd.FileName = "BaoCao";
-
-            //if (sfd.ShowDialog() == DialogResult.OK)
-            //{
-
-
-            //    //wb.SaveAs(sfd.FileName);
-            //    if (MessageBox.Show($"Xuất báo cáo thành công! Bạn có muốn mở file không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-            //    {
-            //        //OpenFile(_pathOpen);
-            //    }
-            //}
-
             using (var fbd = new FolderBrowserDialog())
             {
                 DialogResult result = fbd.ShowDialog();
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    string[] files = Directory.GetFiles(fbd.SelectedPath);
+                    GlobalVariables.PathExport = fbd.SelectedPath;
 
-                    System.Windows.Forms.MessageBox.Show("Files found: " + files.Length.ToString(), "Message");
+                    Properties.Settings.Default.PathExport = GlobalVariables.PathExport;
+                    Properties.Settings.Default.Save();
                 }
+            }
+        }
+
+        private void BtnExport_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(GlobalVariables.PathExport))
+            {
+                using (var fbd = new FolderBrowserDialog())
+                {
+                    DialogResult result = fbd.ShowDialog();
+
+                    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                    {
+                        GlobalVariables.PathExport = fbd.SelectedPath;
+
+                        Properties.Settings.Default.PathExport = GlobalVariables.PathExport;
+                        Properties.Settings.Default.Save();   
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(GlobalVariables.PathExport))
+            {
+                //string[] files = Directory.GetFiles(fbd.SelectedPath);
+                var _from = dateTimePickerFrom.Text;
+                var _to = dateTimePickerTo.Text;
+                var _logType = comboBoxLogType.Text;
+
+                using (var connection = GlobalVariables.GetDbConnection())
+                {
+                    #region Sanding
+                    var dataSanding = connection.Query<tblDataLogSandingModel>("select Station, ShaftNumber, CreatedDate, WorkOrder, Part,Freq01Reading,MotorSandingSpeed,Freq02Reading,FreqTarget,FormulaGId,LogStyle " +
+                "from tblDataLogSanding " +
+                $"Where CreatedDate >= '{_from}' and CreatedDate <= '{_to}' and LogStyle = '{_logType}'").ToList();
+                    if (dataSanding.Count > 0)
+                    {
+                        string csvHeaderRow = String.Join(",", typeof(tblDataLogSandingModel).GetProperties(BindingFlags.Public | BindingFlags.Instance).Select(x => x.Name).ToArray<string>());
+
+                        var sb = new StringBuilder();
+
+                        sb.AppendLine(csvHeaderRow.Substring(3));
+
+                        foreach (var item in dataSanding)
+                        {
+                            sb.AppendLine(item.Station + "," + item.ShaftNumber + "," + item.CreatedDate + ", " + item.WorkOrder + ", " + item.Part + ", " + item.Freq01Reading
+                                + ", " + item.MotorSandingSpeed + ", " + item.Freq02Reading + ", " + item.FreqTarget + ", " + item.FormulaGId + ", " + item.LogStyle);
+                        }
+
+                        File.WriteAllText(Path.Combine(GlobalVariables.PathExport, $"{DateTime.Now.ToString("yyyyMMddHHmmss")}DataSanding.csv"), sb.ToString());
+                    }
+                    #endregion
+
+                    #region Tip OD
+                    var dataTipOd = connection.Query<tblDataLogTipOdModel>("select Station, ShaftNumber, CreatedDate, WorkOrder, Part,DiamReading,MeasType,DiamLL,DiamUL,PassFail,LogType" +
+                " from tblDataLogTipOd " +
+                $"Where CreatedDate >= '{_from}' and CreatedDate <= '{_to}' and LogType = '{_logType}'").ToList();
+                    if (dataTipOd.Count > 0)
+                    {
+                        string csvHeaderRow = String.Join(",", typeof(tblDataLogTipOdModel).GetProperties(BindingFlags.Public | BindingFlags.Instance).Select(x => x.Name).ToArray<string>());
+
+                        var sb = new StringBuilder();
+
+                        sb.AppendLine(csvHeaderRow.Substring(3));
+
+                        foreach (var item in dataTipOd)
+                        {
+                            sb.AppendLine(item.Station + "," + item.ShaftNumber + "," + item.CreatedDate + ", " + item.WorkOrder + ", " + item.Part + ", " + item.DiamReading
+                                + ", " + item.MeasType + ", " + item.DiamLL + ", " + item.DiamUL + ", " + item.PassFail + ", " + item.LogType);
+                        }
+
+                        File.WriteAllText(Path.Combine(GlobalVariables.PathExport, $"{DateTime.Now.ToString("yyyyMMddHHmmss")}DataTipOD.csv"), sb.ToString());
+                    }
+                    #endregion
+
+                    #region polishing
+                    var dataPolishing = connection.Query<tblDataLogPolishingModel>("select Station, ShaftNumber, CreatedDate, WorkOrder, Part,FreqReading,FreqTarget,MortorPolishing,FormulaPO,LogType " +
+                "from tblDataLogPolishing " +
+                 $"Where CreatedDate >= '{_from}' and CreatedDate <= '{_to}' and LogType = '{_logType}'").ToList();
+                    if (dataPolishing.Count > 0)
+                    {
+                        string csvHeaderRow = String.Join(",", typeof(tblDataLogPolishingModel).GetProperties(BindingFlags.Public | BindingFlags.Instance).Select(x => x.Name).ToArray<string>());
+
+                        var sb = new StringBuilder();
+
+                        sb.AppendLine(csvHeaderRow.Substring(3));
+
+                        foreach (var item in dataPolishing)
+                        {
+                            sb.AppendLine(item.Station + "," + item.ShaftNumber + "," + item.CreatedDate + ", " + item.WorkOrder + ", " + item.Part + ", " + item.FreqReading
+                                + ", " + item.FreqTarget + ", " + item.MortorPolishing + ", " + item.FreqTarget + ", " + item.FormulaPO + ", " + item.LogType);
+                        }
+
+                        File.WriteAllText(Path.Combine(GlobalVariables.PathExport, $"{DateTime.Now.ToString("yyyyMMddHHmmss")}DataPolishing.csv"), sb.ToString());
+                    }
+                    #endregion
+
+                    MessageBox.Show($"Xuất file thành công.", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show($"Không tìm thấy đường dẫn lưu file, mời chọn lạ vị trí lưu file mới.","LỖI",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
 
@@ -81,16 +171,24 @@ namespace TipOdFreqAdmin
                     dataGridViewSanding.AutoResizeColumns();
                 }
 
-                var dataTipOd = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogTipOd order by CreatedDate desc").ToList();
+                var dataTipOd = connection.Query<tblDataLogTipOdModel>("select Station, ShaftNumber, CreatedDate, WorkOrder, Part,DiamReading,MeasType,DiamLL,DiamUL,PassFail,LogType" +
+                    " from tblDataLogTipOd " +
+                    $"Where CreatedDate >= '{_from}' and CreatedDate <= '{_to}' and LogType = '{_logType}'").ToList();
                 if (dataTipOd.Count > 0)
                 {
                     dataGridViewTipOd.DataSource = dataTipOd;
+                    dataGridViewTipOd.Columns["Id"].Visible = false;
+                    dataGridViewTipOd.AutoResizeColumns();
                 }
 
-                var dataPolishing = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogPolishing order by CreatedDate desc").ToList();
+                var dataPolishing = connection.Query<tblDataLogPolishingModel>("select Station, ShaftNumber, CreatedDate, WorkOrder, Part,FreqReading,FreqTarget,MortorPolishing,FormulaPO,LogType " +
+                    "from tblDataLogPolishing " +
+                     $"Where CreatedDate >= '{_from}' and CreatedDate <= '{_to}' and LogType = '{_logType}'").ToList();
                 if (dataPolishing.Count > 0)
                 {
                     dataGridViewPolishing.DataSource = dataPolishing;
+                    dataGridViewPolishing.Columns["Id"].Visible = false;
+                    dataGridViewPolishing.AutoResizeColumns();
                 }
             }
         }

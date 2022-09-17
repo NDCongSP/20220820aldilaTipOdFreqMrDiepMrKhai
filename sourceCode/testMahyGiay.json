@@ -1,0 +1,29 @@
+{
+  "ProjectPath": "D:\\MyCompany\\8.SourceCode\\3.Projects\\20220820aldilaTipOdFreqMrDiepMrKhai\\sourceCode\\testMahyGiay.json",
+  "Username": null,
+  "Password": null,
+  "ParameterContainer": null,
+  "Childs": [
+    {
+  "Name": "Local Station",
+  "Description": null,
+  "ItemType": "LocalStation",
+  "IsReadOnly": true,
+  "Enabled": true,
+  "CreatedDate": "2022-09-17T11:15:17.113291+07:00",
+  "ModifiedDate": "2022-09-17T11:15:17.113291+07:00",
+  "ParameterContainer": {
+  "DisplayName": null,
+  "DisplayParameters": null,
+  "Parameters": {}
+},
+  "CommunicationMode": "ReceiveFromServer",
+  "StationType": "Local",
+  "RemoteAddress": null,
+  "Port": 0,
+  "ConnectionString": null,
+  "RefreshRate": 0,
+  "Childs": []
+}
+  ]
+}

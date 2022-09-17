@@ -47,6 +47,7 @@ namespace TipOdFreqAdmin
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePickerTo = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
+            this.btnUpdatePathExport = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSanding)).BeginInit();
@@ -177,7 +178,7 @@ namespace TipOdFreqAdmin
             // btnExport
             // 
             this.btnExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnExport.Location = new System.Drawing.Point(977, 22);
+            this.btnExport.Location = new System.Drawing.Point(1030, 23);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(147, 44);
             this.btnExport.TabIndex = 4;
@@ -187,7 +188,7 @@ namespace TipOdFreqAdmin
             // btnQuery
             // 
             this.btnQuery.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnQuery.Location = new System.Drawing.Point(794, 22);
+            this.btnQuery.Location = new System.Drawing.Point(805, 23);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(147, 44);
             this.btnQuery.TabIndex = 4;
@@ -258,6 +259,18 @@ namespace TipOdFreqAdmin
             this.dateTimePickerFrom.Size = new System.Drawing.Size(200, 23);
             this.dateTimePickerFrom.TabIndex = 1;
             // 
+            // btnUpdatePathExport
+            // 
+            this.btnUpdatePathExport.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnUpdatePathExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdatePathExport.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnUpdatePathExport.Location = new System.Drawing.Point(960, 12);
+            this.btnUpdatePathExport.Name = "btnUpdatePathExport";
+            this.btnUpdatePathExport.Size = new System.Drawing.Size(279, 34);
+            this.btnUpdatePathExport.TabIndex = 5;
+            this.btnUpdatePathExport.Text = "Cập nhật đường dẫn xuất file CSV";
+            this.btnUpdatePathExport.UseVisualStyleBackColor = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -266,6 +279,7 @@ namespace TipOdFreqAdmin
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.labStatus);
+            this.Controls.Add(this.btnUpdatePathExport);
             this.Controls.Add(this.btnUpdateData);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -303,6 +317,7 @@ namespace TipOdFreqAdmin
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePickerTo;
+        private System.Windows.Forms.Button btnUpdatePathExport;
     }
 }
 

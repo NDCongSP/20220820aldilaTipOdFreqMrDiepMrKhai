@@ -75,5 +75,17 @@ namespace TipOdFreqAdmin.Properties {
                 this["PathCsvDataFormulaPo"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PathExport {
+            get {
+                return ((string)(this["PathExport"]));
+            }
+            set {
+                this["PathExport"] = value;
+            }
+        }
     }
 }

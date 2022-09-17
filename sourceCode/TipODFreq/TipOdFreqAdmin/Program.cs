@@ -24,6 +24,8 @@ namespace TipOdFreqAdmin
             GlobalVariables.PathFormulaG = Properties.Settings.Default.PathCsvDataFormulaG;
             GlobalVariables.PathFormulaPo = Properties.Settings.Default.PathCsvDataFormulaPo;
 
+            GlobalVariables.PathExport = Properties.Settings.Default.PathExport;
+
             //Console.WriteLine($"Path app: {Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}");
             #endregion
 
