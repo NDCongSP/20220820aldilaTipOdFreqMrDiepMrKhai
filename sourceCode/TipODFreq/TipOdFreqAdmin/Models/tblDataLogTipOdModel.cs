@@ -12,8 +12,8 @@ namespace TipOdFreqAdmin
         public string Station { get; set; }
         public int? ShaftNumber { get; set; }
         public DateTime? CreatedDate { get; set; }
-        public string Part { get; set; }
         public string WorkOrder { get; set; }
+        public string Part { get; set; }
         public double? DiamReading { get; set; }
         public string MeasType { get; set; }
         public double? DiamLL { get; set; }

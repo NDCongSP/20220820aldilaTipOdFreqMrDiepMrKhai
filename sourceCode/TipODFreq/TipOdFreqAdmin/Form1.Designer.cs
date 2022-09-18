@@ -206,7 +206,7 @@ namespace TipOdFreqAdmin
             this.comboBoxLogType.Name = "comboBoxLogType";
             this.comboBoxLogType.Size = new System.Drawing.Size(161, 24);
             this.comboBoxLogType.TabIndex = 3;
-            this.comboBoxLogType.Text = "Production";
+            this.comboBoxLogType.Text = "Pilot";
             // 
             // label3
             // 

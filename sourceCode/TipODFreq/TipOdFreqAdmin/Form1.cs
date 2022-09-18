@@ -137,7 +137,7 @@ namespace TipOdFreqAdmin
                         foreach (var item in dataPolishing)
                         {
                             sb.AppendLine(item.Station + "," + item.ShaftNumber + "," + item.CreatedDate + ", " + item.WorkOrder + ", " + item.Part + ", " + item.FreqReading
-                                + ", " + item.FreqTarget + ", " + item.MortorPolishing + ", " + item.FreqTarget + ", " + item.FormulaPO + ", " + item.LogType);
+                                + ", " + item.FreqTarget + ", " + item.MortorPolishing + ", " + item.FormulaPO + ", " + item.LogType);
                         }
 
                         File.WriteAllText(Path.Combine(GlobalVariables.PathExport, $"{DateTime.Now.ToString("yyyyMMddHHmmss")}DataPolishing.csv"), sb.ToString());
