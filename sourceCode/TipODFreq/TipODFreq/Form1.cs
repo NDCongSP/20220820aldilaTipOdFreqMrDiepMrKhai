@@ -93,7 +93,7 @@ namespace TipODFreq
             t.Enabled = true;
         }
 
-        private void T_Tick(object sender, EventArgs e)
+        private async void T_Tick(object sender, EventArgs e)
         {
             Timer _t = (Timer)sender;
             t.Enabled = false;
@@ -128,54 +128,51 @@ namespace TipODFreq
                     if (partInfo.Count > 0)
                     {
                         gridPartInfo.DataSource = partInfo;
-
                         #region Station1 HMI 1, truyền thông modbus TCP
-                        easyDriverConnector1.WriteTagAsync("Local Station/Station1Plc/Device/FreqTarget", (partInfo[0].FreqTarget * 100).ToString(), WritePiority.Default);
-                        easyDriverConnector1.WriteTagAsync("Local Station/Station1Plc/Device/FormulaGId", partInfo[0].FormulaGId.ToString(), WritePiority.Default);
+                        await easyDriverConnector1.WriteTagAsync("Local Station/Station1Plc/Device/FreqTarget", (partInfo[0].FreqTarget * 100).ToString(), WritePiority.High);
+                        await easyDriverConnector1.WriteTagAsync("Local Station/Station1Plc/Device/FormulaGId", partInfo[0].FormulaGId.ToString(), WritePiority.High);
+                        //easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/FormulaGId", partInfo[0].FormulaGId.ToString(), WritePiority.High);
                         #endregion
 
                         #region Station2 PLC, truyền thông modbus TCP
                         var index = 1;
                         foreach (var item in partInfo)
                         {
-                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamLL{index}", (item.DiamLL * 100).ToString(), WritePiority.Default);
-                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamUL{index}", (item.DiamUL * 100).ToString(), WritePiority.Default);
-                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/TipOdLength{index}", item.TipOdLength.ToString(), WritePiority.Default);
+                            await easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamLL{index}", (item.DiamLL * 100).ToString(), WritePiority.High);
+                            await easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamUL{index}", (item.DiamUL * 100).ToString(), WritePiority.High);
+                            await easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/TipOdLength{index}", item.TipOdLength.ToString(), WritePiority.High);
 
                             index += 1;
                         }
                         if (index == 2)
                         {
-                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamLL2", "0", WritePiority.Default);
-                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamUL2", "0", WritePiority.Default);
-                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/TipOdLength2", "0", WritePiority.Default);
+                            await easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamLL2", "0", WritePiority.High);
+                            await easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamUL2", "0", WritePiority.High);
+                            await easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/TipOdLength2", "0", WritePiority.High);
 
-                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamLL3", "0", WritePiority.Default);
-                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamUL3", "0", WritePiority.Default);
-                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/TipOdLength3", "0", WritePiority.Default);
+                            await easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamLL3", "0", WritePiority.High);
+                            await easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamUL3", "0", WritePiority.High);
+                            await easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/TipOdLength3", "0", WritePiority.High);
                         }
                         else if (index == 3)
                         {
-                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamLL3", "0", WritePiority.Default);
-                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamUL3", "0", WritePiority.Default);
-                            easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/TipOdLength3", "0", WritePiority.Default);
+                            await easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamLL3", "0", WritePiority.High);
+                            await easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/DiamUL3", "0", WritePiority.High);
+                            await easyDriverConnector1.WriteTagAsync($"Local Station/Station2Plc/Device/TipOdLength3", "0", WritePiority.High);
                         }
                         #endregion
 
                         #region Station3 HMI, truyền thông modbus TCP
-                        easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/FormulaPoId", partInfo[0].FormulaPoId.ToString(), WritePiority.Default);
-                        easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/FreqTarget", (partInfo[0].FreqTarget * 100).ToString(), WritePiority.Default);
+                        await easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/FormulaPoId", partInfo[0].FormulaPoId.ToString(), WritePiority.High);
+                        await easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/FreqTarget", (partInfo[0].FreqTarget * 100).ToString(), WritePiority.High);
                         #endregion
 
                         #region Bật các bit báo part thay đổi cho trạm 1, 2 và trạm 3
-                        easyDriverConnector1.WriteTagAsync("Local Station/Station1Plc/Device/PartChange", "1", WritePiority.High);
-                        easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/PartChange", "1", WritePiority.High);
-                        easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/PartChange", "1", WritePiority.High);
+                        await easyDriverConnector1.WriteTagAsync("Local Station/Station1Plc/Device/PartChange", "1", WritePiority.High);
                         #endregion
 
-                        easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/Internal_PartNumber", partNum, WritePiority.High);
-                        easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/Internal_PartNumber", partNum, WritePiority.High);
-                        //easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FlagPartScan", "0", WritePiority.High);
+                        await easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/Internal_PartNumber", partNum, WritePiority.High);
+                        await easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/Internal_PartNumber", partNum, WritePiority.High);
 
                         partInfo = null;
                         logCountSanding = logCountTipOd = logCountPolishing = 0;//reset bien dem log data 5 cay khi quet part moi
@@ -199,9 +196,8 @@ namespace TipODFreq
 
                 if (initialFlag)
                 {
-                    easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/Internal_WorkOrder", workOrder, WritePiority.High);
-                    easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/Internal_WorkOrder", workOrder, WritePiority.High);
-                    //easyDriverConnector1.WriteTagAsync("Local Station/Station1Hmi/Device/FlagWorkOrderScan", "0", WritePiority.High);
+                    await easyDriverConnector1.WriteTagAsync("Local Station/Station3Plc/Device/Internal_WorkOrder", workOrder, WritePiority.High);
+                    await easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/Internal_WorkOrder", workOrder, WritePiority.High);
                 }
 
                 sendWorkOrder = false;
@@ -254,14 +250,6 @@ namespace TipODFreq
                               new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6")
                               , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6").Value));
 
-                //Freq02Reading_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading"),
-                //           new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading")
-                //           , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading").Value));
-
-                //FinishStation1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish"),
-                //          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish")
-                //          , "", easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish").Value));
-               
                 LogType_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/LogType"),
                           new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/LogType")
                           , "", easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/LogType").Value));
@@ -281,19 +269,10 @@ namespace TipODFreq
                 easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder5").ValueChanged += WorkOrder5_ValueChanged;
                 easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/WorkOrder6").ValueChanged += WorkOrder6_ValueChanged;
 
-                //easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Freq02Reading").ValueChanged += Freq02Reading_ValueChanged;
-                easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/LogType").ValueChanged += LogType_ValueChanged;
-
-                //easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/FlagPartScan").ValueChanged += FlagPartScan_ValueChanged;
-                //easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/FlagWorkOrderScan").ValueChanged += FlagWorkOrderScan_ValueChanged;
-
-                //tag tại station1 bao để truyền data sang sattion2 và 3
-                //easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Finish").ValueChanged += FinishStation1_ValueChanged;
-                //easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Finish").ValueChanged += FinishStation2_ValueChanged;
-                //easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/Finish").ValueChanged += FinishStation3_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/LogType").ValueChanged += LogType_ValueChanged;
 
                 //các tag báo lưu, khi bit này lên 1 thì lấy các thông tin log vào data
-                easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/Log").ValueChanged += LogStation1_ValueChanged;
+                easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/Log").ValueChanged += LogStation1_ValueChanged;
                 easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Log").ValueChanged += LogStation2_ValueChanged;
                 easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/Log").ValueChanged += LogStation3_ValueChanged;
 
@@ -977,65 +956,6 @@ namespace TipODFreq
             }
         }
 
-        private void FlagWorkOrderScan_ValueChanged(object sender, TagValueChangedEventArgs e)
-        {
-            if (e.NewValue == "1")
-            {
-                workOrder = null;
-                #region đọc thông tin từ tag, rồi chuyển đổi thành ký tự
-                int res = 0;
-                for (int i = 0; i < 6; i++)
-                {
-                    var tagValue = easyDriverConnector1.GetTag($"Local Station/Station1Hmi/Device/WorkOrder{i + 1}").Value;
-                    var value = int.TryParse(tagValue, out res) ? res : 0;
-
-                    //DEC-->HEX
-                    string hexValue = value.ToString("X");
-
-                    for (int a = 0; a < hexValue.Length; a = a + 2)
-
-                    {
-
-                        string Char2Convert = hexValue.Substring(a, 2);
-
-                        int n = Convert.ToInt32(Char2Convert, 16);//chuyển đổi từ HEX --> DEC
-
-                        //đảo ngược ký tự trước ra sau
-                        if (a == 0)
-                        {
-                            workOrderChar1[1] = (char)n;//chuyen doi tu DEC 
-                        }
-                        else
-                        {
-                            workOrderChar1[0] = (char)n;
-                        }
-                    }
-
-                    foreach (var item in workOrderChar1)
-                    {
-                        if (item != 32)
-                        {
-                            workOrder += item;
-                        }
-                    }
-                }
-
-                #endregion
-                //khi tag chứa giá trị cuối cùng thay đổi, nghĩa là HMI đã truyền đầy đủ ký tự lên, ghép lại thành chuối partNum
-                //workOrder = null;
-                //foreach (var item in workOrderChar)
-                //{
-                //    if (item != 32)
-                //    {
-                //        workOrder += item;
-                //    }
-                //}
-
-                sendWorkOrder = true;
-                Console.WriteLine($"Work Order: {workOrder}");
-            }
-        }
-
         private void Internal_WorkOrder_Station3_ValueChanged(object sender, TagValueChangedEventArgs e)
         {
             foreach (var item in tipOdDataLog)
@@ -1078,7 +998,7 @@ namespace TipODFreq
                         logData.WorkOrder = easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/Internal_WorkOrder").Value;
                         logData.ShaftNumber = int.TryParse(easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/ShaftNumber").Value, out int value) ? value : 0;
                         logData.FreqReading = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/Freq02Reading").Value, out double value1) ? value1 : 0;
-                        logData.FreqTarget = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/FreqTarget").Value, out value1) ? value1 : 0;
+                        logData.FreqTarget = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/FreqTagetPL").Value, out value1) ? value1 : 0;
                         logData.MortorPolishing = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/MortorPolish").Value, out value1) ? value1 : 0;
                         logData.FormulaPO = int.TryParse(easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/FormulaPoId").Value, out value) ? value : 0;
 
@@ -1106,7 +1026,8 @@ namespace TipODFreq
                                     {
                                         if (dataGridViewPolishing.InvokeRequired)
                                         {
-                                            dataGridViewPolishing.Invoke(new Action(() => {
+                                            dataGridViewPolishing.Invoke(new Action(() =>
+                                            {
                                                 dataGridViewPolishing.DataSource = dataPolishing;
                                             }));
                                         }
@@ -1143,7 +1064,8 @@ namespace TipODFreq
                                 {
                                     if (dataGridViewPolishing.InvokeRequired)
                                     {
-                                        dataGridViewPolishing.Invoke(new Action(() => {
+                                        dataGridViewPolishing.Invoke(new Action(() =>
+                                        {
                                             dataGridViewPolishing.DataSource = dataPolishing;
                                         }));
                                     }
@@ -1196,28 +1118,31 @@ namespace TipODFreq
                                             para.Add("@workOrder", item.WorkOrder);
                                             para.Add("@partNum", item.Part);
                                             para.Add("@diamReading", item.DiamReading);
-                                            para.Add("@measType", item.MeasType);
-                                            para.Add("@diamLL", item.DiamLL / 100);
-                                            para.Add("@diamUL", item.DiamUL);
+                                            para.Add("@measType", $"UPT TOD @{item.MeasType}MM");
+                                            para.Add("@diamLL", Math.Round(Convert.ToDouble(item.DiamLL) / 100, 2));
+                                            para.Add("@diamUL", Math.Round(Convert.ToDouble(item.DiamUL) / 100, 2));
                                             para.Add("@passFail", item.PassFail);
                                             para.Add("@logType", item.LogType);
 
                                             var result = connection.Execute("sp_tblDataLogTipOdInsert", para, commandType: CommandType.StoredProcedure);
-
-                                            var dataTipOd = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogTipOd order by CreatedDate desc").ToList();
-                                            if (dataTipOd.Count > 0)
+                                        }
+                                    }
+                                }
+                                using (var connection = GlobalVariables.GetDbConnection())
+                                {
+                                    var dataTipOd = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogTipOd order by CreatedDate desc").ToList();
+                                    if (dataTipOd.Count > 0)
+                                    {
+                                        if (dataGridViewTipOd.InvokeRequired)
+                                        {
+                                            dataGridViewTipOd.Invoke(new Action(() =>
                                             {
-                                                if (dataGridViewTipOd.InvokeRequired)
-                                                {
-                                                    dataGridViewTipOd.Invoke(new Action(() => {
-                                                        dataGridViewTipOd.DataSource = dataTipOd;
-                                                    }));
-                                                }
-                                                else
-                                                {
-                                                    dataGridViewTipOd.DataSource = dataTipOd;
-                                                }
-                                            }
+                                                dataGridViewTipOd.DataSource = dataTipOd;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            dataGridViewTipOd.DataSource = dataTipOd;
                                         }
                                     }
                                 }
@@ -1240,28 +1165,31 @@ namespace TipODFreq
                                         para.Add("@workOrder", item.WorkOrder);
                                         para.Add("@partNum", item.Part);
                                         para.Add("@diamReading", item.DiamReading);
-                                        para.Add("@measType", item.MeasType);
-                                        para.Add("@diamLL", item.DiamLL);
-                                        para.Add("@diamUL", item.DiamUL);
-                                        para.Add("@passFail", item.PassFail);
+                                        para.Add("@measType", $"UPT TOD @{item.MeasType}MM");
+                                        para.Add("@diamLL", Math.Round(Convert.ToDouble(item.DiamLL) / 100, 2));
+                                        para.Add("@diamUL", Math.Round(Convert.ToDouble(item.DiamUL) / 100, 2));
+                                        para.Add("@passFail", item.PassFail == "1" ? true : false);
                                         para.Add("@logType", item.LogType);
 
                                         var result = connection.Execute("sp_tblDataLogTipOdInsert", para, commandType: CommandType.StoredProcedure);
-
-                                        var dataTipOd = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogTipOd order by CreatedDate desc").ToList();
-                                        if (dataTipOd.Count > 0)
+                                    }
+                                }
+                            }
+                            using (var connection = GlobalVariables.GetDbConnection())
+                            {
+                                var dataTipOd = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogTipOd order by CreatedDate desc").ToList();
+                                if (dataTipOd.Count > 0)
+                                {
+                                    if (dataGridViewTipOd.InvokeRequired)
+                                    {
+                                        dataGridViewTipOd.Invoke(new Action(() =>
                                         {
-                                            if (dataGridViewTipOd.InvokeRequired)
-                                            {
-                                                dataGridViewTipOd.Invoke(new Action(() => {
-                                                    dataGridViewTipOd.DataSource = dataTipOd;
-                                                }));
-                                            }
-                                            else
-                                            {
-                                                dataGridViewTipOd.DataSource = dataTipOd;
-                                            }
-                                        }
+                                            dataGridViewTipOd.DataSource = dataTipOd;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        dataGridViewTipOd.DataSource = dataTipOd;
                                     }
                                 }
                             }
@@ -1275,9 +1203,9 @@ namespace TipODFreq
                     easyDriverConnector1.WriteTagAsync("Local Station/Station2Plc/Device/ResetLog", "0", WritePiority.High);
                 }
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -1313,7 +1241,7 @@ namespace TipODFreq
                                     para.Add("@freq01Reading", logData.Freq01Reading);
                                     para.Add("@motorSandingSpeed", logData.MotorSandingSpeed);
                                     para.Add("@freq02Reading", logData.Freq02Reading);
-                                    para.Add("@freqTarget", logData.FreqTarget);
+                                    para.Add("@freqTarget", Math.Round(Convert.ToDouble(logData.FreqTarget) / 100, 2));
                                     para.Add("@formulaG", logData.FormulaGId);
                                     para.Add("@logType", logData.LogStyle);
                                     para.Add("@partNum", logData.Part);
@@ -1325,7 +1253,8 @@ namespace TipODFreq
                                     {
                                         if (dataGridViewSanding.InvokeRequired)
                                         {
-                                            dataGridViewSanding.Invoke(new Action(() => {
+                                            dataGridViewSanding.Invoke(new Action(() =>
+                                            {
                                                 dataGridViewSanding.DataSource = dataSanding;
                                             }));
                                         }
@@ -1351,7 +1280,7 @@ namespace TipODFreq
                                 para.Add("@freq01Reading", logData.Freq01Reading);
                                 para.Add("@motorSandingSpeed", logData.MotorSandingSpeed);
                                 para.Add("@freq02Reading", logData.Freq02Reading);
-                                para.Add("@freqTarget", logData.FreqTarget);
+                                para.Add("@freqTarget", Math.Round(Convert.ToDouble(logData.FreqTarget) / 100, 2));
                                 para.Add("@formulaG", logData.FormulaGId);
                                 para.Add("@logType", logData.LogStyle);
                                 para.Add("@partNum", logData.Part);
@@ -1363,7 +1292,8 @@ namespace TipODFreq
                                 {
                                     if (dataGridViewSanding.InvokeRequired)
                                     {
-                                        dataGridViewSanding.Invoke(new Action(()=> {
+                                        dataGridViewSanding.Invoke(new Action(() =>
+                                        {
                                             dataGridViewSanding.DataSource = dataSanding;
                                         }));
                                     }
@@ -1383,7 +1313,7 @@ namespace TipODFreq
                     easyDriverConnector1.WriteTagAsync("Local Station/Station1Plc/Device/ResetLog", "0", WritePiority.High);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine($"{ex}");
             }
@@ -1476,11 +1406,6 @@ namespace TipODFreq
         }
         #endregion
         #endregion
-
-        private void Freq02Reading_ValueChanged(object sender, TagValueChangedEventArgs e)
-        {
-            freq02Reading = e.NewValue;
-        }
 
         //update data vao sql tu csv file
         private void button1_Click(object sender, EventArgs e)

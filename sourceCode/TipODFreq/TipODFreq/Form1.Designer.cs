@@ -245,10 +245,10 @@ namespace TipODFreq
             this.easyLabel1.DisplayMode = EasyScada.Winforms.Controls.DisplayMode.Value;
             this.easyLabel1.Location = new System.Drawing.Point(12, 257);
             this.easyLabel1.Name = "easyLabel1";
-            this.easyLabel1.Size = new System.Drawing.Size(100, 23);
+            this.easyLabel1.Size = new System.Drawing.Size(58, 23);
             this.easyLabel1.StringFormat = null;
             this.easyLabel1.TabIndex = 7;
-            this.easyLabel1.TagPath = "Local Station/Station1Hmi/Device/FreqTarget";
+            this.easyLabel1.TagPath = "Local Station/Station1Plc/Device/FreqTarget";
             this.easyLabel1.Text = "easyLabel1";
             // 
             // easyLabel2
@@ -256,10 +256,10 @@ namespace TipODFreq
             this.easyLabel2.DisplayMode = EasyScada.Winforms.Controls.DisplayMode.Value;
             this.easyLabel2.Location = new System.Drawing.Point(12, 293);
             this.easyLabel2.Name = "easyLabel2";
-            this.easyLabel2.Size = new System.Drawing.Size(100, 23);
+            this.easyLabel2.Size = new System.Drawing.Size(58, 23);
             this.easyLabel2.StringFormat = null;
             this.easyLabel2.TabIndex = 8;
-            this.easyLabel2.TagPath = "Local Station/Station1Hmi/Device/FormulaGId";
+            this.easyLabel2.TagPath = "Local Station/Station1Plc/Device/FormulaGId";
             this.easyLabel2.Text = "easyLabel2";
             // 
             // easyLabel3
