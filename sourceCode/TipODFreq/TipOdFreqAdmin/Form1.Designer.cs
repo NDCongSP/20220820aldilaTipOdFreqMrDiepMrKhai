@@ -29,6 +29,7 @@ namespace TipOdFreqAdmin
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnUpdateData = new System.Windows.Forms.Button();
             this.labStatus = new System.Windows.Forms.Label();
@@ -40,6 +41,8 @@ namespace TipOdFreqAdmin
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dataGridViewPolishing = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbPart = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnQuery = new System.Windows.Forms.Button();
             this.comboBoxLogType = new System.Windows.Forms.ComboBox();
@@ -49,6 +52,7 @@ namespace TipOdFreqAdmin
             this.dateTimePickerTo = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
             this.btnUpdatePathExport = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSanding)).BeginInit();
@@ -161,6 +165,8 @@ namespace TipOdFreqAdmin
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbPart);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.btnExport);
             this.groupBox1.Controls.Add(this.btnQuery);
             this.groupBox1.Controls.Add(this.comboBoxLogType);
@@ -176,10 +182,28 @@ namespace TipOdFreqAdmin
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             // 
+            // cbPart
+            // 
+            this.cbPart.FormattingEnabled = true;
+            this.cbPart.Location = new System.Drawing.Point(494, 33);
+            this.cbPart.Name = "cbPart";
+            this.cbPart.Size = new System.Drawing.Size(161, 24);
+            this.cbPart.TabIndex = 6;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(494, 13);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 17);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Part:";
+            // 
             // btnExport
             // 
             this.btnExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnExport.Location = new System.Drawing.Point(1030, 23);
+            this.btnExport.Location = new System.Drawing.Point(1060, 23);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(147, 44);
             this.btnExport.TabIndex = 4;
@@ -189,7 +213,7 @@ namespace TipOdFreqAdmin
             // btnQuery
             // 
             this.btnQuery.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnQuery.Location = new System.Drawing.Point(805, 23);
+            this.btnQuery.Location = new System.Drawing.Point(888, 23);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(147, 44);
             this.btnQuery.TabIndex = 4;
@@ -202,7 +226,7 @@ namespace TipOdFreqAdmin
             this.comboBoxLogType.Items.AddRange(new object[] {
             "Production",
             "Pilot"});
-            this.comboBoxLogType.Location = new System.Drawing.Point(550, 43);
+            this.comboBoxLogType.Location = new System.Drawing.Point(696, 33);
             this.comboBoxLogType.Name = "comboBoxLogType";
             this.comboBoxLogType.Size = new System.Drawing.Size(161, 24);
             this.comboBoxLogType.TabIndex = 3;
@@ -212,7 +236,7 @@ namespace TipOdFreqAdmin
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(547, 19);
+            this.label3.Location = new System.Drawing.Point(696, 13);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 17);
             this.label3.TabIndex = 2;
@@ -222,7 +246,7 @@ namespace TipOdFreqAdmin
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(263, 19);
+            this.label2.Location = new System.Drawing.Point(244, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(125, 17);
             this.label2.TabIndex = 2;
@@ -232,7 +256,7 @@ namespace TipOdFreqAdmin
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(8, 20);
+            this.label1.Location = new System.Drawing.Point(7, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(123, 17);
             this.label1.TabIndex = 2;
@@ -244,7 +268,7 @@ namespace TipOdFreqAdmin
             this.dateTimePickerTo.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.dateTimePickerTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerTo.Location = new System.Drawing.Point(266, 43);
+            this.dateTimePickerTo.Location = new System.Drawing.Point(244, 34);
             this.dateTimePickerTo.Name = "dateTimePickerTo";
             this.dateTimePickerTo.Size = new System.Drawing.Size(200, 23);
             this.dateTimePickerTo.TabIndex = 2;
@@ -255,7 +279,7 @@ namespace TipOdFreqAdmin
             this.dateTimePickerFrom.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.dateTimePickerFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerFrom.Location = new System.Drawing.Point(7, 43);
+            this.dateTimePickerFrom.Location = new System.Drawing.Point(7, 34);
             this.dateTimePickerFrom.Name = "dateTimePickerFrom";
             this.dateTimePickerFrom.Size = new System.Drawing.Size(200, 23);
             this.dateTimePickerFrom.TabIndex = 1;
@@ -271,6 +295,11 @@ namespace TipOdFreqAdmin
             this.btnUpdatePathExport.TabIndex = 5;
             this.btnUpdatePathExport.Text = "Cập nhật đường dẫn xuất file CSV";
             this.btnUpdatePathExport.UseVisualStyleBackColor = false;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // Form1
             // 
@@ -321,6 +350,9 @@ namespace TipOdFreqAdmin
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePickerTo;
         private System.Windows.Forms.Button btnUpdatePathExport;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ComboBox cbPart;
     }
 }
 
