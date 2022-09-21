@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -16,6 +17,14 @@ namespace TipODFreq
         [STAThread]
         static void Main()
         {
+            String thisprocessname = Process.GetCurrentProcess().ProcessName;
+
+            if (Process.GetProcesses().Count(p => p.ProcessName == thisprocessname) > 1)
+            {
+                MessageBox.Show("Ứng dụng đang mở, không được mở lại.", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             #region Đọc các thông số cấu hình ban đầu từ settings
             GlobalVariables.ConnectionString = EncodeMD5.DecryptString(Properties.Settings.Default.ConString, "@Aldila@123");
 

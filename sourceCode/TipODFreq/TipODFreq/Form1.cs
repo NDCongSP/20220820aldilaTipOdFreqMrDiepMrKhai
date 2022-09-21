@@ -253,6 +253,18 @@ namespace TipODFreq
                 LogType_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/LogType"),
                           new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/LogType")
                           , "", easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/LogType").Value));
+
+                LogStation1_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/Log"),
+                          new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/Log")
+                          , "", easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/Log").Value));
+
+                LogStation2_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Log"),
+                         new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Log")
+                         , "", easyDriverConnector1.GetTag("Local Station/Station2Plc/Device/Log").Value));
+
+                LogStation3_ValueChanged(easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/Log"),
+                         new TagValueChangedEventArgs(easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/Log")
+                         , "", easyDriverConnector1.GetTag("Local Station/Station3Plc/Device/Log").Value));
                 #endregion
 
                 easyDriverConnector1.GetTag("Local Station/Station1Hmi/Device/BarcodeChar1").ValueChanged += BarcodeChar1_ValueChanged;
