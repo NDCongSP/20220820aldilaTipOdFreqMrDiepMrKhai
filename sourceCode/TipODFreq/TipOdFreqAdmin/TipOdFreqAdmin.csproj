@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>LogoPT.ico</ApplicationIcon>
+    <ApplicationIcon>storage_files.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LogoPT.ico" />
+    <Content Include="storage_files.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
