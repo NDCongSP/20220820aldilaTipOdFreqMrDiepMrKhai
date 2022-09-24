@@ -1236,7 +1236,7 @@ namespace TipODFreq
                         logData.WorkOrder = workOrder;
                         logData.ShaftNumber = int.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/ShaftNumber").Value, out int value) ? value : 0;
                         logData.Freq01Reading = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/Freq01Reading").Value, out double value1) ? value1 : 0;
-                        logData.Freq02Reading = double.TryParse(freq02Reading, out value1) ? value1 : 0;
+                        logData.Freq02Reading = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/Freq02Reading").Value, out  value1) ? value1 : 0;
                         logData.MotorSandingSpeed = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/MotorSanding").Value, out value1) ? value1 : 0;
                         logData.FreqTarget = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/FreqTarget").Value, out value1) ? value1 : 0;
                         logData.FormulaGId = int.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/FormulaGId").Value, out value) ? value : 0;

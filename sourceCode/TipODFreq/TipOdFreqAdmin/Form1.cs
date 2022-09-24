@@ -175,10 +175,20 @@ namespace TipOdFreqAdmin
 
                     using (var connection = GlobalVariables.GetDbConnection())
                     {
+                        string _where = null;
+                        if (_part == "All")
+                        {
+                            _where = $"CreatedDate >= '{_from}' and CreatedDate <= '{_to}' and LogStyle = '{_logType}'";
+                        }
+                        else
+                        {
+                            _where = $"CreatedDate >= '{_from}' and CreatedDate <= '{_to}' and LogStyle = '{_logType}' and Part = '{_part}'";
+                        }
+
                         #region Sanding
                         var dataSanding = connection.Query<tblDataLogSandingModel>("select Station, ShaftNumber, CreatedDate, WorkOrder, Part,Freq01Reading,MotorSandingSpeed,Freq02Reading,FreqTarget,FormulaGId,LogStyle " +
                     "from tblDataLogSanding " +
-                    $"Where CreatedDate >= '{_from}' and CreatedDate <= '{_to}' and LogStyle = '{_logType}' and Part = '{_part}'" +
+                    $"Where {_where} " +
                     $"Order by CreatedDate asc").ToList();
                         if (dataSanding.Count > 0)
                         {
@@ -201,7 +211,7 @@ namespace TipOdFreqAdmin
                         #region Tip OD
                         var dataTipOd = connection.Query<tblDataLogTipOdModel>("select Station, ShaftNumber, CreatedDate, WorkOrder, Part,DiamReading,MeasType,DiamLL,DiamUL,PassFail,LogType" +
                     " from tblDataLogTipOd " +
-                    $"Where CreatedDate >= '{_from}' and CreatedDate <= '{_to}' and LogType = '{_logType}' and Part = '{_part}'" +
+                    $"Where {_where} " +
                     $"Order by CreatedDate asc").ToList();
                         if (dataTipOd.Count > 0)
                         {
@@ -224,7 +234,7 @@ namespace TipOdFreqAdmin
                         #region polishing
                         var dataPolishing = connection.Query<tblDataLogPolishingModel>("select Station, ShaftNumber, CreatedDate, WorkOrder, Part,FreqReading,FreqTarget,MortorPolishing,FormulaPO,LogType " +
                     "from tblDataLogPolishing " +
-                     $"Where CreatedDate >= '{_from}' and CreatedDate <= '{_to}' and LogType = '{_logType}' and Part = '{_part}'" +
+                     $"Where {_where} " +
                      $"Order by CreatedDate asc").ToList();
                         if (dataPolishing.Count > 0)
                         {
@@ -307,9 +317,19 @@ namespace TipOdFreqAdmin
 
                 using (var connection = GlobalVariables.GetDbConnection())
                 {
+                    string _where = null;
+                    if (_part == "All")
+                    {
+                        _where = $"CreatedDate >= '{_from}' and CreatedDate <= '{_to}' and LogStyle = '{_logType}'";
+                    }
+                    else
+                    {
+                        _where = $"CreatedDate >= '{_from}' and CreatedDate <= '{_to}' and LogStyle = '{_logType}' and Part = '{_part}'";
+                    }
+
                     var dataSanding = connection.Query<tblDataLogSandingModel>("select Station, ShaftNumber, CreatedDate, WorkOrder, Part,Freq01Reading,MotorSandingSpeed,Freq02Reading,FreqTarget,FormulaGId,LogStyle " +
                         "from tblDataLogSanding " +
-                        $"Where CreatedDate >= '{_from}' and CreatedDate <= '{_to}' and LogStyle = '{_logType}' and Part = '{_part}'" +
+                        $"Where {_where} " +
                         $"Order by CreatedDate asc").ToList();
                     if (dataSanding.Count > 0)
                     {
@@ -332,7 +352,7 @@ namespace TipOdFreqAdmin
 
                     var dataTipOd = connection.Query<tblDataLogTipOdModel>("select Station, ShaftNumber, CreatedDate, WorkOrder, Part,DiamReading,MeasType,DiamLL,DiamUL,PassFail,LogType" +
                         " from tblDataLogTipOd " +
-                        $"Where CreatedDate >= '{_from}' and CreatedDate <= '{_to}' and LogType = '{_logType}' and Part = '{_part}'" +
+                        $"Where {_where} " +
                         $"Order by CreatedDate asc").ToList();
                     if (dataTipOd.Count > 0)
                     {
@@ -355,7 +375,7 @@ namespace TipOdFreqAdmin
 
                     var dataPolishing = connection.Query<tblDataLogPolishingModel>("select Station, ShaftNumber, CreatedDate, WorkOrder, Part,FreqReading,FreqTarget,MortorPolishing,FormulaPO,LogType " +
                         "from tblDataLogPolishing " +
-                         $"Where CreatedDate >= '{_from}' and CreatedDate <= '{_to}' and LogType = '{_logType}' and Part = '{_part}'" +
+                         $"Where {_where} " +
                          $"Order by CreatedDate asc").ToList();
                     if (dataPolishing.Count > 0)
                     {
@@ -380,7 +400,7 @@ namespace TipOdFreqAdmin
             catch
             {
 
-                
+
             }
         }
 
