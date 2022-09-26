@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>LogoPT.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClosedXML">
       <HintPath>C:\Program Files (x86)\PT Automation Solution\Easy Driver Server\Toolkit\ClosedXML.DLL</HintPath>
@@ -122,11 +125,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\tblDataLogPolishingModel.cs" />
+    <Compile Include="Models\tblDataLogTipOdModel.cs" />
     <Compile Include="Models\tblFormulaPoModel.cs" />
     <Compile Include="Models\tblFormulaGModel.cs" />
-    <Compile Include="Models\tblDataLogODModel.cs" />
-    <Compile Include="Models\tblDataLogFreqModel.cs" />
-    <Compile Include="Models\DataModel.cs" />
+    <Compile Include="Models\tblDataLogSandingModel.cs" />
     <Compile Include="Models\PartInfoModel.cs" />
     <Compile Include="Models\tblTipOdFreqModel.cs" />
     <Compile Include="Program.cs" />
@@ -144,6 +147,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -158,6 +162,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LogoPT.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

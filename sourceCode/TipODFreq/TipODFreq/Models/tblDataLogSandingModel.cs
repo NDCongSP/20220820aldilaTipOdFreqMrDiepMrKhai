@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TipODFreq
 {
-    public class tblDataLogFreqModel
+    public class tblDataLogSandingModel
     {
         public Guid Id { get; set; }
         public string Station { get; set; }
@@ -15,12 +15,10 @@ namespace TipODFreq
         public string WorkOrder { get; set; }
         public string Part { get; set; }
         public double? Freq01Reading { get; set; }
-        public int? MotorSandingSpeed { get; set; }
+        public double? MotorSandingSpeed { get; set; }
         public double? Freq02Reading { get; set; }
-        public int? MotorPolishingSpeed { get; set; }
         public double? FreqTarget { get; set; }
         public int? FormulaGId { get; set; }
-        public int? FormulaPoId { get; set; }
         public string LogStyle { get; set; }
     }
 }

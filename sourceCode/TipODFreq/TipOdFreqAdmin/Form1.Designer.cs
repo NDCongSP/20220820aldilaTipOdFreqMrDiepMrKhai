@@ -1,0 +1,358 @@
+﻿
+namespace TipOdFreqAdmin
+{
+    partial class Form1
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.btnUpdateData = new System.Windows.Forms.Button();
+            this.labStatus = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dataGridViewSanding = new System.Windows.Forms.DataGridView();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataGridViewTipOd = new System.Windows.Forms.DataGridView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dataGridViewPolishing = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbPart = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.btnQuery = new System.Windows.Forms.Button();
+            this.comboBoxLogType = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dateTimePickerTo = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
+            this.btnUpdatePathExport = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSanding)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipOd)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPolishing)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // btnUpdateData
+            // 
+            this.btnUpdateData.BackColor = System.Drawing.Color.Teal;
+            this.btnUpdateData.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateData.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnUpdateData.Location = new System.Drawing.Point(12, 12);
+            this.btnUpdateData.Name = "btnUpdateData";
+            this.btnUpdateData.Size = new System.Drawing.Size(279, 34);
+            this.btnUpdateData.TabIndex = 5;
+            this.btnUpdateData.Text = "Update data sql from CSV file";
+            this.btnUpdateData.UseVisualStyleBackColor = false;
+            this.btnUpdateData.Click += new System.EventHandler(this.btnUpdateData_Click);
+            // 
+            // labStatus
+            // 
+            this.labStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labStatus.Location = new System.Drawing.Point(1065, 698);
+            this.labStatus.Name = "labStatus";
+            this.labStatus.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.labStatus.Size = new System.Drawing.Size(190, 23);
+            this.labStatus.TabIndex = 6;
+            this.labStatus.Text = "sssssssssssssssssss";
+            this.labStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Location = new System.Drawing.Point(12, 144);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1234, 551);
+            this.tabControl1.TabIndex = 7;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.dataGridViewSanding);
+            this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1226, 519);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "SANDING";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewSanding
+            // 
+            this.dataGridViewSanding.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSanding.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewSanding.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewSanding.Name = "dataGridViewSanding";
+            this.dataGridViewSanding.Size = new System.Drawing.Size(1220, 513);
+            this.dataGridViewSanding.TabIndex = 0;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.dataGridViewTipOd);
+            this.tabPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1226, 519);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "TIP OD";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewTipOd
+            // 
+            this.dataGridViewTipOd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTipOd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewTipOd.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewTipOd.Name = "dataGridViewTipOd";
+            this.dataGridViewTipOd.Size = new System.Drawing.Size(1220, 513);
+            this.dataGridViewTipOd.TabIndex = 0;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.dataGridViewPolishing);
+            this.tabPage3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1226, 519);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "POLISHING";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewPolishing
+            // 
+            this.dataGridViewPolishing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPolishing.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewPolishing.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewPolishing.Name = "dataGridViewPolishing";
+            this.dataGridViewPolishing.Size = new System.Drawing.Size(1220, 513);
+            this.dataGridViewPolishing.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cbPart);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.btnExport);
+            this.groupBox1.Controls.Add(this.btnQuery);
+            this.groupBox1.Controls.Add(this.comboBoxLogType);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.dateTimePickerTo);
+            this.groupBox1.Controls.Add(this.dateTimePickerFrom);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(12, 55);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1230, 81);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            // 
+            // cbPart
+            // 
+            this.cbPart.FormattingEnabled = true;
+            this.cbPart.Location = new System.Drawing.Point(494, 33);
+            this.cbPart.Name = "cbPart";
+            this.cbPart.Size = new System.Drawing.Size(161, 24);
+            this.cbPart.TabIndex = 6;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(494, 13);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 17);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Part:";
+            // 
+            // btnExport
+            // 
+            this.btnExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnExport.Location = new System.Drawing.Point(1060, 23);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(147, 44);
+            this.btnExport.TabIndex = 4;
+            this.btnExport.Text = "Xuất CSV";
+            this.btnExport.UseVisualStyleBackColor = false;
+            // 
+            // btnQuery
+            // 
+            this.btnQuery.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnQuery.Location = new System.Drawing.Point(888, 23);
+            this.btnQuery.Name = "btnQuery";
+            this.btnQuery.Size = new System.Drawing.Size(147, 44);
+            this.btnQuery.TabIndex = 4;
+            this.btnQuery.Text = "Truy vấn";
+            this.btnQuery.UseVisualStyleBackColor = false;
+            // 
+            // comboBoxLogType
+            // 
+            this.comboBoxLogType.FormattingEnabled = true;
+            this.comboBoxLogType.Items.AddRange(new object[] {
+            "Production",
+            "Pilot"});
+            this.comboBoxLogType.Location = new System.Drawing.Point(696, 33);
+            this.comboBoxLogType.Name = "comboBoxLogType";
+            this.comboBoxLogType.Size = new System.Drawing.Size(161, 24);
+            this.comboBoxLogType.TabIndex = 3;
+            this.comboBoxLogType.Text = "Pilot";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(696, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(63, 17);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Kiểu lưu:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(244, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(125, 17);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Thời gian kết thúc:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(7, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(123, 17);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Thời gian bắt đầu:";
+            // 
+            // dateTimePickerTo
+            // 
+            this.dateTimePickerTo.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerTo.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.dateTimePickerTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerTo.Location = new System.Drawing.Point(244, 34);
+            this.dateTimePickerTo.Name = "dateTimePickerTo";
+            this.dateTimePickerTo.Size = new System.Drawing.Size(200, 23);
+            this.dateTimePickerTo.TabIndex = 2;
+            // 
+            // dateTimePickerFrom
+            // 
+            this.dateTimePickerFrom.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerFrom.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.dateTimePickerFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerFrom.Location = new System.Drawing.Point(7, 34);
+            this.dateTimePickerFrom.Name = "dateTimePickerFrom";
+            this.dateTimePickerFrom.Size = new System.Drawing.Size(200, 23);
+            this.dateTimePickerFrom.TabIndex = 1;
+            // 
+            // btnUpdatePathExport
+            // 
+            this.btnUpdatePathExport.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnUpdatePathExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdatePathExport.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnUpdatePathExport.Location = new System.Drawing.Point(960, 12);
+            this.btnUpdatePathExport.Name = "btnUpdatePathExport";
+            this.btnUpdatePathExport.Size = new System.Drawing.Size(279, 34);
+            this.btnUpdatePathExport.TabIndex = 5;
+            this.btnUpdatePathExport.Text = "Cập nhật đường dẫn xuất file CSV";
+            this.btnUpdatePathExport.UseVisualStyleBackColor = false;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1258, 723);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.labStatus);
+            this.Controls.Add(this.btnUpdatePathExport);
+            this.Controls.Add(this.btnUpdateData);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Tip OD Freq Admin";
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSanding)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipOd)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPolishing)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Button btnUpdateData;
+        private System.Windows.Forms.Label labStatus;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.DataGridView dataGridViewSanding;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.DataGridView dataGridViewTipOd;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.DataGridView dataGridViewPolishing;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dateTimePickerFrom;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button btnQuery;
+        private System.Windows.Forms.ComboBox comboBoxLogType;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker dateTimePickerTo;
+        private System.Windows.Forms.Button btnUpdatePathExport;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ComboBox cbPart;
+    }
+}
+

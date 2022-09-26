@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TipODFreq.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TipOdFreqAdmin.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="ConString" Type="System.String" Scope="User">
@@ -14,14 +14,8 @@
     <Setting Name="PathCsvDataFormulaPo" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\MyCompany\8.SourceCode\3.Projects\20220820aldilaTipOdFreqMrDiepMrKhai\info\DATA\DATABASE\cong thuc PO.csv</Value>
     </Setting>
-    <Setting Name="ShaftNumSanding" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="ShaftNumOd" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="ShaftNumPolishing" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+    <Setting Name="PathExport" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

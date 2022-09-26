@@ -1,0 +1,12 @@
+Name,Address,DataType,RefreshRate,AccessPermission,Gain,Offset,Description
+FreqTarget,400823,Word,100,ReadAndWrite,1,0,log
+FormulaGId,400819,Word,100,ReadAndWrite,1,0,log
+Freq01Reading,400827,Word,100,ReadAndWrite,0.01,0,log
+Freq02Reading,400829,Word,100,ReadAndWrite,0.01,0,log
+MotorSanding,400825,Word,100,ReadAndWrite,1,0,log
+ShaftNumber,400831,Word,100,ReadAndWrite,1,0,log
+Log,400911,Word,100,ReadAndWrite,1,0,
+ResetLog,400912,Word,100,ReadAndWrite,1,0,
+LogType,400833,Word,100,ReadAndWrite,1,0,1-no; 2- 5pcs; 4 all
+PartChange,400908,Word,100,ReadAndWrite,1,0,
+Tag1,400951,Word,100,ReadAndWrite,1,0,
