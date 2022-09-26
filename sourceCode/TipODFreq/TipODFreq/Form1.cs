@@ -1262,7 +1262,7 @@ namespace TipODFreq
 
                                         var result = connection.Execute("sp_tblDataLogSandingInsert", para, commandType: CommandType.StoredProcedure);
 
-                                        Properties.Settings.Default.ShaftNumSanding = (int)logData.ShaftNumber;
+                                        GlobalVariables.ShaftNumSanding = Properties.Settings.Default.ShaftNumSanding = (int)logData.ShaftNumber;
                                         Properties.Settings.Default.Save();
                                     }
                                     else
@@ -1312,7 +1312,7 @@ namespace TipODFreq
 
                                     var result = connection.Execute("sp_tblDataLogSandingInsert", para, commandType: CommandType.StoredProcedure);
 
-                                    Properties.Settings.Default.ShaftNumSanding = (int)logData.ShaftNumber;
+                                    GlobalVariables.ShaftNumSanding = Properties.Settings.Default.ShaftNumSanding = (int)logData.ShaftNumber;
                                     Properties.Settings.Default.Save();
                                 }
                                 else
