@@ -1033,7 +1033,7 @@ namespace TipODFreq
 
                                     var result = connection.Execute("sp_tblDataLogPolishingInsert", para, commandType: CommandType.StoredProcedure);
 
-                                    var dataPolishing = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogPolishing order by CreatedDate desc").ToList();
+                                    var dataPolishing = connection.Query<tblDataLogPolishingModel>("select top (10) * from tblDataLogPolishing order by CreatedDate desc").ToList();
                                     if (dataPolishing.Count > 0)
                                     {
                                         if (dataGridViewPolishing.InvokeRequired)
@@ -1071,7 +1071,7 @@ namespace TipODFreq
 
                                 var result = connection.Execute("sp_tblDataLogPolishingInsert", para, commandType: CommandType.StoredProcedure);
 
-                                var dataPolishing = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogPolishing order by CreatedDate desc").ToList();
+                                var dataPolishing = connection.Query<tblDataLogPolishingModel>("select top (10) * from tblDataLogPolishing order by CreatedDate desc").ToList();
                                 if (dataPolishing.Count > 0)
                                 {
                                     if (dataGridViewPolishing.InvokeRequired)
@@ -1142,7 +1142,7 @@ namespace TipODFreq
                                 }
                                 using (var connection = GlobalVariables.GetDbConnection())
                                 {
-                                    var dataTipOd = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogTipOd order by CreatedDate desc").ToList();
+                                    var dataTipOd = connection.Query<tblDataLogTipOdModel>("select top (10) * from tblDataLogTipOd order by CreatedDate desc").ToList();
                                     if (dataTipOd.Count > 0)
                                     {
                                         if (dataGridViewTipOd.InvokeRequired)
@@ -1189,7 +1189,7 @@ namespace TipODFreq
                             }
                             using (var connection = GlobalVariables.GetDbConnection())
                             {
-                                var dataTipOd = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogTipOd order by CreatedDate desc").ToList();
+                                var dataTipOd = connection.Query<tblDataLogTipOdModel>("select top (10) * from tblDataLogTipOd order by CreatedDate desc").ToList();
                                 if (dataTipOd.Count > 0)
                                 {
                                     if (dataGridViewTipOd.InvokeRequired)
@@ -1236,7 +1236,7 @@ namespace TipODFreq
                         logData.WorkOrder = workOrder;
                         logData.ShaftNumber = int.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/ShaftNumber").Value, out int value) ? value : 0;
                         logData.Freq01Reading = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/Freq01Reading").Value, out double value1) ? value1 : 0;
-                        logData.Freq02Reading = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/Freq02Reading").Value, out  value1) ? value1 : 0;
+                        logData.Freq02Reading = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/Freq02Reading").Value, out value1) ? value1 : 0;
                         logData.MotorSandingSpeed = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/MotorSanding").Value, out value1) ? value1 : 0;
                         logData.FreqTarget = double.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/FreqTarget").Value, out value1) ? value1 : 0;
                         logData.FormulaGId = int.TryParse(easyDriverConnector1.GetTag("Local Station/Station1Plc/Device/FormulaGId").Value, out value) ? value : 0;
@@ -1247,18 +1247,29 @@ namespace TipODFreq
                             {
                                 using (var connection = GlobalVariables.GetDbConnection())
                                 {
-                                    var para = new DynamicParameters();
-                                    para.Add("@shaftNum", logData.ShaftNumber);
-                                    para.Add("@workOrder", logData.WorkOrder);
-                                    para.Add("@freq01Reading", logData.Freq01Reading);
-                                    para.Add("@motorSandingSpeed", logData.MotorSandingSpeed);
-                                    para.Add("@freq02Reading", logData.Freq02Reading);
-                                    para.Add("@freqTarget", Math.Round(Convert.ToDouble(logData.FreqTarget) / 100, 2));
-                                    para.Add("@formulaG", logData.FormulaGId);
-                                    para.Add("@logType", logData.LogStyle);
-                                    para.Add("@partNum", logData.Part);
+                                    if (logData.ShaftNumber != GlobalVariables.ShaftNumSanding)
+                                    {
+                                        var para = new DynamicParameters();
+                                        para.Add("@shaftNum", logData.ShaftNumber);
+                                        para.Add("@workOrder", logData.WorkOrder);
+                                        para.Add("@freq01Reading", logData.Freq01Reading);
+                                        para.Add("@motorSandingSpeed", logData.MotorSandingSpeed);
+                                        para.Add("@freq02Reading", logData.Freq02Reading);
+                                        para.Add("@freqTarget", Math.Round(Convert.ToDouble(logData.FreqTarget) / 100, 2));
+                                        para.Add("@formulaG", logData.FormulaGId);
+                                        para.Add("@logType", logData.LogStyle);
+                                        para.Add("@partNum", logData.Part);
 
-                                    var result = connection.Execute("sp_tblDataLogSandingInsert", para, commandType: CommandType.StoredProcedure);
+                                        var result = connection.Execute("sp_tblDataLogSandingInsert", para, commandType: CommandType.StoredProcedure);
+
+                                        Properties.Settings.Default.ShaftNumSanding = (int)logData.ShaftNumber;
+                                        Properties.Settings.Default.Save();
+                                    }
+                                    else
+                                    {
+                                        var result = connection.Execute($"update tblDataLogSanding set Freq01Reading={logData.Freq01Reading},Freq02Reading={logData.Freq02Reading}," +
+                                            $"MotorSandingSpeed={logData.MotorSandingSpeed} Where ShaftNumber={logData.ShaftNumber} and Part='{logData.Part}' and WorkOrder = '{logData.WorkOrder}'");
+                                    }
 
                                     var dataSanding = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogSanding order by CreatedDate desc").ToList();
                                     if (dataSanding.Count > 0)
@@ -1286,18 +1297,29 @@ namespace TipODFreq
 
                             using (var connection = GlobalVariables.GetDbConnection())
                             {
-                                var para = new DynamicParameters();
-                                para.Add("@shaftNum", logData.ShaftNumber);
-                                para.Add("@workOrder", logData.WorkOrder);
-                                para.Add("@freq01Reading", logData.Freq01Reading);
-                                para.Add("@motorSandingSpeed", logData.MotorSandingSpeed);
-                                para.Add("@freq02Reading", logData.Freq02Reading);
-                                para.Add("@freqTarget", Math.Round(Convert.ToDouble(logData.FreqTarget) / 100, 2));
-                                para.Add("@formulaG", logData.FormulaGId);
-                                para.Add("@logType", logData.LogStyle);
-                                para.Add("@partNum", logData.Part);
+                                if (logData.ShaftNumber != GlobalVariables.ShaftNumSanding)
+                                {
+                                    var para = new DynamicParameters();
+                                    para.Add("@shaftNum", logData.ShaftNumber);
+                                    para.Add("@workOrder", logData.WorkOrder);
+                                    para.Add("@freq01Reading", logData.Freq01Reading);
+                                    para.Add("@motorSandingSpeed", logData.MotorSandingSpeed);
+                                    para.Add("@freq02Reading", logData.Freq02Reading);
+                                    para.Add("@freqTarget", Math.Round(Convert.ToDouble(logData.FreqTarget) / 100, 2));
+                                    para.Add("@formulaG", logData.FormulaGId);
+                                    para.Add("@logType", logData.LogStyle);
+                                    para.Add("@partNum", logData.Part);
 
-                                var result = connection.Execute("sp_tblDataLogSandingInsert", para, commandType: CommandType.StoredProcedure);
+                                    var result = connection.Execute("sp_tblDataLogSandingInsert", para, commandType: CommandType.StoredProcedure);
+
+                                    Properties.Settings.Default.ShaftNumSanding = (int)logData.ShaftNumber;
+                                    Properties.Settings.Default.Save();
+                                }
+                                else
+                                {
+                                    var result = connection.Execute($"update tblDataLogSanding set Freq01Reading={logData.Freq01Reading},Freq02Reading={logData.Freq02Reading}," +
+                                        $"MotorSandingSpeed={logData.MotorSandingSpeed} Where ShaftNumber={logData.ShaftNumber} and Part='{logData.Part}' and WorkOrder = '{logData.WorkOrder}'");
+                                }
 
                                 var dataSanding = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogSanding order by CreatedDate desc").ToList();
                                 if (dataSanding.Count > 0)

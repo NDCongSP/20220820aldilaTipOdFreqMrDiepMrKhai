@@ -21,5 +21,9 @@ namespace TipODFreq
         public static string PathOd { get; set; }
         public static string PathFormulaG { get; set; }
         public static string PathFormulaPo { get; set; }
+
+        public static int ShaftNumSanding { get; set; }
+        public static int ShaftNumOd { get; set; }
+        public static int ShaftNumPolishing { get; set; }
     }
 }

@@ -75,5 +75,41 @@ namespace TipODFreq.Properties {
                 this["PathCsvDataFormulaPo"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ShaftNumSanding {
+            get {
+                return ((int)(this["ShaftNumSanding"]));
+            }
+            set {
+                this["ShaftNumSanding"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ShaftNumOd {
+            get {
+                return ((int)(this["ShaftNumOd"]));
+            }
+            set {
+                this["ShaftNumOd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ShaftNumPolishing {
+            get {
+                return ((int)(this["ShaftNumPolishing"]));
+            }
+            set {
+                this["ShaftNumPolishing"] = value;
+            }
+        }
     }
 }

@@ -33,6 +33,10 @@ namespace TipODFreq
             GlobalVariables.PathFormulaG = Properties.Settings.Default.PathCsvDataFormulaG;
             GlobalVariables.PathFormulaPo = Properties.Settings.Default.PathCsvDataFormulaPo;
 
+            GlobalVariables.ShaftNumSanding = Properties.Settings.Default.ShaftNumSanding;
+            GlobalVariables.ShaftNumOd = Properties.Settings.Default.ShaftNumOd;
+            GlobalVariables.ShaftNumPolishing = Properties.Settings.Default.ShaftNumPolishing;
+
             //Console.WriteLine($"Path app: {Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}");
             #endregion
 
