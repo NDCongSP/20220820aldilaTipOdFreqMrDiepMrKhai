@@ -209,6 +209,16 @@ namespace TipOdFreqAdmin
                         #endregion
 
                         #region Tip OD
+
+                        if (_part == "All")
+                        {
+                            _where = $"CreatedDate >= '{_from}' and CreatedDate <= '{_to}' and LogType = '{_logType}'";
+                        }
+                        else
+                        {
+                            _where = $"CreatedDate >= '{_from}' and CreatedDate <= '{_to}' and LogType = '{_logType}' and Part = '{_part}'";
+                        }
+
                         var dataTipOd = connection.Query<tblDataLogTipOdModel>("select Station, ShaftNumber, CreatedDate, WorkOrder, Part,DiamReading,MeasType,DiamLL,DiamUL,PassFail,LogType" +
                     " from tblDataLogTipOd " +
                     $"Where {_where} " +
@@ -350,6 +360,15 @@ namespace TipOdFreqAdmin
                         }
                     }
 
+                    if (_part == "All")
+                    {
+                        _where = $"CreatedDate >= '{_from}' and CreatedDate <= '{_to}' and LogType = '{_logType}'";
+                    }
+                    else
+                    {
+                        _where = $"CreatedDate >= '{_from}' and CreatedDate <= '{_to}' and LogType = '{_logType}' and Part = '{_part}'";
+                    }
+
                     var dataTipOd = connection.Query<tblDataLogTipOdModel>("select Station, ShaftNumber, CreatedDate, WorkOrder, Part,DiamReading,MeasType,DiamLL,DiamUL,PassFail,LogType" +
                         " from tblDataLogTipOd " +
                         $"Where {_where} " +
@@ -397,10 +416,10 @@ namespace TipOdFreqAdmin
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
 
-
+                Console.WriteLine($"Loi: { ex.Message}");
             }
         }
 
