@@ -12,3 +12,4 @@ Thông tin cài đặt gồm 3 phần:
 Log data: theo 2 kiểu
 - Production: chỉ log 5 cây
 - Pilot: log toàn bộ
+- sdsdsdsd
