@@ -1247,7 +1247,7 @@ namespace TipODFreq
                             {
                                 using (var connection = GlobalVariables.GetDbConnection())
                                 {
-                                    if (logData.ShaftNumber != GlobalVariables.ShaftNumSanding)
+                                    //if (logData.ShaftNumber != GlobalVariables.ShaftNumSanding)
                                     {
                                         var para = new DynamicParameters();
                                         para.Add("@shaftNum", logData.ShaftNumber);
@@ -1265,11 +1265,11 @@ namespace TipODFreq
                                         GlobalVariables.ShaftNumSanding = Properties.Settings.Default.ShaftNumSanding = (int)logData.ShaftNumber;
                                         Properties.Settings.Default.Save();
                                     }
-                                    else
-                                    {
-                                        var result = connection.Execute($"update tblDataLogSanding set Freq01Reading={logData.Freq01Reading},Freq02Reading={logData.Freq02Reading}," +
-                                            $"MotorSandingSpeed={logData.MotorSandingSpeed} Where ShaftNumber={logData.ShaftNumber} and Part='{logData.Part}' and WorkOrder = '{logData.WorkOrder}'");
-                                    }
+                                    //else
+                                    //{
+                                    //    var result = connection.Execute($"update tblDataLogSanding set Freq01Reading={logData.Freq01Reading},Freq02Reading={logData.Freq02Reading}," +
+                                    //        $"MotorSandingSpeed={logData.MotorSandingSpeed} Where ShaftNumber={logData.ShaftNumber} and Part='{logData.Part}' and WorkOrder = '{logData.WorkOrder}'");
+                                    //}
 
                                     var dataSanding = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogSanding order by CreatedDate desc").ToList();
                                     if (dataSanding.Count > 0)
@@ -1297,7 +1297,7 @@ namespace TipODFreq
 
                             using (var connection = GlobalVariables.GetDbConnection())
                             {
-                                if (logData.ShaftNumber != GlobalVariables.ShaftNumSanding)
+                                //if (logData.ShaftNumber != GlobalVariables.ShaftNumSanding)
                                 {
                                     var para = new DynamicParameters();
                                     para.Add("@shaftNum", logData.ShaftNumber);
@@ -1315,11 +1315,11 @@ namespace TipODFreq
                                     GlobalVariables.ShaftNumSanding = Properties.Settings.Default.ShaftNumSanding = (int)logData.ShaftNumber;
                                     Properties.Settings.Default.Save();
                                 }
-                                else
-                                {
-                                    var result = connection.Execute($"update tblDataLogSanding set Freq01Reading={logData.Freq01Reading},Freq02Reading={logData.Freq02Reading}," +
-                                        $"MotorSandingSpeed={logData.MotorSandingSpeed} Where ShaftNumber={logData.ShaftNumber} and Part='{logData.Part}' and WorkOrder = '{logData.WorkOrder}'");
-                                }
+                                //else
+                                //{
+                                //    var result = connection.Execute($"update tblDataLogSanding set Freq01Reading={logData.Freq01Reading},Freq02Reading={logData.Freq02Reading}," +
+                                //        $"MotorSandingSpeed={logData.MotorSandingSpeed} Where ShaftNumber={logData.ShaftNumber} and Part='{logData.Part}' and WorkOrder = '{logData.WorkOrder}'");
+                                //}
 
                                 var dataSanding = connection.Query<tblDataLogSandingModel>("select top (10) * from tblDataLogSanding order by CreatedDate desc").ToList();
                                 if (dataSanding.Count > 0)
@@ -1383,6 +1383,7 @@ namespace TipODFreq
         {
             tipOdDataLog[1].PassFail = e.NewValue;
         }
+
 
         private void OD2_ValueChanged(object sender, TagValueChangedEventArgs e)
         {
@@ -1595,11 +1596,11 @@ namespace TipODFreq
             //if the form is minimized  
             //hide it from the task bar  
             //and show the system tray icon (represented by the NotifyIcon control)  
-            if (this.WindowState == FormWindowState.Minimized)
-            {
-                Hide();
-                notifyIcon.Visible = true;
-            }
+            //if (this.WindowState == FormWindowState.Minimized)
+            //{
+            //    Hide();
+            //    notifyIcon.Visible = true;
+            //}
         }
 
         private void notifyIcon_DoubleClick(object sender, EventArgs e)
@@ -1626,8 +1627,19 @@ namespace TipODFreq
         }
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Hide();
-            notifyIcon.Visible = true;
+            //Hide();
+            //notifyIcon.Visible = true;
+
+            DialogResult result = MessageBox.Show("Bạn muốn thoát khỏi chương trình?", "Cảnh Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
         #endregion
         #endregion

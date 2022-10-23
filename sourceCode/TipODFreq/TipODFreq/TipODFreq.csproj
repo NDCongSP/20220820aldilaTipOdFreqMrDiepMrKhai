@@ -168,6 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LogoPT.ico" />
+    <None Include="Resources\icons8-minimize-67.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -44,7 +44,6 @@ namespace TipODFreq
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemShow = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnExit = new System.Windows.Forms.Button();
             this.easyLabel1 = new EasyScada.Winforms.Controls.EasyLabel();
             this.easyLabel2 = new EasyScada.Winforms.Controls.EasyLabel();
             this.easyLabel3 = new EasyScada.Winforms.Controls.EasyLabel();
@@ -69,6 +68,8 @@ namespace TipODFreq
             this.dataGridViewTipOd = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dataGridViewPolishing = new System.Windows.Forms.DataGridView();
+            this.btnMinimize = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.easyDriverConnector1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPartInfo)).BeginInit();
@@ -228,17 +229,6 @@ namespace TipODFreq
             this.toolStripMenuItemExit.Name = "toolStripMenuItemExit";
             this.toolStripMenuItemExit.Size = new System.Drawing.Size(103, 22);
             this.toolStripMenuItemExit.Text = "Exit";
-            // 
-            // btnExit
-            // 
-            this.btnExit.BackgroundImage = global::TipODFreq.Properties.Resources.logout;
-            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnExit.Location = new System.Drawing.Point(1110, 2);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(30, 30);
-            this.btnExit.TabIndex = 6;
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // easyLabel1
             // 
@@ -489,11 +479,34 @@ namespace TipODFreq
             this.dataGridViewPolishing.Size = new System.Drawing.Size(842, 397);
             this.dataGridViewPolishing.TabIndex = 6;
             // 
+            // btnMinimize
+            // 
+            this.btnMinimize.BackgroundImage = global::TipODFreq.Properties.Resources.icons8_minimize_67;
+            this.btnMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnMinimize.Location = new System.Drawing.Point(1074, 2);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(30, 30);
+            this.btnMinimize.TabIndex = 25;
+            this.btnMinimize.UseVisualStyleBackColor = true;
+            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.BackgroundImage = global::TipODFreq.Properties.Resources.logout;
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnExit.Location = new System.Drawing.Point(1110, 2);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(30, 30);
+            this.btnExit.TabIndex = 6;
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1143, 688);
+            this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.labServerStatus);
             this.Controls.Add(this.easyLabel11);
@@ -589,6 +602,7 @@ namespace TipODFreq
         private System.Windows.Forms.DataGridView dataGridViewTipOd;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView dataGridViewPolishing;
+        private System.Windows.Forms.Button btnMinimize;
     }
 }
 
