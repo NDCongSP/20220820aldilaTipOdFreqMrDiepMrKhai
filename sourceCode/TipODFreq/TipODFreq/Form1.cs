@@ -128,6 +128,7 @@ namespace TipODFreq
                     if (partInfo.Count > 0)
                     {
                         gridPartInfo.DataSource = partInfo;
+
                         #region Station1 HMI 1, truyền thông modbus TCP
                         await easyDriverConnector1.WriteTagAsync("Local Station/Station1Plc/Device/FreqTarget", (partInfo[0].FreqTarget * 100).ToString(), WritePiority.High);
                         await easyDriverConnector1.WriteTagAsync("Local Station/Station1Plc/Device/FormulaGId", partInfo[0].FormulaGId.ToString(), WritePiority.High);

@@ -10,7 +10,7 @@ namespace TipOdFreqAdmin
     {
         public Guid Id { get; set; }
         public string ItemNumber { get; set; }
-        public int? FreqTarget { get; set; }
+        public double? FreqTarget { get; set; }
         public double? DiamLL { get; set; }
         public double? DiamUL { get; set; }
         public string TipOdLength { get; set; }

@@ -464,11 +464,11 @@ namespace TipOdFreqAdmin
                             dataTip.Add(new tblTipOdFreqModel()
                             {
                                 ItemNumber = columns[0],
-                                FreqTarget = int.TryParse(columns[1], out int value) ? value : 0,
-                                DiamLL = double.TryParse(columns[2], out double value1) ? value1 : 0,
+                                FreqTarget = double.TryParse(columns[1], out double value1) ? value1 : 0,
+                                DiamLL = double.TryParse(columns[2], out  value1) ? value1 : 0,
                                 DiamUL = double.TryParse(columns[3], out value1) ? value1 : 0,
                                 TipOdLength = columns[4],
-                                FormulaGId = int.TryParse(columns[5], out value) ? value : 0,
+                                FormulaGId = int.TryParse(columns[5], out int value) ? value : 0,
                                 FormulaPoId = int.TryParse(columns[6], out value) ? value : 0,
                             });
                         }
