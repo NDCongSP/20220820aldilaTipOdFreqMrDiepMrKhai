@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ConString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">4LxE/a+D1aN38ut8vvBCcghMbkTSmcyBcML3Uo+yGpjDFhvHDZ0TTQrNs5BzWTrmXuV8s2qBvGaXtRuv57ncQupXJvdJ9GzPyMRqOL2jhjvjKeVvAbpe3jKbL2NvbpFd7v7h5NvIduukatQeC2mdfmc+ovHfxjti80ChX5YyHIRPpqjUrtLjog==</Value>
+      <Value Profile="(Default)">Data Source=localhost;Database=ALD_MFG;UID=sa;Password= 100100; Min Pool Size=0;Max Pool Size=1000;Pooling=true; Connect Timeout=65535;</Value>
     </Setting>
     <Setting Name="PathCsvDataOd" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\MyCompany\8.SourceCode\3.Projects\20220820aldilaTipOdFreqMrDiepMrKhai\info\DATA\DATABASE\Database-Tip OD-Frequency- hieu chinh.csv</Value>

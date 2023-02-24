@@ -274,7 +274,8 @@ namespace TipOdFreqAdmin
             }
             catch
             {
-
+                this.Invoke((MethodInvoker)delegate { labStatus.BackColor = Color.Red; });
+                MessageBox.Show("Can't connect to Sql Server.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -418,7 +419,8 @@ namespace TipOdFreqAdmin
             }
             catch (Exception ex)
             {
-
+                this.Invoke((MethodInvoker)delegate { labStatus.BackColor = Color.Red; });
+                MessageBox.Show("Can't connect to Sql Server.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Console.WriteLine($"Loi: { ex.Message}");
             }
         }
@@ -576,16 +578,19 @@ namespace TipOdFreqAdmin
 
                 if (countExecute == 1)
                 {
+                    this.Invoke((MethodInvoker)delegate { labStatus.BackColor = Color.Green; });
                     MessageBox.Show("Impport data successfull.");
                 }
                 else
                 {
+                    this.Invoke((MethodInvoker)delegate { labStatus.BackColor = Color.Red; });
                     MessageBox.Show("Fail.");
                 }
             }
             catch
             {
-
+                this.Invoke((MethodInvoker)delegate { labStatus.BackColor = Color.Red; });
+                MessageBox.Show("Can't connect to Sql Server.","ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
 

@@ -25,9 +25,8 @@ namespace TipOdFreqAdmin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4LxE/a+D1aN38ut8vvBCcghMbkTSmcyBcML3Uo+yGpjDFhvHDZ0TTQrNs5BzWTrmXuV8s2qBvGaXtRuv5" +
-            "7ncQupXJvdJ9GzPyMRqOL2jhjvjKeVvAbpe3jKbL2NvbpFd7v7h5NvIduukatQeC2mdfmc+ovHfxjti8" +
-            "0ChX5YyHIRPpqjUrtLjog==")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Database=ALD_MFG;UID=sa;Password= 100100; Min Pool Size=0;M" +
+            "ax Pool Size=1000;Pooling=true; Connect Timeout=65535;")]
         public string ConString {
             get {
                 return ((string)(this["ConString"]));

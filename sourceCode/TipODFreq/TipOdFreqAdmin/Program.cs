@@ -17,7 +17,8 @@ namespace TipOdFreqAdmin
         static void Main()
         {
             #region Đọc các thông số cấu hình ban đầu từ settings
-            GlobalVariables.ConnectionString = EncodeMD5.DecryptString(Properties.Settings.Default.ConString, "@Aldila@123");
+            //GlobalVariables.ConnectionString = EncodeMD5.DecryptString(Properties.Settings.Default.ConString, "@Aldila@123");
+            GlobalVariables.ConnectionString = Properties.Settings.Default.ConString;
 
             GlobalVariables.PathApp = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             GlobalVariables.PathOd = Properties.Settings.Default.PathCsvDataOd;
