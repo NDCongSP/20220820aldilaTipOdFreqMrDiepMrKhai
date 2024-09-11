@@ -25,9 +25,9 @@ namespace TipODFreq.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4LxE/a+D1aN38ut8vvBCcghMbkTSmcyBcML3Uo+yGpjDFhvHDZ0TTQrNs5BzWTrmXuV8s2qBvGaXtRuv5" +
-            "7ncQupXJvdJ9GzPyMRqOL2jhjvjKeVvAbpe3jKbL2NvbpFd7v7h5NvIduukatQeC2mdfmc+ovHfxjti8" +
-            "0ChX5YyHIRPpqjUrtLjog==")]
+        [global::System.Configuration.DefaultSettingValueAttribute("4LxE/a+D1aN38ut8vvBCcghMbkTSmcyBcML3Uo+yGpjDFhvHDZ0TTQrNs5BzWTrmXuV8s2qBvGZ0/pONf" +
+            "W6alRTZeC9do7QPbm4nbPKsCiDQ3nkKFEh0c25uJ2zyrAogoKk5xmPs7QekamkYCsxEgwFVDRIfk5h+2" +
+            "ofXF/gtGdGZQ4u+9xfJiFUig/iBcZoO")]
         public string ConString {
             get {
                 return ((string)(this["ConString"]));
@@ -109,6 +109,18 @@ namespace TipODFreq.Properties {
             }
             set {
                 this["ShaftNumPolishing"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
+        public int ShaftNumSave {
+            get {
+                return ((int)(this["ShaftNumSave"]));
+            }
+            set {
+                this["ShaftNumSave"] = value;
             }
         }
     }

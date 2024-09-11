@@ -1017,7 +1017,7 @@ namespace TipODFreq
                         if (logType == "2")
                         {
                             logData.LogType = "Production";
-                            if (logCountPolishing < 5)
+                            if (logCountPolishing < GlobalVariables.ShaftNumSave)//lưu số cây theo giới hạn cài đặt
                             {
                                 using (var connection = GlobalVariables.GetDbConnection())
                                 {
@@ -1115,7 +1115,7 @@ namespace TipODFreq
                     {
                         if (logType == "2")
                         {
-                            if (logCountTipOd < 5)
+                            if (logCountTipOd < GlobalVariables.ShaftNumSave)
                             {
                                 foreach (var item in tipOdDataLog)
                                 {
@@ -1243,7 +1243,7 @@ namespace TipODFreq
                         if (logType == "2")
                         {
                             logData.LogStyle = "Production";
-                            if (logCountSanding < 5)
+                            if (logCountSanding < GlobalVariables.ShaftNumSave)
                             {
                                 using (var connection = GlobalVariables.GetDbConnection())
                                 {

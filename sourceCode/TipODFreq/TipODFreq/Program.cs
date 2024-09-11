@@ -36,6 +36,7 @@ namespace TipODFreq
             GlobalVariables.ShaftNumSanding = Properties.Settings.Default.ShaftNumSanding;
             GlobalVariables.ShaftNumOd = Properties.Settings.Default.ShaftNumOd;
             GlobalVariables.ShaftNumPolishing = Properties.Settings.Default.ShaftNumPolishing;
+            GlobalVariables.ShaftNumSave = Properties.Settings.Default.ShaftNumSave;
 
             //Console.WriteLine($"Path app: {Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}");
             #endregion

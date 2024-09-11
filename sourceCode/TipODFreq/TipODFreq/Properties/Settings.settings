@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ConString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">4LxE/a+D1aN38ut8vvBCcghMbkTSmcyBcML3Uo+yGpjDFhvHDZ0TTQrNs5BzWTrmXuV8s2qBvGaXtRuv57ncQupXJvdJ9GzPyMRqOL2jhjvjKeVvAbpe3jKbL2NvbpFd7v7h5NvIduukatQeC2mdfmc+ovHfxjti80ChX5YyHIRPpqjUrtLjog==</Value>
+      <Value Profile="(Default)">4LxE/a+D1aN38ut8vvBCcghMbkTSmcyBcML3Uo+yGpjDFhvHDZ0TTQrNs5BzWTrmXuV8s2qBvGZ0/pONfW6alRTZeC9do7QPbm4nbPKsCiDQ3nkKFEh0c25uJ2zyrAogoKk5xmPs7QekamkYCsxEgwFVDRIfk5h+2ofXF/gtGdGZQ4u+9xfJiFUig/iBcZoO</Value>
     </Setting>
     <Setting Name="PathCsvDataOd" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\MyCompany\8.SourceCode\3.Projects\20220820aldilaTipOdFreqMrDiepMrKhai\info\DATA\DATABASE\Database-Tip OD-Frequency- hieu chinh.csv</Value>
@@ -22,6 +22,9 @@
     </Setting>
     <Setting Name="ShaftNumPolishing" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ShaftNumSave" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">6</Value>
     </Setting>
   </Settings>
 </SettingsFile>

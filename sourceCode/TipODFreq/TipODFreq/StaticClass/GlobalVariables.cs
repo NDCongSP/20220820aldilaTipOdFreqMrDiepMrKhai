@@ -25,5 +25,6 @@ namespace TipODFreq
         public static int ShaftNumSanding { get; set; }
         public static int ShaftNumOd { get; set; }
         public static int ShaftNumPolishing { get; set; }
+        public static int ShaftNumSave { get; set; }
     }
 }
